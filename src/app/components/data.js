@@ -6,7 +6,7 @@ const products = [
       ampliance1: '300W Solar Panels * 4',
       ampliance2: '1.5KV/24V Inverter',
       ampliance3: '5KW Battery * 1',
-      Components: '1TV + Sound System, 2 Fans, LED lighting Points, 2 Laptops and Phones',
+      components: '1TV + Sound System, 2 Fans, LED lighting Points, 2 Laptops and Phones',
       price1: '1,600,830',
       price1: '760,970',
 

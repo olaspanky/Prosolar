@@ -71,10 +71,12 @@ const Hero = ({ scrollToHero }) => {
   return (
   <div className='w-full h- auto px-5 '>
     <div className='bg-lbg bg-cover bg-center h-auto lg:h-[100vh] flex flex-col gap-5 lg:gap-9 justify-center items-center p-5 xl:p-20 2xl:p-36 rounded-xl'>
-<h1 className='text-xl xl:text-7xl text-center font-bold text-black '>Radiance on your roof <span className='text-[#F8D109]'>power</span>  in your hands!</h1>
-<p className='text-md xl:text-xl text-center text-[#444444]'>Empower Your Solar Investment with  Expert Care! Discover seamless <br/>
+<h1 className='text-md lg:text-xl xl:text-7xl text-center font-bold text-black '>Radiance on your roof <span className='text-[#F8D109]'>power</span>  in your hands!</h1>
+<p className='text-sm xl:text-md lg:text-xl text-center text-[#444444]'>Empower Your Solar Investment with  Expert Care! Discover seamless <br/>
 solutions for sales, repairs, and maintenance of solar inverters. </p>
-<button className='rounded-xl bg-[#292ECF] text-center mb-5 lg:mb-20 text-white p-2 text-md font-bold'>Get a Quote</button>
+<a href="/pages/contact" className="text-[#787878]">
+
+<button className='rounded-xl bg-[#292ECF] text-center mb-5 lg:mb-20 text-white p-2 text-md font-bold'>Get a Quote</button> </a>
     </div>
   </div>
   );

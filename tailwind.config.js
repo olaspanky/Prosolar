@@ -13,6 +13,10 @@ module.exports = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
           'lbg': "url('/assets/pl.png')",
           'pbg': "url('/assets/pp.png')",
+          'p1bg': "url('/assets/LATC1.jpeg')",
+          'p3bg': "url('/assets/Agb1.jpeg')",
+          'p4bg': "url('/assets/koro1.jpeg')",
+          'p2bg': "url('/assets/Otuan1.jpg')",
 
       },
     },

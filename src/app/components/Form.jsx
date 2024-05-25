@@ -44,15 +44,15 @@ export const Hero = () => {
     <div className="col-span-4 flex flex-col gap-5 p-9 shadow-md border  rounded-3xl">
 <h1 className="text-3xl font-bold">Contact Us</h1>
 <div className="flex flex-col gap-5">
-    <div className="text-lg xl:text-xl  border-2 rounded-xl w-full shadow-md p-2">Instagram</div>
-    <div className="text-lg xl:text-xl  border-2 rounded-xl w-full shadow-md p-2">Instagram</div>
-    <div className="text-lg xl:text-xl  border-2 rounded-xl w-full shadow-md p-2">Instagram</div>
-    <div className="text-lg xl:text-xl  border-2 rounded-xl w-full shadow-md p-2">Instagram</div>
+    <div className="text-sm lg:text-lg xl:text-md lg:text-xl  border-2 rounded-xl w-full shadow-md p-2">Instagram</div>
+    <div className="text-sm lg:text-lg xl:text-md lg:text-xl  border-2 rounded-xl w-full shadow-md p-2">Instagram</div>
+    <div className="text-sm lg:text-lg xl:text-md lg:text-xl  border-2 rounded-xl w-full shadow-md p-2">Instagram</div>
+    <div className="text-sm lg:text-lg xl:text-md lg:text-xl  border-2 rounded-xl w-full shadow-md p-2">Instagram</div>
   
 </div>
 
 <h1 className="text-3xl font-bold lg:mt-20">Location</h1>
-<p className="text-lg">5,Talabi Street, off 
+<p className="text-sm lg:text-lg">5,Talabi Street, off 
 Adeniyi jones Avenue,
 Vulcanizer bus stop,
 Ikeja, Lagos Nigeria.</p>
@@ -207,7 +207,7 @@ Ikeja, Lagos Nigeria.</p>
           )}
         </div>
         
-        <button type="submit" className="w-full bg-[#292ECF] text-white p-2 rounded hover:bg-blue-600">
+        <button type="submit" className="w-full bg-[#292ECF] text-white p-2 rounded-xl hover:bg-blue-600">
           Submit
         </button>
       </form>

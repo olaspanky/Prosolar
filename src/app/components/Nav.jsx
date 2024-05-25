@@ -44,15 +44,50 @@ const menuItems = [
   },
 
   {
-    title: "Products",
+    title: "Shop",
     route: "/blog",
 
 
   },
   {
     title: "Contact Us",
-    route: "/contact",
+    route: "/pages/contact",
   },
+  {
+    title: "Solar Packages",
+    children: [
+      {
+        title: "Li-ion",
+        route: "/pages/packages",
+      },
+     
+     
+    ],
+
+  },
+  {
+    title: "Projects",
+    children: [
+      {
+        title: "LATC",
+        route: "/pages/project1",
+      },
+      {
+        title: "OTUAN",
+        route: "/pages/project2",
+      },
+      {
+        title: "AGB",
+        route: "/pages/project3",
+      },
+      {
+        title: "KORO",
+        route: "/pages/project4",
+      },
+     
+    ],
+
+  }
 
 ];
 
@@ -85,11 +120,9 @@ export default function Header() {
             </Link>
           );
         })}
-        <a href="/pages/cart" className="text-[#787878]">
+        <a href="/pages/contact" className="text-[#787878]">
             <div className="flex gap-3 px-3 py-2 border rounded-lg bg-[#292ECF] items-center justify-center">
-              <div className="relative">
-               
-              </div>
+             
               <p className="text-xs text-[white]">Get a quote</p>
             </div>
           </a>
@@ -115,7 +148,7 @@ export default function Header() {
               )}
             </div>
           ))}
-         <a href="/pages/cart" className="text-black">
+         <a href="/pages/contact" className="text-black">
             <div className="flex gap-3 px-3 py-2 border rounded-lg border-white items-center justify-center">
               <div className="relative">
               <button className="p-3 bg-yellow-600">Get a Quote</button>

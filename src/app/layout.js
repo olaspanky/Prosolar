@@ -3,6 +3,10 @@ import "./globals.css";
 import { Syne } from 'next/font/google'
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import CartProviders from "./components/Provider";
+import { Footer } from "./components/Footer";
+
+
 
 const syne = Syne({
   weight: '400',
@@ -19,7 +23,12 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={syne.className}>{children}</body>
+      <body className={syne.className}>
+        <CartProviders>
+        {children}
+        <Footer/>
+        </CartProviders>
+       </body>
     </html>
   );
 }
