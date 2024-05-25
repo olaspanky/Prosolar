@@ -8,8 +8,8 @@ const SolarProductCard = () => {
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-    {products.map((product, index) => (
-                <Link key={index} href={`/pages/products/${product.id}`}>
+    {products.map((product) => (
+                <Link key={product.id} href={`/pages/products/${product.id}`}>
 
     <div className="bg-white text-[#787878] flex flex-col gap-5 shadow-lg p-5 lg:p-9 rounded-lg overflow-hidden">
       <div className=" flex flex-col gap-3">

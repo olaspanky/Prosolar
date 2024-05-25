@@ -8,13 +8,13 @@ import t1 from "../../../../public/assets/t1.png"
 
 const testimonials = [
   {
-    quote: "Pro Solar made going solar a breeze! From consultation to installation, their team was top-notch. My bills have dropped, and I'm loving the green energy. Highly recommend!.",
+    quote: "Pro Solar made going solar a breeze! From consultation to installation, their team was top-notch. My bills have dropped, and I m loving the green energy. Highly recommend!.",
     author: "John Doe",
     title: "CEO, Company",
     image: "/path/to/image1.jpg",
   },
   {
-    quote: "Excellent customer service and exceptional quality. Pro Solar made going solar a breeze! From consultation to installation, their team was top-notch. My bills have dropped, and I'm loving the green energy. Highly recommend!.",
+    quote: "Excellent customer service and exceptional quality. Pro Solar made going solar a breeze! From consultation to installation, their team was top-notch. My bills have dropped, and I am loving the green energy. Highly recommend!.",
     author: "Jane Smith",
     title: "Manager, Business",
     image: "/path/to/image2.jpg",
