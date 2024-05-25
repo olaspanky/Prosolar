@@ -11,7 +11,7 @@ const SolarProductCard = () => {
     {products.map((product) => (
                 <Link key={product.id} href={`/pages/products/${product.id}`}>
 
-    <div className="bg-white text-[#787878] flex flex-col gap-5 shadow-lg p-5 lg:p-9 rounded-lg overflow-hidden">
+    <div key={product.id} className="bg-white text-[#787878] flex flex-col gap-5 shadow-lg p-5 lg:p-9 rounded-lg overflow-hidden">
       <div className=" flex flex-col gap-3">
         <h3 className="text-md lg:text-xl font-bold text-black">{product.name}</h3>
         <p className="text-gray-600 mt-2">{product.home}</p>
