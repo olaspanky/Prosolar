@@ -83,7 +83,7 @@ const BoxGrid = ({ card }) => {
             </div>
 
 
-           <Quote/>
+           {/* <Quote/> */}
         </div>
 
 
