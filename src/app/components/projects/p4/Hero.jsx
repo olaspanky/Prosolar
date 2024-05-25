@@ -1,6 +1,6 @@
 import React from "react";
 import ImageCard from "../ImageCard"
-import l1 from "../../../../../public/assets/koro2.jpeg"
+import l1 from "../../../../../public/assets/Koro2.jpeg"
 export const Hero = () => {
   return (
     <div className=" text-black">
