@@ -89,7 +89,7 @@ const Quote = () => {
         </div>
         <div>
           <h2 className="text-sm lg:text-lg font-semibold">Terms & Conditions</h2>
-          <p>Manufacturer's Warranty terms and conditions applies.</p>
+          <p>Manufacturer Warranty terms and conditions applies.</p>
           <p>Backup time from the batteries is dependent on the load on the system. Lower loads provides higher backup time.</p>
           <p>Client is to make 90% down payment and 10% balance within 72 hours after completion of project.</p>
         </div>
