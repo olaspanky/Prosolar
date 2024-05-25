@@ -87,7 +87,7 @@ export default function Header() {
     <div className=" flex justify-between px-5 xl:px-9 2xl:px-10 gap-10 items-center border-b-2 border-white ">
       <div className="lg:p-5 p-2 rounded-br-[25%] rounded-bl-[25%] ">
      <Link href="/" >
-        <Image src={Logo} className="w-5 lg:w-36" alt="logo" />
+        <Image src={Logo} className="w-12 lg:w-36" alt="logo" />
       </Link>
 
       </div>

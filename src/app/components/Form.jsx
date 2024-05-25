@@ -37,11 +37,11 @@ export const Hero = () => {
         },
       });
   return (
-    <div className="xl:px-12  xl:py-9 p-3 text-black">
+    <div className="xl:px-12  xl:py-9 p-1 text-black">
       
     
 <div className="grid lg:grid-cols-12 ">
-    <div className="col-span-4 flex flex-col gap-5 p-9 shadow-md border  rounded-3xl">
+    <div className="col-span-4 flex flex-col gap-5 lg:p-9 p-3 shadow-md border  rounded-3xl">
 <h1 className="text-3xl font-bold">Contact Us</h1>
 <div className="flex flex-col gap-5">
     <div className="text-sm lg:text-lg xl:text-md lg:text-xl  border-2 rounded-xl w-full shadow-md p-2">Instagram</div>
@@ -60,7 +60,7 @@ Ikeja, Lagos Nigeria.</p>
     </div>
 
     <div className='col-span-8'>
-    <div className="mx-auto p-5 lg:px-20 2xl:px-36">
+    <div className="mx-auto p-2 lg:px-20 2xl:px-36">
       <form onSubmit={formik.handleSubmit}>
         <div className="mb-4">
           <label className="block text-gray-700">Name *</label>

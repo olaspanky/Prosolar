@@ -28,18 +28,18 @@ export const Hero = () => {
           </p>
         </div>
       </div>
-      <div className="bg-[#F9F9F9] p-3 lg:p-9 rounded-xl">
+      <div className="bg-[#F9F9F9] p-1 lg:p-9 rounded-xl">
         <h1 className="text-md  lg:text-5xl text-yellow-300 text-center my-5">Why Choose Us</h1>
         <div className="lg:grid grid-cols-2 gap-3 ">
-          <div className="col-span-1 flex flex-col justify-center items-center p-3 xl:p-20">
+          <div className="col-span-1 flex flex-col justify-center items-center p-1 xl:p-20">
             <Image src={frame1} className="" />
           </div>
-          <div className="col-span-1 flex flex-col justify-center items-center gap-9 p-3 xl:p-20 my-20">
+          <div className="col-span-1 flex flex-col justify-center items-center gap-9 p-1 xl:p-20 my-20">
             <div className="flex flex-col gap-2">
               <h1 className="font-bold text-md lg:text-xl">Cut Costs with ProSolar</h1>
               <p className="text-sm lg:text-lg">
                 Say goodbye to high energy bills. Invest in our solution and
-                watch your expenses shrink next quarter.
+                watch your expenses shrink next quarter. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloribus veritatis aspernatur iure placeat, nisi iste beatae quas vitae, reprehenderit saepe incidunt est soluta autem. Commodi enim iusto molestiae voluptatem iure.
               </p>
             </div>
             <div className="flex flex-col gap-2">
@@ -65,7 +65,7 @@ export const Hero = () => {
       </div>
 
 
-      <div className=" p-5 rounded-xl">
+      <div className="p-1 lg:p-5 rounded-xl">
         <h1 className="text-md lg:text-5xl text-[#292ECF] text-center my-5">How it Works</h1>
         <div className="lg:grid grid-cols-2 gap-3 ">
           <div className="col-span-1 flex flex-col gap-3 lg:gap-20 p-3 lg:p-20">
@@ -138,10 +138,10 @@ export const Hero = () => {
 
 
 
-      <div className=" p-5 rounded-xl">
-        <h1 className="text-md lg:text-xl lg:text-5xl text-[#292ECF] text-center my-5">Some of our past projects</h1>
+      <div className=" lg:p-5 rounded-xl">
+        <h1 className="text-md lg:text-5xl text-[#292ECF] text-center my-5">Some of our past projects</h1>
         <div className="lg:grid grid-cols-3 gap-5 ">
-          <div className="col-span-1 flex flex-col gap-3 p-3 lg:p-5">
+          <div className="col-span-1 flex flex-col gap-3 p-1 lg:p-5">
           <Image src={p1} className="w-full"/>
           <h1 className="font-bold lg:text-md lg:text-xl">Project one</h1>
           <p className="text-sm lg:text-lg">
@@ -149,7 +149,7 @@ export const Hero = () => {
               </p>
           </div>
     
-          <div className="col-span-1 flex flex-col gap-3 p-3 lg:p-5">
+          <div className="col-span-1 flex flex-col gap-3 p-1 lg:p-5">
           <Image src={p1} className="w-full"/>
           <h1 className="font-bold lg:text-md lg:text-xl">Project one</h1>
           <p className="text-sm lg:text-lg">
@@ -157,7 +157,7 @@ export const Hero = () => {
               </p>
           </div>
     
-          <div className="col-span-1 flex flex-col gap-3 p-3 lg:p-5">
+          <div className="col-span-1 flex flex-col gap-3 p-1 lg:p-5">
           <Image src={p1} className="w-full"/>
           <h1 className="font-bold lg:text-md lg:text-xl">Project one</h1>
           <p className="text-sm lg:text-lg">

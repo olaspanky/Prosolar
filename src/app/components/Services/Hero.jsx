@@ -6,9 +6,9 @@ import p1 from "../../../../public/assets/pr1.png";
 export const Hero = () => {
   const products = data;
   return (
-    <div className="xl:px-12  xl:py-36 p-3 text-black">
-      <div className="grid lg:grid-cols-2 lg:p-9 p-3 gap-5">
-        <div className="col-span-1">
+    <div className="xl:px-12  xl:py-36 p-1 text-black">
+      <div className="grid lg:grid-cols-2 lg:p-9 p-1 gap-5">
+        <div className="col-span-1 w-full">
           <Image src={p1} />
         </div>
 
@@ -31,7 +31,7 @@ export const Hero = () => {
         </div>
       </div>
 
-      <div className="grid lg:grid-cols-2 lg:p-9 p-3 gap-5">
+      <div className="grid lg:grid-cols-2 lg:p-9 p-1 gap-5">
         <div className="col-span-1 order-last lg:order-none">
           <div className="flex flex-col gap-2">
             <h1 className="font-bold text-md lg:text-xl">
@@ -56,7 +56,7 @@ export const Hero = () => {
 
 
 
-      <div className="grid lg:grid-cols-2 lg:p-9 p-3 gap-5">
+      <div className="grid lg:grid-cols-2 lg:p-9 p-1 gap-5">
       <div className="col-span-1">
           <Image src={p1} />
         </div>
@@ -80,7 +80,7 @@ export const Hero = () => {
        
       </div>
 
-      <div className="grid lg:grid-cols-2 lg:p-9 p-3 gap-5" >
+      <div className="grid lg:grid-cols-2 lg:p-9 p-1 gap-5" >
         <div className="col-span-1 order-last lg:order-none">
           <div className="flex flex-col gap-2">
             <h1 className="font-bold text-md lg:text-xl">
@@ -103,7 +103,7 @@ Commercial and Industrial Solar Development            </h1>
        
       </div>
 
-      <div className="grid lg:grid-cols-2 lg:p-9 p-3 gap-5">
+      <div className="grid lg:grid-cols-2 lg:p-9 p-1 gap-5">
       <div className="col-span-1">
           <Image src={p1} />
         </div>
@@ -125,7 +125,7 @@ Minigrid Design and Development            </h1>
         </div>
       </div>
 
-      <div className="grid lg:grid-cols-2 lg:p-9 p-3 gap-5 " dir="ltr lg:ltr">
+      <div className="grid lg:grid-cols-2 lg:p-9 p-1 gap-5 " dir="ltr lg:ltr">
      
         <div className="col-span-1 order-last lg:order-none">
           <div className="flex flex-col gap-2">
