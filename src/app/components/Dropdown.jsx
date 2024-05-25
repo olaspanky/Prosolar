@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { motion,AnimatePresence } from 'framer-motion'
+import { MenuItem } from './Nav';
 
-import { MenuItem } from './Navbar';
 export default function Dropdown(props) {
     const { item } = props;
     const [isOpen, setIsOpen] = useState(false);
