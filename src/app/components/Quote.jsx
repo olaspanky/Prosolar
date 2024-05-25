@@ -1,29 +1,31 @@
-import React, { useRef } from 'react';
-import html2pdf from 'html2pdf.js';
+import React, { useRef, useEffect, useState } from 'react';
 
 const Quote = () => {
-    const quoteRef = useRef();
-    const [isClient, setIsClient] = useState(false);
-  
-    useEffect(() => {
-      // Set state to true when component is mounted on the client side
-      setIsClient(true);
-    }, []);
-  
-    const handleDownload = () => {
-      if (isClient) {
-        const element = quoteRef.current;
-        const opt = {
-          margin: 1,
-          filename: 'quote.pdf',
-          image: { type: 'jpeg', quality: 0.98 },
-          html2canvas: { scale: 2 },
-          jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' },
-        };
-        html2pdf().from(element).set(opt).save();
-      }
-    };
-  
+  const quoteRef = useRef();
+  const [isClient, setIsClient] = useState(false);
+  const [html2pdf, setHtml2pdf] = useState(null);
+
+  useEffect(() => {
+    setIsClient(true);
+    // Dynamically import html2pdf when the component mounts on the client
+    import('html2pdf.js').then((module) => {
+      setHtml2pdf(module.default);
+    });
+  }, []);
+
+  const handleDownload = () => {
+    if (html2pdf) {
+      const element = quoteRef.current;
+      const opt = {
+        margin: 1,
+        filename: 'quote.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2 },
+        jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' },
+      };
+      html2pdf().from(element).set(opt).save();
+    }
+  };
 
   return (
     <div className="p-8">
