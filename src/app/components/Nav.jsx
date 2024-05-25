@@ -19,26 +19,8 @@ const menuItems = [
   },
   {
     title: "Services",
-    route: "",
-    children: [
-      {
-        title: "HCP Insight",
-        route: "/pages/category/Healthcare-Ecosystem-Insights",
-      },
-      {
-        title: "Healthcare Ecosystem Insight",
-        route: "/pages/category/Healthcare-Ecosystem-Insights",
-      },
-      {
-        title: "Market Insight",
-        route: "/pages/category/Healthcare-Ecosystem-Insights",
-      },
-      {
-        title: "Patients Insight",
-        route: "/pages/category/Healthcare-Ecosystem-Insights",
-      },
-     
-    ],
+    route: "/pages/services",
+   
 
   
   },
