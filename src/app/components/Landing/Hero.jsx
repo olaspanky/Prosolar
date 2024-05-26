@@ -5,6 +5,10 @@ import icon1 from "../../../../public/assets/picon.svg";
 import icon2 from "../../../../public/assets/picon2.svg";
 import p1 from "../../../../public/assets/pr1.png";
 import Testimonials from "./Testimonial";
+import Otuan from "../../../../public/assets/Otuan2.JPG"
+import koro from "../../../../public/assets/Koro2.jpeg"
+import latc from "../../../../public/assets/LATC2.jpg"
+import agb from "../../../../public/assets/LATC2.jpg"
 
 export const Hero = () => {
   return (
@@ -140,29 +144,53 @@ export const Hero = () => {
 
       <div className=" lg:p-5 rounded-xl">
         <h1 className="text-md lg:text-5xl text-[#292ECF] text-center my-5">Some of our past projects</h1>
-        <div className="lg:grid grid-cols-3 gap-5 ">
-          <div className="col-span-1 flex flex-col gap-3 p-1 lg:p-5">
-          <Image src={p1} className="w-full"/>
-          <h1 className="font-bold lg:text-md lg:text-xl">Project one</h1>
+        <div className="lg:grid grid-cols-4 gap-5 ">
+          <div className="col-span-1 flex flex-col gap-3 h-[70vh] justify-between p-1 lg:p-5">
+          <Image src={latc} className="w-full h-[200px]"/>
+          <h1 className="font-bold lg:text-md lg:text-xl">95kWp Solar Power Plant at Dobi, Gwagwalada, Abuja, Nigeria.</h1>
           <p className="text-sm lg:text-lg">
-               Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi perferendis odit quibusdam tempore temporibus, expedita vitae a quasi aperiam optio in impedit, voluptatem repudiandae quia dolore laboriosam quo fuga blanditiis.
-              </p>
+          The Ground mounted 95kWp Solar Plant was designed and developed ...</p>
+          <a href="/pages/project1" className="text-[#787878]">
+
+<button className='rounded-xl bg-[#292ECF] text-center mb-5 lg:mb-20 text-white p-2 text-md font-bold'>Check it out</button> </a>
+
           </div>
     
-          <div className="col-span-1 flex flex-col gap-3 p-1 lg:p-5">
-          <Image src={p1} className="w-full"/>
-          <h1 className="font-bold lg:text-md lg:text-xl">Project one</h1>
-          <p className="text-sm lg:text-lg">
-               Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi perferendis odit quibusdam tempore temporibus, expedita vitae a quasi aperiam optio in impedit, voluptatem repudiandae quia dolore laboriosam quo fuga blanditiis.
-              </p>
+          <div className="col-span-1 flex flex-col gap-3 h-[70vh]  justify-between p-1 lg:p-5">
+          <Image src={Otuan} className="w-full  h-[200px]"/>
+          <h1 className="font-bold lg:text-md lg:text-xl">100kWp Solar Power Plant at Otuan, Southern Ijaw, Bayelsa, Nigeria
+</h1>
+          <p className="text-sm lg:text-lg  ">
+          The Hybrid Solar Minigrid Project was designed and developed ...
+</p>
+<a href="/pages/project2" className="text-[#787878]">
+
+<button className='rounded-xl bg-[#292ECF] text-center mb-5 lg:mb-20 text-white p-2 text-md font-bold'>Check it out</button> </a>
           </div>
     
-          <div className="col-span-1 flex flex-col gap-3 p-1 lg:p-5">
-          <Image src={p1} className="w-full"/>
-          <h1 className="font-bold lg:text-md lg:text-xl">Project one</h1>
+          <div className="col-span-1 flex flex-col h-[70vh] gap-3 p-1  justify-between lg:p-5">
+          <Image src={agb} className="w-full  h-[200px]"/>
+          <h1 className="font-bold lg:text-md lg:text-xl">33kWp Solar Power Plant at  Aguobiri, Southern Ijaw, Bayelsa, Nigeria
+</h1>
           <p className="text-sm lg:text-lg">
-               Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi perferendis odit quibusdam tempore temporibus, expedita vitae a quasi aperiam optio in impedit, voluptatem repudiandae quia dolore laboriosam quo fuga blanditiis.
-              </p>
+          The Hybrid Solar Minigrid Project was designed and developed ...
+</p>
+<a href="/pages/project3" className="text-[#787878]">
+
+<button className='rounded-xl bg-[#292ECF] text-center mb-5 lg:mb-20   text-white p-2 text-md font-bold'>Check it out</button> </a>
+          </div>
+    
+          <div className="col-span-1 flex flex-col gap-3 h-[70vh] justify-between p-1 lg:p-5">
+          <Image src={koro} className="w-full  h-[200px]"/>
+          <h1 className="font-bold lg:text-md lg:text-xl">100kWp Solar Power Plant at Korokorosei, Southern Ijaw, Bayelsa, Nigeria
+</h1>
+          <p className="text-sm lg:text-lg">
+          The Hybrid Solar Minigrid Project was designed and developed ...
+
+</p>
+<a href="/pages/project4" className="text-[#787878]">
+
+<button className='rounded-xl bg-[#292ECF] text-center mb-5 lg:mb-20 text-white p-2 text-md font-bold'>Check it out</button> </a>
           </div>
     
         </div>

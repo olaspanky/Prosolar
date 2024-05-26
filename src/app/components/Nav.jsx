@@ -12,7 +12,7 @@ const menuItems = [
   { title: "Contact Us", route: "/pages/contact" },
   {
     title: "Solar Packages",
-    children: [{ title: "Li-ion", route: "/pages/packages" }],
+    children: [{ title: "Li-ion", route: "/pages/li-ion" },{ title: "Wet cell", route: "/pages/wet-cell" }],
   },
   {
     title: "Projects",
