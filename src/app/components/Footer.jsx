@@ -1,7 +1,10 @@
 import Image from 'next/image'
 import React from 'react'
 import logo from "../../../public/assets/plogo.svg"
-
+import { RiInstagramFill } from "react-icons/ri";
+import { IoLogoWhatsapp } from "react-icons/io";
+import { FaTwitter } from "react-icons/fa6";
+import { FaFacebookF } from "react-icons/fa";
 
 export const Footer = () => {
   return (
@@ -22,12 +25,12 @@ Ikeja, Lagos Nigeria.
                 </div>
                 <div className='lg:w-1/3'>
                     <h1 className='text-sm lg:text-lg font-bold text-white'>Contact</h1>
-                    <div className="flex flex-row lg:w-36 w-20 lg:flex-col gap-3">
-    <div className="text-xs lg:text-sm    border-2 rounded-xl w-full shadow-md p-1">telephone</div>
-    <div className="text-xs lg:text-sm   border-2 rounded-xl w-full shadow-md p-1">Email</div>
-    <div className="text-xs lg:text-sm hidden lg:flex    border-2 rounded-xl w-full shadow-md p-1">Whatsapp</div>
-    <div className="text-xs lg:text-sm hidden lg:flex   border-2 rounded-xl w-full shadow-md p-1">Facebook</div>
-  
+                    <div className="flex flex-row lg:flex-col gap-3">
+    <div className=""><RiInstagramFill/></div>
+    <div className=""><IoLogoWhatsapp/></div>
+    <div className=""><FaTwitter/></div>
+    <div className=""><FaFacebookF/></div>
+   
 </div>
                 </div>
                 <div className='lg:w-1/3'>

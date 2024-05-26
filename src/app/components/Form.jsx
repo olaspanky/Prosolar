@@ -1,6 +1,12 @@
 import React from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import { RiInstagramFill } from "react-icons/ri";
+import { IoLogoWhatsapp } from "react-icons/io";
+import { FaTwitter } from "react-icons/fa6";
+import { FaFacebookF } from "react-icons/fa";
+
+
 
 
 
@@ -44,10 +50,11 @@ export const Hero = () => {
     <div className="col-span-4 flex flex-col gap-5 lg:p-9 p-3 shadow-md border  rounded-3xl">
 <h1 className="text-3xl font-bold">Contact Us</h1>
 <div className="flex flex-col gap-5">
-    <div className="text-sm lg:text-lg xl:text-md lg:text-xl  border-2 rounded-xl w-full shadow-md p-2">Instagram</div>
-    <div className="text-sm lg:text-lg xl:text-md lg:text-xl  border-2 rounded-xl w-full shadow-md p-2">Instagram</div>
-    <div className="text-sm lg:text-lg xl:text-md lg:text-xl  border-2 rounded-xl w-full shadow-md p-2">Instagram</div>
-    <div className="text-sm lg:text-lg xl:text-md lg:text-xl  border-2 rounded-xl w-full shadow-md p-2">Instagram</div>
+    <div className="text-sm lg:text-lg xl:text-md lg:text-xl  border-2 rounded-xl w-full shadow-md p-2 flex gap-2 justify-center items-center"><RiInstagramFill/>Instagram</div>
+    <div className="text-sm lg:text-lg xl:text-md lg:text-xl  border-2 rounded-xl w-full shadow-md p-2 flex gap-2 justify-center items-center"><IoLogoWhatsapp/>Whatsapp</div>
+    <div className="text-sm lg:text-lg xl:text-md lg:text-xl  border-2 rounded-xl w-full shadow-md p-2 flex gap-2 justify-center items-center"><FaTwitter/>Twitter</div>
+    <div className="text-sm lg:text-lg xl:text-md lg:text-xl  border-2 rounded-xl w-full shadow-md p-2 flex gap-2 justify-center items-center"><FaFacebookF/>Facebook</div>
+   
   
 </div>
 
