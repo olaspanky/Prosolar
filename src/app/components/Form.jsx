@@ -5,7 +5,7 @@ import { RiInstagramFill } from "react-icons/ri";
 import { IoLogoWhatsapp } from "react-icons/io";
 import { FaTwitter } from "react-icons/fa6";
 import { FaFacebookF } from "react-icons/fa";
-
+import { motion, Variants } from 'framer-motion';
 
 
 
@@ -50,10 +50,26 @@ export const Hero = () => {
     <div className="col-span-4 flex flex-col gap-5 lg:p-9 p-3 shadow-md border  rounded-3xl">
 <h1 className="text-3xl font-bold">Contact Us</h1>
 <div className="flex flex-col gap-5">
-    <div className="text-sm lg:text-lg xl:text-md lg:text-xl  border-2 rounded-xl w-full shadow-md p-2 flex gap-2 justify-center items-center"><RiInstagramFill/>Instagram</div>
-    <div className="text-sm lg:text-lg xl:text-md lg:text-xl  border-2 rounded-xl w-full shadow-md p-2 flex gap-2 justify-center items-center"><IoLogoWhatsapp/>Whatsapp</div>
-    <div className="text-sm lg:text-lg xl:text-md lg:text-xl  border-2 rounded-xl w-full shadow-md p-2 flex gap-2 justify-center items-center"><FaTwitter/>Twitter</div>
-    <div className="text-sm lg:text-lg xl:text-md lg:text-xl  border-2 rounded-xl w-full shadow-md p-2 flex gap-2 justify-center items-center"><FaFacebookF/>Facebook</div>
+    <motion.div
+  initial={{x: -200, opacity: 0}}
+  whileInView={{x: 0, opacity:1}}
+  transition={{duration: 0.5, delay:0, ease: "easeInOut"}}
+  className="text-sm lg:text-lg xl:text-md lg:text-xl  border-2 rounded-xl w-full shadow-md p-2 flex gap-2 justify-center items-center"><RiInstagramFill/>Instagram</motion.div>
+    <motion.div
+   initial={{x: -200, opacity: 0}}
+   whileInView={{x: 0, opacity:1}}
+   transition={{duration: 0.5, delay:0.5, ease: "easeInOut"}}
+  className="text-sm lg:text-lg xl:text-md lg:text-xl  border-2 rounded-xl w-full shadow-md p-2 flex gap-2 justify-center items-center"><IoLogoWhatsapp/>Whatsapp</motion.div>
+    <motion.div
+ initial={{x: -200, opacity: 0}}
+ whileInView={{x: 0, opacity:1}}
+ transition={{duration: 0.5, delay:1, ease: "easeInOut"}}
+  className="text-sm lg:text-lg xl:text-md lg:text-xl  border-2 rounded-xl w-full shadow-md p-2 flex gap-2 justify-center items-center"><FaTwitter/>Twitter</motion.div>
+    < motion.div
+  initial={{x: -200, opacity: 0}}
+  whileInView={{x: 0, opacity:1}}
+  transition={{duration: 0.5, delay:1.5, ease: "easeInOut"}}
+  className="text-sm lg:text-lg xl:text-md lg:text-xl  border-2 rounded-xl w-full shadow-md p-2 flex gap-2 justify-center items-center"><FaFacebookF/>Facebook</motion.div>
    
   
 </div>
