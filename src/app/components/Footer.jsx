@@ -8,8 +8,8 @@ import { FaFacebookF } from "react-icons/fa";
 
 export const Footer = () => {
   return (
-    <div className='lg:p-9 p-1'>
-        <div className='grid grid-cols-12 gap-3 rounded-xl bg-[#1B1B1B] text-[#D9D9D9] p-3 lg:p-9'>
+    <div className='lg:p-3 p-1'>
+        <div className='grid grid-cols-12 gap-3 rounded-xl bg-[#1B1B1B]  text-[#D9D9D9] p-3 lg:p-9'>
             <div className='col-span-4 flex justify-center items-center'>
                 <Image src={logo}/>
             </div>
@@ -26,10 +26,10 @@ Ikeja, Lagos Nigeria.
                 <div className='lg:w-1/3'>
                     <h1 className='text-sm lg:text-lg font-bold text-white'>Contact</h1>
                     <div className="flex flex-row lg:flex-col gap-3">
-    <div className=""><RiInstagramFill/></div>
-    <div className=""><IoLogoWhatsapp/></div>
-    <div className=""><FaTwitter/></div>
-    <div className=""><FaFacebookF/></div>
+    <div className="flex gap-3 items-center"><RiInstagramFill/><span className='hidden lg:flex'>Instagram</span></div>
+    <div className="flex gap-3 items-center"><IoLogoWhatsapp/><span className='hidden lg:flex'>Whatsapp</span></div>
+    <div className="flex gap-3 items-center"><FaTwitter/><span className='hidden lg:flex'>Twitter</span></div>
+    <div className="flex gap-3 items-center"><FaFacebookF/><span className='hidden lg:flex'>Facebook</span></div>
    
 </div>
                 </div>
