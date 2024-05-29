@@ -73,9 +73,25 @@ export const Hero = () => {
           <SolarProductCard />
       </div>
     </div>
+
+   
 </div>
 
+<div className="p-2 flex flex-col  gap-3">
+    <a href="/pages/wet-cell" className="text-[#787878] flex gap-5">
 
+      <p className="text-xl">Check out our Litium-ion Battery packages</p>
+
+<button className='rounded-xl bg-[#292ECF] text-center  text-white p-2 text-xs lg:text-md font-bold'>G0</button> </a>
+    <a href="/pages/contact" className="text-[#787878] flex gap-5">
+
+      <p className="text-xl">Get a custom Quote</p>
+
+<button className='rounded-xl bg-[#292ECF] text-center  text-white p-2 text-xs lg:text-md font-bold'>Get a quote</button> </a>
+
+      
+      
+      </div>
 
 
      

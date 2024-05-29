@@ -51,23 +51,23 @@ export const Hero = () => {
 <h1 className="text-3xl font-bold">Contact Us</h1>
 <div className="flex flex-col gap-5">
     <motion.div
-  initial={{x: -200, opacity: 0}}
-  whileInView={{x: 0, opacity:1}}
+  initial={{y: 50, opacity: 0}}
+  whileInView={{y: 0, opacity:1}}
   transition={{duration: 0.5, delay:0, ease: "easeInOut"}}
   className="text-sm lg:text-lg xl:text-md lg:text-xl  border-2 rounded-xl w-full shadow-md p-2 flex gap-2 justify-center items-center"><RiInstagramFill/>Instagram</motion.div>
     <motion.div
-   initial={{x: -200, opacity: 0}}
-   whileInView={{x: 0, opacity:1}}
+   initial={{y: 100, opacity: 0}}
+   whileInView={{y: 0, opacity:1}}
    transition={{duration: 0.5, delay:0.5, ease: "easeInOut"}}
   className="text-sm lg:text-lg xl:text-md lg:text-xl  border-2 rounded-xl w-full shadow-md p-2 flex gap-2 justify-center items-center"><IoLogoWhatsapp/>Whatsapp</motion.div>
     <motion.div
- initial={{x: -200, opacity: 0}}
- whileInView={{x: 0, opacity:1}}
+ initial={{y: 150, opacity: 0}}
+ whileInView={{y: 0, opacity:1}}
  transition={{duration: 0.5, delay:1, ease: "easeInOut"}}
   className="text-sm lg:text-lg xl:text-md lg:text-xl  border-2 rounded-xl w-full shadow-md p-2 flex gap-2 justify-center items-center"><FaTwitter/>Twitter</motion.div>
     < motion.div
-  initial={{x: -200, opacity: 0}}
-  whileInView={{x: 0, opacity:1}}
+  initial={{y: 200, opacity: 0}}
+  whileInView={{y: 0, opacity:1}}
   transition={{duration: 0.5, delay:1.5, ease: "easeInOut"}}
   className="text-sm lg:text-lg xl:text-md lg:text-xl  border-2 rounded-xl w-full shadow-md p-2 flex gap-2 justify-center items-center"><FaFacebookF/>Facebook</motion.div>
    
@@ -75,10 +75,7 @@ export const Hero = () => {
 </div>
 
 <h1 className="text-3xl font-bold lg:mt-20">Location</h1>
-<p className="text-sm lg:text-lg">5,Talabi Street, off 
-Adeniyi jones Avenue,
-Vulcanizer bus stop,
-Ikeja, Lagos Nigeria.</p>
+<p className="text-sm lg:text-lg">Suite 4, Block A, G-Wing, Bassan Plaza, Off Herbert Macaulay Way, Central Business District, FCT-Abuja.</p>
 
     </div>
 
