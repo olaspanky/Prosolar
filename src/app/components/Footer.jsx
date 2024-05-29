@@ -25,10 +25,11 @@ export const Footer = () => {
                 <div className='lg:w-1/3'>
                     <h1 className='text-sm lg:text-lg font-bold text-white my-3'>Contact</h1>
                     <div className="flex flex-row lg:flex-col gap-3">
-    <div className="flex gap-3 items-center"><RiInstagramFill/><span className='hidden lg:flex'>Facebook</span></div>
-    <div className="flex gap-3 items-center"><IoLogoWhatsapp/><span className='hidden lg:flex'>Instagram</span></div>
-    <div className="flex gap-3 items-center"><FaTwitter/><span className='hidden lg:flex'>Linkedin</span></div>
-    <div className="flex gap-3 items-center"><FaFacebookF/><span className='hidden lg:flex'>Twitter</span></div>
+    <div className="flex gap-3 items-center"><span className='hidden lg:flex'>Home</span></div>
+    <div className="flex gap-3 items-center"><span className='hidden lg:flex'>About</span></div>
+    <div className="flex gap-3 items-center"><span className='hidden lg:flex'>Solar Packages</span></div>
+    <div className="flex gap-3 items-center"><span className='hidden lg:flex'>Contact us</span></div>
+    <div className="flex gap-3 items-center"><span className='hidden lg:flex'>Projects</span></div>
    
 </div>
                 </div>
