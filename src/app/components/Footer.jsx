@@ -23,7 +23,7 @@ export const Footer = () => {
                     Suite 4, Block A, G-Wing, Bassan Plaza, Off Herbert Macaulay Way, Central Business District, FCT-Abuja.                    </p>
                 </div>
                 <div className='lg:w-1/3'>
-                    <h1 className='text-sm lg:text-lg font-bold text-white my-3'>Contact</h1>
+                    <h1 className='text-sm lg:text-lg font-bold text-white my-3'>Navigate to</h1>
                     <div className="flex flex-row lg:flex-col gap-3">
     <div className="flex gap-3 items-center"><span className='hidden lg:flex'>Home</span></div>
     <div className="flex gap-3 items-center"><span className='hidden lg:flex'>About</span></div>
