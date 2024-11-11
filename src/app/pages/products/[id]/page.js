@@ -9,6 +9,8 @@ import ProductModal from '@/app/components/ProductModal';
 const ProductDetails = () => {
   const { id } = useParams();
   const product = data.find((p) => p.id === parseInt(id, 10));
+  const [selectedProduct, setSelectedProduct] = useState(null);
+
 
   if (!product) {
     return (
@@ -20,7 +22,6 @@ const ProductDetails = () => {
     );
   }
 
-  const [selectedProduct, setSelectedProduct] = useState(null);
 
   const handleProductClick = (product) => {
     setSelectedProduct(product);
