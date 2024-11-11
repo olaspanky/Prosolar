@@ -37,12 +37,8 @@ export const Hero = () => {
   const  products = data
   return (
     <div className="xl:px-12  xl:py-12 p-3 text-black">
-      <div className="my-9">
-      <p className="text-lg">When investing in a solar power system, selecting the right battery package is crucial for maximizing efficiency and meeting your energy needs. Among the popular choices are Lithium-ion and Wet Cell (Lead-Acid) battery packages. Each type has unique advantages and is suited for different applications. This guide highlights the differences between these two battery technologies, helping you make an informed decision based on your specific requirements.</p>
-        <p>Lithium-ion batteries are the latest innovation in solar energy storage. Known for their high energy density, long lifespan, and superior efficiency, they have become the go-to choice for residential and commercial solar power systems.</p>
      
-      </div>
-      <div className="bg-[#F9F9F9] p-2 lg:p-9 rounded-xl">
+      <div className=" p-2 lg:p-9 rounded-xl">
         <h1 className="text-md lg:text-xl lg:text-5xl text-[#F8D109] text-center my-5">Lithium ion Battery Systems</h1>
         {/* <div>
        <h2 className="text-xl md:text-2xl font-bold mb-4">Lithium-ion Battery Features</h2>
@@ -76,7 +72,7 @@ export const Hero = () => {
 
    
 </div>
-
+{/* 
 <div className="p-2 flex flex-col  gap-3">
     <a href="/pages/wet-cell" className="text-[#787878] flex gap-5">
 
@@ -91,7 +87,7 @@ export const Hero = () => {
 
       
       
-      </div>
+      </div> */}
 
 
      

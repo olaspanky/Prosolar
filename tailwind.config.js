@@ -11,7 +11,7 @@ module.exports = {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
-          'lbg': "url('/assets/pl.png')",
+          'lbg': "url('/assets/sp.png')",
           'pbg': "url('/assets/pp.png')",
           'p1bg': "url('/assets/LATC1.jpeg')",
           'p3bg': "url('/assets/Agb1.jpeg')",

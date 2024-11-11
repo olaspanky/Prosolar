@@ -1,94 +1,65 @@
-const products = [
-    {
-        id: 1,
-      name: '1.5KVA Solar System',
-      home: '1,2 or 3 bedroom flat',
-      ampliance1: '300W Solar Panels * 4',
-      ampliance2: '1.5KV/24V Inverter',
-      ampliance3: '5KW Battery * 1',
-      components: '1TV + Sound System, 2 Fans, LED lighting Points, 2 Laptops and Phones',
-      price1: '1,600,830',
-      price1: '760,970',
-
+// data.js
+const solarPackages = [
+  {
+    id: 1,
+    component: "(3.5kVA) 24V Solar System",
+    appliances: {
+      appliance1: '3.5kVA Inverter',
+      appliance2: '5kWh Lithium Battery',
+      appliance3: 'Installation cables + labor'
     },
-    {
-        id: 2,
-        name: '3KVA Solar System',
-        home: '4 bedroom flat',
-        ampliance1: '300W Solar Panels * 8',
-        ampliance2: '3KV/24V Inverter',
-        ampliance3: '10KW Battery * 1',
-        components: '2TVs + Sound Systems, 4 Fans, LED lighting Points, 4 Laptops and Phones',
-        price1: '2,500,000',
-        price2: '1,200,000',
-      },
-      {
-        id: 3,
-        name: '5KVA Solar System',
-        home: '5 bedroom duplex',
-        ampliance1: '300W Solar Panels * 12',
-        ampliance2: '5KV/48V Inverter',
-        ampliance3: '20KW Battery * 1',
-        components: '3TVs + Sound Systems, 6 Fans, LED lighting Points, 6 Laptops and Phones, 1 AC',
-        price1: '4,000,000',
-        price2: '2,000,000',
-      },
-      {
-        id: 4,
-        name: '7.5KVA Solar System',
-        home: 'Large 5 bedroom house',
-        ampliance1: '300W Solar Panels * 16',
-        ampliance2: '7.5KV/48V Inverter',
-        ampliance3: '30KW Battery * 1',
-        components: '4TVs + Sound Systems, 8 Fans, LED lighting Points, 8 Laptops and Phones, 2 ACs',
-        price1: '6,000,000',
-        price2: '3,000,000',
-      },
-      {
-        id: 5,
-        name: '10KVA Solar System',
-        home: '6 bedroom house',
-        ampliance1: '300W Solar Panels * 20',
-        ampliance2: '10KV/48V Inverter',
-        ampliance3: '40KW Battery * 1',
-        components: '5TVs + Sound Systems, 10 Fans, LED lighting Points, 10 Laptops and Phones, 3 ACs',
-        price1: '8,000,000',
-        price2: '4,000,000',
-      },
-      {
-        id: 6,
-        name: '15KVA Solar System',
-        home: 'Large estate house',
-        ampliance1: '300W Solar Panels * 30',
-        ampliance2: '15KV/96V Inverter',
-        ampliance3: '60KW Battery * 1',
-        components: '6TVs + Sound Systems, 12 Fans, LED lighting Points, 12 Laptops and Phones, 4 ACs',
-        price1: '12,000,000',
-        price2: '6,000,000',
-      },
-      {
-        id: 7,
-        name: '20KVA Solar System',
-        home: 'Very large house or small office',
-        ampliance1: '300W Solar Panels * 40',
-        ampliance2: '20KV/96V Inverter',
-        ampliance3: '80KW Battery * 1',
-        components: '8TVs + Sound Systems, 16 Fans, LED lighting Points, 16 Laptops and Phones, 5 ACs',
-        price1: '16,000,000',
-        price2: '8,000,000',
-      },
-      {
-        id: 8,
-        name: '25KVA Solar System',
-        home: 'Large office or multiple houses',
-        ampliance1: '300W Solar Panels * 50',
-        ampliance2: '25KV/96V Inverter',
-        ampliance3: '100KW Battery * 1',
-        components: '10TVs + Sound Systems, 20 Fans, LED lighting Points, 20 Laptops and Phones, 6 ACs',
-        price1: '20,000,000',
-        price2: '10,000,000',
-      }
-   
-    // Add more products as needed
-  ];
-  export default products
+    components: 'All LEDs, 5 Fans, 2 TV Sets & Small Fridge',
+    totalCost: 2278840.00,
+    firstDownPayment: 2757396.40,
+    monthlyRepayment: 827218.92,
+    monthlyRepaymentFirstDown: 160848.12,
+  },
+ 
+  {
+    id: 2,
+    component: "(5kVA) 48V Solar System",
+    appliances: {
+      appliance1: '5kVA Inverter',
+      appliance2: '5kWh Lithium Battery',
+      appliance3: 'Installation cables + labor'
+    },
+    components: 'All LEDs, 6 Fans, 2 TV Sets & 1 Fridge/Freezer + 1HP AC',
+    totalCost: 2933540.00,
+    firstDownPayment: 3549583.40,
+    monthlyRepayment: 1064875.02,
+    monthlyRepaymentFirstDown: 207059.03,
+  },
+  
+  {
+    id: 3,
+    component: "(7.5kVA) 48V Solar System",
+    appliances: {
+      appliance1: '7.5kVA Inverter',
+      appliance2: '10kWh Lithium Battery',
+      appliance3: 'Installation cables + labor'
+    },
+    components: '15 Bulbs, 6 Fans, 3 TV Sets & 1 Fridge/Freezer + 1HP AC',
+    totalCost: 4411715.00,
+    firstDownPayment: 5338175.15,
+    monthlyRepayment: 1601452.55,
+    monthlyRepaymentFirstDown: 311393.55,
+  },
+ 
+  {
+    id: 4,
+    component: "(10kVA) 48V Solar System",
+    appliances: {
+      appliance1: '10kVA Inverter',
+      appliance2: '15kWh Lithium Battery',
+      appliance3: 'Installation cables + labor'
+    },
+    components: '20 Bulbs, 6 Fans, 3 TV Sets, 1 Fridge, 1 1HP AC & One 1.5 HP Pumping Machine, 4 Channels CCTV Freezer',
+    totalCost: 5843265.00,
+    firstDownPayment: 7070350.65,
+    monthlyRepayment: 2121105.20,
+    monthlyRepaymentFirstDown: 412437.12,
+  },
+ 
+];
+
+export default solarPackages;
