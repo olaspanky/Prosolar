@@ -1,6 +1,6 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { Syne } from 'next/font/google'
+import { Syne, Plus_Jakarta_Sans } from 'next/font/google'
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import CartProviders from "./components/Provider";
@@ -9,8 +9,22 @@ import { Footer } from "./components/Footer";
 
 
 const syne = Syne({
+  weight: '700',
+  subsets: ['latin'],
+  variable: '--font-syne',
+
+})
+const syne2 = Syne({
+  weight: '600',
+  subsets: ['latin'],
+  variable: '--font-syne2',
+
+})
+const jak = Plus_Jakarta_Sans({
   weight: '400',
   subsets: ['latin'],
+  variable: '--font-jak',
+
 })
 
 const inter = Inter({ subsets: ["latin"] });
@@ -22,8 +36,8 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body className={syne.className}>
+    <html lang="en" className={`${syne.variable} ${syne2.variable} ${jak.variable}`}>
+      <body>
         <CartProviders>
         {children}
         <Footer/>

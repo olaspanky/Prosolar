@@ -36,34 +36,13 @@ export const Hero = () => {
   ];
   const  products = data
   return (
-    <div className="xl:px-12  xl:py-12 p-3 text-black">
+    <div className="  text-black">
      
       <div className=" p-2 lg:p-9 rounded-xl">
-        <h1 className="text-md lg:text-xl lg:text-5xl text-[#F8D109] text-center my-5">Lithium ion Battery Systems</h1>
-        {/* <div>
-       <h2 className="text-xl md:text-2xl font-bold mb-4">Lithium-ion Battery Features</h2>
-      <ul className="space-y-4">
-        {features.map((feature, index) => (
-          <li key={index} className="bg-white shadow-md rounded-lg p-4">
-            <h3 className="text-lg md:text-xl font-semibold">{feature.title}</h3>
-            <p className="text-gray-700 mt-2">{feature.description}</p>
-          </li>
-        ))}
-      </ul>
-       </div>
-       <div className="">
-      <h2 className="text-xl md:text-2xl font-bold mb-4">Suitable For</h2>
-      <ul className="space-y-4">
-        {suitability.map((item, index) => (
-          <li key={index} className="bg-white shadow-md rounded-lg p-4">
-            <h3 className="text-lg md:text-xl font-semibold">{item.title}</h3>
-            <p className="text-gray-700 mt-2">{item.description}</p>
-          </li>
-        ))}
-      </ul>
-    </div> */}
+        <h1 className="text-md font-syne2 lg:text-6xl text-[black] text-center lg:my-20">With Lithium Batteries</h1>
        
-        <div className="container mx-auto px-1 lg:px-4 py-8">
+       
+        <div className=" mx-auto px-1 ">
       <div className="">
         
           <SolarProductCard />

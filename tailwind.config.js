@@ -7,6 +7,11 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        syne: ['var(--font-syne)'],
+        syne2: ['var(--font-syne2)'],
+        jak: ['var(--font-jak)'],
+      },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":

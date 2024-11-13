@@ -17,50 +17,55 @@ const SolarProductCard = () => {
   };
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2  md:mx-5 2xl:mx-20 md:grid-cols-2 2xl:grid-cols-4 gap-6">
+    <div className="grid grid-cols-1 sm:grid-cols-2 font-jak   md:grid-cols-2 2xl:grid-cols-2 gap-32">
       {products.map((product) => (
         <div
           key={product.id}
-          className="bg-white border border-[#787878] text-[#787878] flex flex-col gap-5 shadow-lg p-5 lg:p-9 rounded-xl overflow-hidden cursor-pointer"
+          className="bg-white border border-[#787878] text-[#787878] flex flex-col gap-5 shadow-lg p-5 lg:p-9 lg:rounded-[64px] overflow-hidden cursor-pointer"
         >
           <div className="flex flex-col gap-2">
-            <h3 className="text-md lg:text-xl font-bold text-black">{product.component}</h3>
-            <p className="text-gray-600 mt-2">{product.home}</p>
-            <div className="w-full border border-[#292ECF]"></div>
+            <h3 className="text-md lg:text-[48px] font-bold text-black">{product.component}</h3>
+            <p className="text-[#22222] mt-2 font-jak text-[32px]">{product.suitableFor}</p>
+            <div className="w-full border mb-12 border-[#292ECF]"></div>
+          </div>
+
+           {/* System Components Section */}
+           <div className="flex flex-col lg:gap-12 gap-3  text-black h-[250px]">
+            <h1 className="text-md lg:text-xl text-md lg:text-[40px]  font-bold text-black ">Appliances it can Power </h1>
+            <h3 className="text-sm lg:text-[34px] leading-normal text-[#787878]">{product.components}</h3>
           </div>
 
           {/* Appliances Section */}
-          <div className="flex flex-col gap-3">
-            <h1 className="text-md lg:text-xl font-bold text-black">Appliances Powered</h1>
-            {product.appliances.appliance1 && <h3 className="text-sm lg:text-lg">{product.appliances.appliance1}</h3>}
-            {product.appliances.appliance2 && <h3 className="text-sm lg:text-lg">{product.appliances.appliance2}</h3>}
-            {product.appliances.appliance3 && <h3 className="text-sm lg:text-lg">{product.appliances.appliance3}</h3>}
-            {product.appliances.appliance4 && <h3 className="text-sm lg:text-lg">{product.appliances.appliance4}</h3>}
-            {product.appliances.appliance5 && <h3 className="text-sm lg:text-lg">{product.appliances.appliance5}</h3>}
+          <div className="flex flex-col lg:gap-12 gap-3 lg:h-[400px]">
+            <h1 className="text-md lg:text-[40px] font-bold text-black">System Components</h1>
+            <div className='flex text-[#787878] flex-col gap-12'>
+            {product.appliances.appliance1 && <h3 className="text-sm lg:text-[34px]">{product.appliances.appliance1}</h3>}
+            {product.appliances.appliance2 && <h3 className="text-sm lg:text-[34px]">{product.appliances.appliance2}</h3>}
+            {product.appliances.appliance3 && <h3 className="text-sm lg:text-[34px]">{product.appliances.appliance3}</h3>}
+            {product.appliances.appliance4 && <h3 className="text-sm lg:text-[34px]">{product.appliances.appliance4}</h3>}
+            {product.appliances.appliance5 && <h3 className="text-sm lg:text-[34px]">{product.appliances.appliance5}</h3>}
+          </div>
           </div>
 
-          {/* System Components Section */}
-          <div className="flex flex-col gap-3 h-20 text-black">
-            <h1 className="text-md lg:text-xl font-bold text-black">System Components</h1>
-            <h3 className="text-sm lg:text-lg text-[#787878]">{product.components}</h3>
-          </div>
+         
+          <div className="w-full border border-[#292ECF]"></div>
 
           {/* Pricing Section */}
           <div className="flex justify-between mt-5 gap-3">
             <div>
-              <span className="text-sm lg:text-lg">Outright Price</span>
-              <h1 className="text-md lg:text-lg text-center font-bold text-black">NGN{product.totalCost.toLocaleString()}</h1>
+              <span className="text-sm lg:text-[32px]">Outright Price</span>
+              <h1 className="text-md lg:text-[36px] text-center font-bold text-black">NGN{product.OutrightPayment.toLocaleString()}</h1>
             </div>
             <div>
-              <span className="text-sm lg:text-lg">Pay small small</span>
-              <h1 className="text-md lg:text-lg text-center font-bold text-black">NGN{product.firstDownPayment.toLocaleString()}</h1>
+              <span className="text-sm lg:text-[32px]">Pay small small</span>
+              <h1 className="text-md lg:text-[36px] text-center font-bold text-black">NGN{product.monthlyRepayment.toLocaleString()}</h1>
             </div>
           </div>
 
           {/* Button to see more details */}
           <div className="flex justify-center items-center">
             <Link href={`/pages/products/${product.id}`}>
-              <button className="bg-[#292ECF] p-2 px-3 text-white text-sm rounded-md">
+              <button className="bg-[#292ECF] lg:px-[32px] lg:m-12 lg:py-[16px] text-white lg:text-[24px] rounded-[16px]">
                 See more Details
               </button>
             </Link>

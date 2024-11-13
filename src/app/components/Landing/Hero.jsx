@@ -56,22 +56,22 @@ export const Hero = () => {
   return (
     <div className="xl:px-12  text-black">
          
-      <div className="bg-[#F9F9F9] p-1 lg:p-9 rounded-xl">
+      <div className="bg-[#F9F9F9] p-1 lg:p-9 xl:rounded-[64px]">
       <div className="container max-w-[1344px] mx-auto  gap-3 md:flex-row items-center justify-between ">
 
-        <h1 className="text-md  lg:text-5xl text-yellow-300 text-center my-2">Why Choose Us</h1>
+        <h1 className="text-md  lg:text-6xl leading-normal text-yellow-300 text-center font-syne my-2">Why Choose Us</h1>
         <div className="lg:grid grid-cols-2 flex flex-col-reverse  lg:gap-3 ">
           <div className="col-span-1 flex flex-col justify-center items-center p-1 ">
             <Image src={w1} className="w-full" />
           </div>
           <div className="col-span-1 flex flex-col justify-center items-center gap-3 lg:gap-9 p-1 xl:p-20 my-">
             <div className="flex flex-col gap-2">
-              <h1 className="font-bold text-md lg:text-3xl">Cut Costs with ProSolar</h1>
+              <h1 className="font-bold text-md lg:text-3xl font-syne2">Cut Costs with ProSolar</h1>
               <p className="text-sm lg:text-lg text-[#464646]">
               Say goodbye to high energy bills. Invest in our solution and watch your expenses shrink next quarter.   </p>
             </div>
             <div className="flex flex-col gap-2">
-              <h1 className="font-bold text-md lg:text-3xl">
+              <h1 className="font-bold text-md font-syne2 lg:text-3xl">
                 Top-Quality Products, Extended Warranty
               </h1>
               <p className="text-sm lg:text-lg text-[#464646]">
@@ -81,7 +81,7 @@ export const Hero = () => {
               </p>
             </div>
             <div className="flex flex-col gap-2">
-              <h1 className="font-bold text-md lg:text-3xl">After Sales Services</h1>
+              <h1 className="font-bold text-md lg:text-3xl font-syne2">After Sales Services</h1>
               <p className="text-sm lg:text-lg text-[#464646]">
                 We guarantee customers full product support services, covering
                 all operational stages, from installation to commissioning,
@@ -94,7 +94,7 @@ export const Hero = () => {
       </div>
 
 
-      <div className="p-1 lg:p-5 rounded-xl">
+      <div className="p-1 lg:p-5 rounded-6xl">
 <ProcessSteps/>
       </div>
 
@@ -111,7 +111,7 @@ export const Hero = () => {
 <div className="w-full bg-[#1B1B1B] rounded-xl h-auto p-5">
 <div className="container max-w-[1344px] mx-auto p-10">
 
-<h2 className="testimonial-title text-center text-md lg:text-xl lg:text-md lg:text-xl lg:text-5xl text-white my-5">Voice of Confidence,<br/>
+<h2 className="testimonial-title text-center text-md font-syne lg:text-md  lg:text-6xl text-white my-5">Voice of Confidence,<br/>
 What Our Clients Say</h2>
   <Testimonials/>
   </div>

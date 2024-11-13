@@ -10,6 +10,10 @@ import 'react-slideshow-image/dist/styles.css';
 import Navbar from "../Nav"
 import { motion } from 'framer-motion';
 import Slider from 'react-slick';
+import { Plus_Jakarta_Sans, Syne } from "next/font/google";
+
+const syne = Syne({ weight: '700', subsets: ['latin'] });
+const jak = Plus_Jakarta_Sans({ weight: '400', subsets: ['latin'] });
 
 const SlidingHeader = () => {
   const settings = {
@@ -28,7 +32,7 @@ const SlidingHeader = () => {
       image: frame1,
       title: 'We Power Your Home with Clean, Reliable Solar Energy',
       titleStyle: '  text-center font-bold text-white',
-      descriptionStyle: 'text-xs xl:text-md lg:text-xl text-center text-[white]',
+      descriptionStyle: '',
       description: 'Affordable solar solutions designed for homes – cut down your bills, power your life, and enjoy uninterrupted energy with finance options',
       button: "Discover Home Solutions"
     },
@@ -57,7 +61,7 @@ const SlidingHeader = () => {
     <div className="relative h-auto xl:h-auto overflow-hidden p-2 md:p-5 2xl:p-9 ">
       <Slider {...settings} className="h-full ">
         {slides.map((slide, index) => (
-          <div key={index} className="relative w-full h-full rounded-[5rem]">
+          <div key={index} className="relative w-full h-full rounded-[64px]">
             <Image
               src={slide.image}
               alt={slide.title}
@@ -65,11 +69,11 @@ const SlidingHeader = () => {
             />
             <div className="absolute inset-0  text-white  ">
               <div className="bg-cover bg-center h-auto  flex m-3 lg:m-20 flex-col gap-3 lg:gap-9 justify-center  items-center p-2 xl:p-20 2xl:p-36 rounded-xl">
-              <h1 className={`${slide.titleStyle} 2xl:w-[1000px]  lg:text-2xl text-xl md:text-5xl 2xl:text-[64px] 2xl:leading-[79px]`}>{slide.title}</h1>               
-               <p className={`2xl:w-[1000px] text-xs lg:text-xl  ${slide.descriptionStyle}`}>{slide.description}</p>
+              <h1 className={`${slide.titleStyle} font-syne xl:max-w-[1000px] text-xl xl:text-[64px] xl:leading-[79px]`}>{slide.title}</h1>               
+               <p className={`max-w-[871px] text-xs font-inter xl:text-[24px] leading-normal tracking-wider  ${slide.descriptionStyle}`}>{slide.description}</p>
                 <a href="/pages/li-ion" className="text-[#787878]">
 
-<button className="bg-[linear-gradient(92.25deg,#292ECF_21.63%,#151769_110.91%)] text-xs lg:text-xl p-2 lg:mt-12 rounded-md text-white">{slide.button}</button> </a>
+<button className="bg-[linear-gradient(92.25deg,#292ECF_21.63%,#151769_110.91%)] text-xs xl:p-[24px] xl:text-[24px] lg:text-2xl p-3 font-jak lg:mt-12 rounded-[16px] text-white">{slide.button}</button> </a>
               </div>
             </div>
           </div>

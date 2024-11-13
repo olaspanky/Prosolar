@@ -77,7 +77,7 @@ const Testimonials = () => {
             <div className="mt-[-20%]">
                 <Image src={t1} className="w-20"/>
             </div>
-            <p className="">{testimonial.quote}</p>
+            <p className="font-jak">{testimonial.quote}</p>
             <h3 className=" italic ">{testimonial.author}</h3>
           </div>
           </div>

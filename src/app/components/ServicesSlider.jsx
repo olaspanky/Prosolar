@@ -33,9 +33,8 @@ export default function SliderComponent({ title, description, slides, settings }
         {/* Left Side */}
         <div className="lg:w-1/2 flex flex-col justify-center">
           <div className="flex flex-col lg:ml-32 text-left">
-            <h2 className="text-xs uppercase text-gray-500">Our Services</h2>
-            <h1 className="text-3xl lg:text-5xl lg:w-20">{title}</h1>
-            <p className="mt-4 text-gray-600">{description}</p>
+            <h2 className="text-[20px] uppercase text-[#222222] font-syne2">Our Services</h2>
+            <h1 className="text-3xl lg:text-6xl font-syne2 leading-normal text-[#222222] lg:w-20">{title}</h1>
           </div>
         </div>
 

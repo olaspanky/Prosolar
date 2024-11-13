@@ -27,7 +27,7 @@ const ProcessSteps = () => {
   return (
     <div className="bg-white text-white p-6">
               <div className="container max-w-[1344px] mx-auto  gap-9 md:flex-row items-center justify-between ">
-              <h1 className="text-md  lg:text-5xl text-[#292ECF] text-center my-2">How it Works</h1>
+              <h1 className="text-md  lg:text-6xl text-[#292ECF] text-center font-syne my-2">How it Works</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5 xl:gap-20  mx-auto mt-3 lg:mt-9 2xl:mt-12">
         {steps.map((step) => (
           <div key={step.id} className="flex items-start gap-3 ">
@@ -37,8 +37,8 @@ const ProcessSteps = () => {
             </div>
             {/* Text Content */}
             <div>
-              <h3 className="text-xl lg:text-2xl text-[#222222] font-semibold mb-2">{step.title}</h3>
-              <p className="text-gray-400 text-sm lg:text-lg leading-relaxed lg:w-96">{step.description}</p>
+              <h3 className="text-xl lg:text-2xl text-[#222222] font-semibold mb-2 font-syne2">{step.title}</h3>
+              <p className="text-gray-400 text-sm lg:text-lg leading-relaxed lg:w-96 font-jak">{step.description}</p>
             </div>
           </div>
         ))}
