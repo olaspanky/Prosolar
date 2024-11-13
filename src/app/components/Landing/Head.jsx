@@ -69,11 +69,11 @@ const SlidingHeader = () => {
             />
             <div className="absolute inset-0  text-white  ">
               <div className="bg-cover bg-center h-auto  flex m-3 lg:m-20 flex-col gap-3 lg:gap-9 justify-center  items-center p-2 xl:p-20 2xl:p-36 rounded-xl">
-              <h1 className={`${slide.titleStyle} font-syne xl:max-w-[1000px] text-xl xl:text-[64px] xl:leading-[79px]`}>{slide.title}</h1>               
-               <p className={`max-w-[871px] text-xs font-inter xl:text-[24px] leading-normal tracking-wider  ${slide.descriptionStyle}`}>{slide.description}</p>
+              <h1 className={`${slide.titleStyle} font-syne xl:max-w-[1000px] md:text-5xl xl:text-[64px] xl:leading-[79px]`}>{slide.title}</h1>               
+               <p className={`max-w-[871px] text-xs md:text-xl font-inter xl:text-[24px] leading-normal tracking-wider  ${slide.descriptionStyle}`}>{slide.description}</p>
                 <a href="/pages/li-ion" className="text-[#787878]">
 
-<button className="bg-[linear-gradient(92.25deg,#292ECF_21.63%,#151769_110.91%)] text-xs xl:p-[24px] xl:text-[24px] lg:text-2xl p-3 font-jak lg:mt-12 rounded-[16px] text-white">{slide.button}</button> </a>
+<button className="bg-[linear-gradient(92.25deg,#292ECF_21.63%,#151769_110.91%)] md:text-xl md:p-[24px] text-xs xl:text-[24px] lg:text-2xl p-3 font-jak lg:mt-12 rounded-[16px] text-white">{slide.button}</button> </a>
               </div>
             </div>
           </div>
