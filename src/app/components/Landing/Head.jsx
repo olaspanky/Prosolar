@@ -11,6 +11,7 @@ import Navbar from "../Nav"
 import { motion } from 'framer-motion';
 import Slider from 'react-slick';
 import { Plus_Jakarta_Sans, Syne } from "next/font/google";
+import Link from 'next/link';
 
 const syne = Syne({ weight: '700', subsets: ['latin'] });
 const jak = Plus_Jakarta_Sans({ weight: '400', subsets: ['latin'] });
@@ -34,7 +35,10 @@ const SlidingHeader = () => {
       titleStyle: '  text-center font-bold text-white',
       descriptionStyle: '',
       description: 'Affordable solar solutions designed for homes – cut down your bills, power your life, and enjoy uninterrupted energy with finance options',
-      button: "Discover Home Solutions"
+      button: "Discover Home Solutions",
+      link: "/pages/li-ion"
+
+      
     },
     {
       image: frame2,
@@ -42,7 +46,9 @@ const SlidingHeader = () => {
       titleStyle: ' text-center font-bold text-white',
       descriptionStyle: 'text-xs xl:text-md lg:text-xl text-center text-[white]',
       description: 'Providing rural communities with reliable solar power for a brighter, greener future across Nigeria',
-      button: "Learn About Rural Solutions"
+      button: "Learn About Rural Solutions",
+      link: "/pages/li-ion"
+
 
     },
     {
@@ -51,7 +57,8 @@ const SlidingHeader = () => {
       titleStyle: ' text-center font-bold text-white',
       descriptionStyle: 'text-xs xl:text-md lg:text-xl text-center text-[white]',
       description: 'Customized solar solutions to reduce operational costs, enhance productivity, and power business growth with finance options',
-      button: "Explore Business Solutions"
+      button: "Explore Business Solutions",
+      link: "/pages/li-ion"
 
       
     },
@@ -68,12 +75,18 @@ const SlidingHeader = () => {
               className="w-full h-full object-contain rounded-[1rem] xl:rounded-[5rem]"
             />
             <div className="absolute inset-0  text-white  ">
-              <div className="bg-cover bg-center h-auto  flex m-3 lg:m-20 flex-col gap-3 lg:gap-9 justify-center  items-center p-2 xl:p-20 2xl:p-36 rounded-xl">
+              <div className="bg-cover bg-center h-auto  flex m-3 lg:m-20 flex-col gap-3 lg:gap-9 justify-center  items-center  xl:p-20 2xl:p-36 rounded-xl">
               <h1 className={`${slide.titleStyle} font-syne xl:max-w-[1000px] md:text-5xl xl:text-[64px] xl:leading-[79px]`}>{slide.title}</h1>               
-               <p className={`max-w-[871px] text-xs md:text-xl font-inter xl:text-[24px] leading-normal tracking-wider  ${slide.descriptionStyle}`}>{slide.description}</p>
-                <a href="/pages/li-ion" className="text-[#787878]">
+               <p className={`max-w-[871px] text-[8px] text-center md:text-xl font-inter xl:text-[24px] leading-normal tracking-wider  ${slide.descriptionStyle}`}>{slide.description}</p>
+               <Link 
+                    href={slide.link}
+                    className="inline-block mt-4 sm:mt-6 md:mt-8"
+                  >
+                    <button className="bg-gradient-to-r from-[#292ECF] to-[#151769] text-white text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl px-3 py-1 sm:px-8 sm:py-4 md:px-10 md:py-5 rounded-lg sm:rounded-xl lg:rounded-2xl transition-transform hover:scale-105 active:scale-95">
+                      {slide.button}
+                    </button>
+                  </Link>
 
-<button className="bg-[linear-gradient(92.25deg,#292ECF_21.63%,#151769_110.91%)] md:text-xl md:p-[24px] text-xs xl:text-[24px] lg:text-2xl p-3 font-jak lg:mt-12 rounded-[16px] text-white">{slide.button}</button> </a>
               </div>
             </div>
           </div>

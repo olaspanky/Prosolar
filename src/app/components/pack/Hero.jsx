@@ -36,10 +36,13 @@ export const Hero = () => {
   ];
   const  products = data
   return (
-    <div className="  text-black">
+    <div className="flex justify-center items-center">
+
+    
+    <div className="max-w-[1920px]  text-black">
      
       <div className=" p-2 lg:p-9 rounded-xl">
-        <h1 className="text-md font-syne2 lg:text-6xl text-[black] text-center lg:my-20">With Lithium Batteries</h1>
+        <h1 className="text-3xl font-syne2 lg:text-6xl text-[black] text-center  my-5 lg:my-20">With Lithium Batteries</h1>
        
        
         <div className=" mx-auto px-1 ">
@@ -49,7 +52,7 @@ export const Hero = () => {
       </div>
     </div>
 
-   
+    </div>
 </div>
 {/* 
 <div className="p-2 flex flex-col  gap-3">
