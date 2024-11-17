@@ -32,13 +32,11 @@ const SlidingHeader = () => {
     {
       image: frame1,
       title: 'We Power Your Home with Clean, Reliable Solar Energy',
-      titleStyle: '  text-center font-bold text-white',
+      titleStyle: 'text-center font-bold text-white',
       descriptionStyle: '',
       description: 'Affordable solar solutions designed for homes – cut down your bills, power your life, and enjoy uninterrupted energy with finance options',
       button: "Discover Home Solutions",
-      link: "/pages/li-ion"
-
-      
+      link: "/pages/li-ion"      
     },
     {
       image: frame2,
@@ -62,6 +60,7 @@ const SlidingHeader = () => {
 
       
     },
+   
   ];
 
   return (

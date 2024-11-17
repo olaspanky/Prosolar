@@ -1,8 +1,9 @@
 // components/ProductModal.js
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 const ProductModal = ({ product, onClose }) => {
   const modalRef = useRef();
+  const [paymentPlan, setPaymentPlan] = useState('');
 
   useEffect(() => {
     const handleOutsideClick = (event) => {
@@ -17,85 +18,103 @@ const ProductModal = ({ product, onClose }) => {
     };
   }, [onClose]);
 
+  const handlePaymentPlanChange = (event) => {
+    setPaymentPlan(event.target.value);
+  };
+
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-      <div ref={modalRef} className="bg-white p-6 rounded-lg shadow-lg max-w-md w-full">
-        <h2 className="text-xl font-bold mb-4">{product.component}</h2>
-        <form>
+    <div className="fixed m-2 inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+      <div ref={modalRef} className="bg-white rounded-lg  shadow-lg max-w-lg w-full p-9">
+        <h2 className="font-bold font-syne text-4xl text-center mb-4">Let’s Get You Started</h2>
+        <h2 className="text-xs font-bold text-center mb-4">
+          Please provide a few necessary details to complete your plan selection
+        </h2>
+        <form className='flex flex-col gap-3'>
           <div className="mb-4">
             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">
-              Name
+              Full Name
             </label>
             <input
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               id="name"
               type="text"
-              defaultValue={product.component}
-              readOnly
+              placeholder="Enter your Full Name"
+
             />
           </div>
           <div className="mb-4">
             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="price">
-              Price
-            </label>
-            <input
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              id="price"
-              type="text"
-              defaultValue={`NGN ${product.totalCost}`}
-              readOnly
-            />
-          </div>
-          <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
-              Name
-            </label>
-            <input
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              id="email"
-              type="name"
-              placeholder="Enter your Name"
-              required
-            />
-          </div>
-          <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
               Email
             </label>
             <input
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               id="email"
-              type="email"
-              placeholder="Enter your email"
+              type="text"
+              placeholder="Enter your Email"
+
+            />
+          </div>
+          <div className="mb-4">
+            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="phone">
+              Phone Number
+            </label>
+            <input
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              id="phone"
+              type="tel"
+              placeholder="Enter your phone number"
               required
             />
           </div>
           <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
-              Phone no:
+            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="location">
+              Location/City
             </label>
             <input
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              id="email"
-              type="phone"
-              placeholder="Enter your Phone number"
+              id="location"
+              type="text"
+              placeholder="Enter your location or city"
               required
             />
           </div>
-          <div className="flex items-center justify-between">
+          <div className="mb-4">
+            <label className="block text-gray-700 text-sm font-bold mb-2">
+              Choose Payment Plan
+            </label>
+            <div className="flex items-center gap-4">
+              <label className="inline-flex items-center">
+                <input
+                  type="radio"
+                  name="paymentPlan"
+                  value="Outright Payment"
+                  checked={paymentPlan === 'Outright Payment'}
+                  onChange={handlePaymentPlanChange}
+                  className="form-radio"
+                />
+                <span className="ml-2">Outright Payment</span>
+              </label>
+              <label className="inline-flex items-center">
+                <input
+                  type="radio"
+                  name="paymentPlan"
+                  value="Pay Small Small"
+                  checked={paymentPlan === 'Pay Small Small'}
+                  onChange={handlePaymentPlanChange}
+                  className="form-radio"
+                />
+                <span className="ml-2">Pay Small Small</span>
+              </label>
+            </div>
+          </div>
+          <div className="flex items-center w-full justify-between">
             <button
-              className="bg-[#292ECF] hover:bg-[#292ECF] text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              className="bg-[#292ECF] w-full hover:bg-[#292ECF] text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
               type="submit"
             >
               Submit
             </button>
-            <button
-              className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-              type="button"
-              onClick={onClose}
-            >
-              Close
-            </button>
+           
           </div>
         </form>
       </div>

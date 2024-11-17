@@ -123,7 +123,7 @@ export const Hero = () => {
         <div className="mb-4">
           <label className="block text-gray-700">Phone *</label>
           <input
-            type="text"
+            type="number"
             name="phone"
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
