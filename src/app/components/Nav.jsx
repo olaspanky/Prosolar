@@ -12,7 +12,7 @@ const menuItems = [
     title: "Solar Packages",
     children: [
       { title: "Solar Home Systems", route: "/pages/li-ion" },
-      { title: "Commercial Solar System", route: "/pages/wet-cell" }
+      { title: "Commercial Solar Systems", route: "/pages/wet-cell" }
     ],
   },
     { title: "Services", route: "/blog" },
@@ -58,7 +58,7 @@ const Dropdown = ({ item }) => {
       </button>
       
       <div
-        className={`absolute left-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 transition-all duration-200 ease-in-out ${
+        className={`absolute left-0 mt-2 w-auto rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 transition-all duration-200 ease-in-out ${
           isOpen
             ? "opacity-100 translate-y-0"
             : "opacity-0 -translate-y-2 pointer-events-none"
