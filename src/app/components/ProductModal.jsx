@@ -23,13 +23,13 @@ const ProductModal = ({ product, onClose }) => {
   };
 
   return (
-    <div className="fixed m-2 inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+    <div className="fixed m-1 p-2 inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
       <div ref={modalRef} className="bg-white rounded-lg  shadow-lg max-w-lg w-full p-9">
         <h2 className="font-bold font-syne text-4xl text-center mb-4">Let’s Get You Started</h2>
         <h2 className="text-xs font-bold text-center mb-4">
           Please provide a few necessary details to complete your plan selection
         </h2>
-        <form className='flex flex-col gap-3'>
+        <form className='flex flex-col lg:gap-3'>
           <div className="mb-4">
             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">
               Full Name
