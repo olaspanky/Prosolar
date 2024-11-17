@@ -11,8 +11,8 @@ const menuItems = [
   {
     title: "Solar Packages",
     children: [
-      { title: "Li-ion", route: "/pages/li-ion" },
-      { title: "Wet cell", route: "/pages/wet-cell" }
+      { title: "Solar Home Systems", route: "/pages/li-ion" },
+      { title: "Commercial Solar System", route: "/pages/wet-cell" }
     ],
   },
     { title: "Services", route: "/blog" },
@@ -85,7 +85,7 @@ export default function Header() {
   const path = usePathname();
 
   return (
-    <header className="sticky font-syne2 top-0 z-50 bg-white shadow-md">
+    <header className="sticky font-jak top-0 z-50 bg-white shadow-md">
       <div className=" lg:mx-20">
         <div className="flex justify-between items-center px-4 py-4">
           {/* Logo */}

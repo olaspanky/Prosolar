@@ -56,7 +56,7 @@ const SlidingHeader = () => {
       descriptionStyle: 'text-xs xl:text-md lg:text-xl text-center text-[white]',
       description: 'Customized solar solutions to reduce operational costs, enhance productivity, and power business growth with finance options',
       button: "Explore Business Solutions",
-      link: "/pages/li-ion"
+      link: "/pages/wet-cell"
 
       
     },
