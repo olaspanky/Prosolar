@@ -1,22 +1,30 @@
 // components/SolarProductCard.js
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import data from './data';
 import data2 from './data2'
 import Link from 'next/link';
 import ProductModal from './ProductModal';
 
-const SolarProductCard = () => {
-  const products = data || data2;
-  const [selectedProduct, setSelectedProduct] = useState(null);
+const SolarProductCard = ({ pathname }) => {
+  const [products, setProducts] = useState([]);
 
-  const handleProductClick = (product) => {
-    setSelectedProduct(product);
-  };
+  useEffect(() => {
+    // Get the current path
+    const currentPath = window.location.pathname;
+    
+    // Set products based on URL path
+    if (currentPath === '/pages/wet-cell') {
+      setProducts(data2);
+    } else {
+      setProducts(data);
+    }
+  }, []); // Empty dependency array means this runs once on mount
+
+  const [selectedProduct, setSelectedProduct] = useState(null);
 
   const handleCloseModal = () => {
     setSelectedProduct(null);
   };
-
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 font-jak p-2  md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 2xl:grid-cols-4 gap-5 lg:gap-5">
       {products.map((product) => (

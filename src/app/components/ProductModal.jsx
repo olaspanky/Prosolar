@@ -1,4 +1,3 @@
-// components/ProductModal.js
 import React, { useEffect, useRef, useState } from 'react';
 
 const ProductModal = ({ product, onClose }) => {
@@ -24,12 +23,34 @@ const ProductModal = ({ product, onClose }) => {
 
   return (
     <div className="fixed m-1 p-2 inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-      <div ref={modalRef} className="bg-white rounded-lg  shadow-lg max-w-lg w-full p-9">
+      <div ref={modalRef} className="bg-white rounded-lg shadow-lg max-w-lg w-full p-9 relative">
+        {/* Close Button */}
+        <button
+          onClick={onClose}
+          className="absolute top-4 right-4 text-gray-500 hover:text-gray-700 focus:outline-none"
+          aria-label="Close"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth="2"
+            stroke="currentColor"
+            className="w-6 h-6"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
+
         <h2 className="font-bold font-syne text-4xl text-center mb-4">Let’s Get You Started</h2>
         <h2 className="text-xs font-bold text-center mb-4">
           Please provide a few necessary details to complete your plan selection
         </h2>
-        <form className='flex flex-col lg:gap-3'>
+        <form className="flex flex-col lg:gap-3">
           <div className="mb-4">
             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">
               Full Name
@@ -39,7 +60,6 @@ const ProductModal = ({ product, onClose }) => {
               id="name"
               type="text"
               placeholder="Enter your Full Name"
-
             />
           </div>
           <div className="mb-4">
@@ -51,7 +71,6 @@ const ProductModal = ({ product, onClose }) => {
               id="email"
               type="text"
               placeholder="Enter your Email"
-
             />
           </div>
           <div className="mb-4">
@@ -114,7 +133,6 @@ const ProductModal = ({ product, onClose }) => {
             >
               Submit
             </button>
-           
           </div>
         </form>
       </div>

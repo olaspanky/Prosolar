@@ -17,7 +17,7 @@ const solarPackages = [
   },
 
   {
-    id: 3,
+    id: 2,
     component: "5kVA Inverter Package",
     suitableFor: "3 bed rooms flat with fridge",
     components: "5kVA Inverter, 5kWh Lithium Battery, Installation cables + labor",
@@ -33,7 +33,7 @@ const solarPackages = [
   },
   
   {
-    id: 5,
+    id: 3,
     component: "7.5kVA Inverter Package",
     suitableFor: "5 bed rooms flat with AC & Pump",
     components: "7.5kVA Inverter, 10kWh Lithium Battery, Installation cables + labor",
@@ -50,7 +50,7 @@ const solarPackages = [
   },
  
   {
-    id: 7,
+    id: 4,
     component: "10kVA Inverter Package",
     suitableFor: "5 bed rooms flat with AC, Pump, Washing Machine",
     components: "10kVA Inverter, 15kWh Lithium Battery, Installation cables + labor",
