@@ -5,6 +5,11 @@ import data from '../../../components/data';
 import data2 from '../../../components/data2';
 import Nav from '../../../components/Nav';
 import ProductModal from '@/app/components/ProductModal';
+import wallet from "../../../../../public/assets/wallet.png"
+import transact from "../../../../../public/assets/transact.png"
+import v2 from "../../../../../public/assets/v2.png"
+import verified from "../../../../../public/assets/verified.png"
+import Image from 'next/image';
 
 const ProductDetails = () => {
   const [selectedProduct, setSelectedProduct] = useState(null);
@@ -44,11 +49,11 @@ const ProductDetails = () => {
   const breadcrumbLink = isFromData ? "/pages/wet-cell" : "/pages/li-ion";
 
   return (
-    <div className="bg-gray-100 min-h-screen text-gray-900">
+    <div className="bg-gray-100 min-h-screen font-jak text-gray-900">
       <Nav />
 
       {/* Breadcrumb */}
-      <div className="xl:pt-20 py-5 xl:pl-20 mx-auto text-sm text-gray-600">
+      <div className="xl:pt-20 px-3 py-5 xl:pl-20 mx-auto text-sm text-gray-600">
         <nav className="flex items-center space-x-2">
           <a href="/" className="hover:underline text-blue-600">
             Home
@@ -62,46 +67,47 @@ const ProductDetails = () => {
         </nav>
       </div>
 
-      <div className="mx-auto p-2 lg:py-12 lg:px-8 sm:px-1">
-        <div className="bg-white p-2 lg:p-8 rounded-lg shadow-lg max-w-3xl mx-auto border border-gray-200">
-          <h1 className="text-xl lg:text-3xl font-bold text-gray-900 mb-4">{product.component}</h1>
-          <p className="text-gray-500 mb-6">{product.home}</p>
+      <div className='flex justify-center items-center p-2 xl:p-20'>
+      <div className='max-w-[1440px]'>
+      <h1 className="text-xl lg:text-[48px] font-bold text-gray-900 mb-4">{product.component}</h1>
+
+<div className='grid lg:grid-cols-12 gap-5 pt-3 xl:pt-10'>
+<div className=" col-span-9  ">
+        <div className="      ">
 
           {/* Appliances */}
           <div className="mb-6">
-            <h2 className="text-lg lg:text-xl font-semibold text-gray-800 mb-2">Appliances It Can Power</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <h2 className="text-[16px] lg:text-[24px] font-semibold text-black mb-2">Appliances It Can Power</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-[14px] lg:text-[20px]">
               {product.suitableFor}
             </div>
           </div>
 
           {/* System Components */}
           <div className="mb-6">
-            <h2 className="text-lg lg:text-xl font-semibold text-gray-800 mb-2">System Components</h2>
-            <p className="text-gray-600">{product.components}</p>
+            <h2 className="text-[16px] lg:text-[24px] font-semibold text-black mb-2">System Components</h2>
+            <p className="text-gray-600 text-[14px] lg:text-[20px]">{product.components}</p>
           </div>
 
           {/* Payment Options */}
           <div className="mb-6">
-            <h2 className="text-lg lg:text-xl font-semibold text-gray-800 mb-2">Payment Plans</h2>
+            <h2 className="text-[16px] lg:text-[24px] font-semibold text-black mb-2">Payment Plans</h2>
 
             {/* Outright Payment */}
-            <div className="rounded-lg shadow-sm mb-4">
-              <h3 className="text-lg font-semibold text-gray-800">Outright Payment</h3>
-              <p className="text-gray-700">Pay the full amount upfront.</p>
-              <h4 className="text-xl lg:text-2xl font-bold text-gray-900 mt-2">
+            <div className="flex  items-center font-jak text-[14px] lg:text-[20px] gap-3 rounded-lg shadow-sm mb-4">
+              <h3 className="  text-[#222222] text-[16px] lg:text-[24px]">Outright Payment: </h3>
+              <h4 className=" font-bold text-gray-900 ">
                 &#8358; {product.OutrightPayment.toLocaleString()}
               </h4>
             </div>
 
             {/* Pay Small Small */}
             <div className="rounded-lg shadow-sm">
-              <h3 className="text-lg font-semibold text-gray-800">Pay Small Small</h3>
-              <p className="text-gray-700">Flexible monthly payment option:</p>
-              <ul className="text-gray-700 mt-2 flex flex-col gap-3">
-                <li>First Down Payment: <span className="text-xl lg:text-2xl font-bold text-gray-900 mt-2">&#8358;{product.monthlyRepaymentFirstDown.toLocaleString()}</span></li>
-                <li>12 Monthly Repayments: <span className="text-xl lg:text-2xl font-bold text-gray-900 mt-2">&#8358;{product.monthlyRepayment.toLocaleString()}</span></li>
-                <li>Total Cost: <span className="text-xl lg:text-2xl font-bold text-gray-900 mt-2">&#8358;{product.monthlyRepaymentTotal.toLocaleString()}</span></li>
+              <h3 className="text-[#222222] text-[16px] lg:text-[24px]">Pay Small Small</h3>
+              <ul className="text-gray-700 mt-2 flex flex-col gap-3 text-[14px] lg:text-[20px]">
+                <li>First Down Payment: <span className="  font-bold text-gray-900 mt-2">&#8358;{product.monthlyRepaymentFirstDown.toLocaleString()}</span></li>
+                <li>12 Monthly Repayments: <span className="  font-bold text-gray-900 mt-2">&#8358;{product.monthlyRepayment.toLocaleString()}</span></li>
+                <li>Total Cost: <span className=" font-bold text-gray-900 mt-2">&#8358;{product.monthlyRepaymentTotal.toLocaleString()}</span></li>
               </ul>
             </div>
           </div>
@@ -118,6 +124,32 @@ const ProductDetails = () => {
         </div>
       </div>
 
+      <div className='col-span-3 text-[14px] lg:text-[20px]  text-[#787878]'>
+        <div className='flex flex-col gap-2 lg:gap-5'>
+          <div className='flex gap-3'>
+          <Image src={wallet} className='w-auto h-5 lg:h-9'/>
+            <p>₦700k Cost savings per year</p>
+            </div>
+          <div className='flex gap-3'>
+          <Image src={transact} className='w-auto h-5 lg:h-9'/>
+            <p>3 years Return on investment</p>
+            </div>
+          <div className='flex gap-3'>
+          <Image src={v2} className='w-auto h-5 lg:h-9'/>
+            <p>250 litres of fuel saved per annum</p>
+            </div>
+          <div className='flex gap-3'>
+          <Image src={verified} className='w-auto h-5 lg:h-9'/>
+            <p>5 Years warranty on Battery, 1 year on inverter, 25years on Solar panels and 1 year free maintenance service  </p>
+            </div>
+        </div>
+      </div>
+
+</div>
+      </div>
+      </div>
+
+    
       {/* Product Modal */}
       {selectedProduct && (
         <ProductModal product={selectedProduct} onClose={handleCloseModal} />
