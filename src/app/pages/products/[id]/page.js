@@ -2,14 +2,36 @@
 import React, { useState } from 'react';
 import { useParams } from 'next/navigation';
 import data from '../../../components/data';
+import data2 from '../../../components/data2';
 import Nav from '../../../components/Nav';
 import ProductModal from '@/app/components/ProductModal';
 
 const ProductDetails = () => {
   const { id } = useParams();
-  const product = data.find((p) => p.id === parseInt(id, 10));
-  const [selectedProduct, setSelectedProduct] = useState(null);
 
+  // Check if the product exists in 'data' array
+  const productFromData = data.find((p) => p.id === parseInt(id, 10));
+
+  // Check if the product exists in 'data2' array
+  const productFromData2 = data2.find((p) => p.id === parseInt(id, 10));
+
+  // Combine product search results, prioritizing 'data' over 'data2'
+  let product = productFromData || productFromData2;
+  let isFromData = false;
+
+  // Determine which array the product is from
+  if (productFromData) {
+    isFromData = true; // The product is from the 'data' array
+  } else if (productFromData2) {
+    isFromData = false; // The product is from the 'data2' array
+  }
+
+
+  console.log('Product From Data:', productFromData);
+console.log('Product From Data2:', productFromData2);
+console.log('Final Product:', product);
+
+  // Handle the case when no product is found
   if (!product) {
     return (
       <div className="flex items-center justify-center h-screen">
@@ -20,6 +42,8 @@ const ProductDetails = () => {
     );
   }
 
+  const [selectedProduct, setSelectedProduct] = useState(null);
+
   const handleProductClick = (product) => {
     setSelectedProduct(product);
   };
@@ -28,11 +52,31 @@ const ProductDetails = () => {
     setSelectedProduct(null);
   };
 
+  // Conditional breadcrumb text and link based on the source array
+  const breadcrumbText = isFromData ? "Solar Packages for Home" : "Solar Packages for Offices";
+  const breadcrumbLink = isFromData ? "/pages/wet-cell" : "/pages/li-ionj";
+
   return (
     <div className="bg-gray-100 min-h-screen text-gray-900">
       <Nav />
-      <div className="container mx-auto p-2 lg:py-12 lg:px-8 sm:px-6">
-        <div className="bg-white p-8 rounded-lg shadow-lg max-w-3xl mx-auto border border-gray-200">
+
+      {/* Breadcrumb */}
+      <div className="xl:pt-20 py-5 xl:pl-20 mx-auto text-sm text-gray-600">
+        <nav className="flex items-center space-x-2">
+          <a href="/" className="hover:underline text-blue-600">
+            Home
+          </a>
+          <span>/</span> 
+          <a href={breadcrumbLink} className="hover:underline text-blue-600">
+            {breadcrumbText}
+          </a>
+          <span>/</span>
+          <span className="text-gray-800 font-semibold">{product.component}</span>
+        </nav>
+      </div>
+
+      <div className="mx-auto p-2 lg:py-12 lg:px-8 sm:px-1">
+        <div className="bg-white p-2 lg:p-8 rounded-lg shadow-lg max-w-3xl mx-auto border border-gray-200">
           <h1 className="text-xl lg:text-3xl font-bold text-gray-900 mb-4">{product.component}</h1>
           <p className="text-gray-500 mb-6">{product.home}</p>
 
@@ -40,7 +84,7 @@ const ProductDetails = () => {
           <div className="mb-6">
             <h2 className="text-lg lg:text-xl font-semibold text-gray-800 mb-2">Appliances It Can Power</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-             {product.suitableFor}
+              {product.suitableFor}
             </div>
           </div>
 
@@ -55,11 +99,11 @@ const ProductDetails = () => {
             <h2 className="text-lg lg:text-xl font-semibold text-gray-800 mb-2">Payment Plans</h2>
 
             {/* Outright Payment */}
-            <div className="  rounded-lg shadow-sm mb-4">
+            <div className="rounded-lg shadow-sm mb-4">
               <h3 className="text-lg font-semibold text-gray-800">Outright Payment</h3>
               <p className="text-gray-700">Pay the full amount upfront.</p>
               <h4 className="text-xl lg:text-2xl font-bold text-gray-900 mt-2">
-                NGN{product.OutrightPayment.toLocaleString()}
+                &#8358; {product.OutrightPayment.toLocaleString()}
               </h4>
             </div>
 
@@ -67,10 +111,10 @@ const ProductDetails = () => {
             <div className="rounded-lg shadow-sm">
               <h3 className="text-lg font-semibold text-gray-800">Pay Small Small</h3>
               <p className="text-gray-700">Flexible monthly payment option:</p>
-              <ul className="text-gray-600 mt-2 text-sm lg:text-2xl">
-                <li>First Down Payment: NGN{product.monthlyRepaymentFirstDown.toLocaleString()}</li>
-                <li>12 Monthly Repayments: NGN{product.monthlyRepayment.toLocaleString()}</li>
-                <li>Total Cost: NGN{product.monthlyRepaymentTotal.toLocaleString()}</li>
+              <ul className="text-gray-700 mt-2 flex flex-col gap-3">
+                <li>First Down Payment: <span className="text-xl lg:text-2xl font-bold text-gray-900 mt-2">&#8358;{product.monthlyRepaymentFirstDown.toLocaleString()}</span></li>
+                <li>12 Monthly Repayments: <span className="text-xl lg:text-2xl font-bold text-gray-900 mt-2">&#8358;{product.monthlyRepayment.toLocaleString()}</span></li>
+                <li>Total Cost: <span className="text-xl lg:text-2xl font-bold text-gray-900 mt-2">&#8358;{product.monthlyRepaymentTotal.toLocaleString()}</span></li>
               </ul>
             </div>
           </div>
@@ -89,7 +133,7 @@ const ProductDetails = () => {
 
       {/* Product Modal */}
       {selectedProduct && (
-        <ProductModal   product={selectedProduct} onClose={handleCloseModal} />
+        <ProductModal product={selectedProduct} onClose={handleCloseModal} />
       )}
     </div>
   );

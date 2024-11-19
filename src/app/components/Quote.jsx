@@ -33,7 +33,7 @@ const Quote = () => {
         <div className="text-center mb-4">
           <h1 className="text-md lg:text-xl font-bold">Invoice</h1>
           <p># INV-000580</p>
-          <p>Balance Due: NGN604,900.00</p>
+          <p>Balance Due: &#8358;604,900.00</p>
         </div>
         <div className="mb-4">
           <h2 className="text-sm lg:text-lg font-semibold">Powered By</h2>
@@ -82,8 +82,8 @@ const Quote = () => {
         </table>
         <div className="text-right mb-4">
           <p>Sub Total: 604,900.00</p>
-          <p>Total: NGN604,900.00</p>
-          <p>Balance Due: NGN604,900.00</p>
+          <p>Total: &#8358;604,900.00</p>
+          <p>Balance Due: &#8358;604,900.00</p>
         </div>
         <div className="mb-4">
           <p>Invoice Date: 08 May 2024</p>

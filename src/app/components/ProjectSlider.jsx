@@ -48,6 +48,8 @@ export default function ProjectSlider() {
         breakpoint: 1024,
         settings: {
           slidesToShow: 2,
+          autoplay: false,
+
         },
       },
       {
@@ -56,6 +58,8 @@ export default function ProjectSlider() {
           slidesToShow: 1,
           centerMode: true,
           centerPadding: '20%',
+          autoplay: false,
+
         },
       },
     ],

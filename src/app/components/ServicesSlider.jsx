@@ -14,16 +14,7 @@ export default function SliderComponent({ title, description, slides, settings }
     autoplay: true,
     autoplaySpeed: 3000,
     ...settings,
-    appendDots: (dots) => (
-      <div className="flex justify-center mt-4 custom-dots">
-        <ul> {dots} </ul>
-      </div>
-    ),
-    customPaging: (i) => (
-      <div className="dot">
-        <div className="dot-bar"></div>
-      </div>
-    ),
+   
   };
 
   return (

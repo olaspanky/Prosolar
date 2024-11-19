@@ -1,11 +1,12 @@
 // components/SolarProductCard.js
 import React, { useState } from 'react';
 import data from './data';
+import data2 from './data2'
 import Link from 'next/link';
 import ProductModal from './ProductModal';
 
 const SolarProductCard = () => {
-  const products = data;
+  const products = data || data2;
   const [selectedProduct, setSelectedProduct] = useState(null);
 
   const handleProductClick = (product) => {
@@ -56,11 +57,11 @@ const SolarProductCard = () => {
           <div className="flex justify-between lg:mt-5 gap-3">
             <div>
               <span className="text-sm lg:text-[14px]">Outright Price</span>
-              <h1 className="text-sm lg:text-[16px] text-center font-bold text-black">NGN{product.OutrightPayment.toLocaleString()}</h1>
+              <h1 className="text-sm lg:text-[16px] text-center font-bold text-black">&#8358;{product.OutrightPayment.toLocaleString()}</h1>
             </div>
             <div>
               <span className="text-sm lg:text-[14px]">Pay small small</span>
-              <h1 className="text-sm lg:text-[16px] text-center font-bold text-black">NGN{product.monthlyRepayment.toLocaleString()}</h1>
+              <h1 className="text-sm lg:text-[16px] text-center font-bold text-black">&#8358;{product.monthlyRepayment.toLocaleString()}</h1>
             </div>
           </div>
 

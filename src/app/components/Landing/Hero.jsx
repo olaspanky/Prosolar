@@ -9,7 +9,7 @@ import Otuan from "../../../../public/assets/Otuan2.JPG"
 import koro from "../../../../public/assets/Koro2.jpeg"
 import latc from "../../../../public/assets/LATC2.jpg"
 import agb from "../../../../public/assets/LATC2.jpg"
-import w1 from "../../../../public/workers/workers.svg"
+import w1 from "../../../../public/workers/workers.png"
 import ProjectSlider from "../ProjectSlider";
 import ServicesSlider from "../ServicesSlider";
 import slide1 from '../../../../public/workers/ps1.png';
