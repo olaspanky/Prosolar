@@ -69,7 +69,7 @@ const ProductDetails = () => {
 
       <div className='flex justify-center items-center p-2 xl:p-20'>
       <div className='max-w-[1440px]'>
-      <h1 className="text-xl lg:text-[48px] font-bold text-gray-900 mb-4">{product.component}</h1>
+      <h1 className="text-xl lg:text-[48px] font-bold text-black font-extrabold mb-4">{product.component}</h1>
 
 <div className='grid lg:grid-cols-12 gap-5 pt-3 xl:pt-10'>
 <div className=" col-span-9  ">
@@ -94,7 +94,7 @@ const ProductDetails = () => {
             <h2 className="text-[16px] lg:text-[24px] font-semibold text-black mb-2">Payment Plans</h2>
 
             {/* Outright Payment */}
-            <div className="flex  items-center font-jak text-[14px] lg:text-[20px] gap-3 rounded-lg shadow-sm mb-4">
+            <div className="flex  items-center font-jak text-[14px] lg:text-[20px] gap-3 rounded-lg  mb-4">
               <h3 className="  text-[#222222] text-[16px] lg:text-[24px]">Outright Payment: </h3>
               <h4 className=" font-bold text-gray-900 ">
                 &#8358; {product.OutrightPayment.toLocaleString()}
@@ -102,7 +102,7 @@ const ProductDetails = () => {
             </div>
 
             {/* Pay Small Small */}
-            <div className="rounded-lg shadow-sm">
+            <div className="rounded-lg ">
               <h3 className="text-[#222222] text-[16px] lg:text-[24px]">Pay Small Small</h3>
               <ul className="text-gray-700 mt-2 flex flex-col gap-3 text-[14px] lg:text-[20px]">
                 <li>First Down Payment: <span className="  font-bold text-gray-900 mt-2">&#8358;{product.monthlyRepaymentFirstDown.toLocaleString()}</span></li>

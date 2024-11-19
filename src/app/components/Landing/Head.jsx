@@ -189,7 +189,7 @@ const SlidingHeader = () => {
   ];
 
   return (
-    <div className="relative h-[50vh] xl:min-h-[100vh] overflow-hidden ">
+    <div className="relative max-w-[100vw] h-[50vh] xl:min-h-[100vh] overflow-hidden ">
       <Slider {...settings} className="h-full ">
         {slides.map((slide, index) => (
           <div key={index} className="relative w-full h-full ">

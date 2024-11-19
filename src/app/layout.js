@@ -39,7 +39,10 @@ export default function RootLayout({ children }) {
     <html lang="en" className={`${syne.variable} ${syne2.variable} ${jak.variable}`}>
       <body>
         <CartProviders>
-        {children}
+          <div className="max-w-[100vw]">
+          {children}
+
+          </div>
         <Footer/>
         </CartProviders>
        </body>

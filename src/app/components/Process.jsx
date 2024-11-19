@@ -25,7 +25,7 @@ const steps = [
 
 const ProcessSteps = () => {
   return (
-    <div className="bg-white text-white p-6">
+    <div className="bg-white text-white p-6 max-w[100vw]">
               <div className="container max-w-[1344px] mx-auto  gap-9 md:flex-row items-center justify-between ">
               <h1 className="text-xl  lg:text-6xl text-[#292ECF] text-center font-syne my-2">How it Works</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5 xl:gap-20  mx-auto mt-3 lg:mt-9 2xl:mt-12">
