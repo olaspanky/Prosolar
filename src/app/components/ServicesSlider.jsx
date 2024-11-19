@@ -30,13 +30,13 @@ export default function SliderComponent({ title, description, slides, settings }
         </div>
 
         {/* Right Side Slider */}
-        <div className="lg:w-1/2 mt-10 lg:mt-0 lg:ml-10 bg-white p-2 lg:p-12 rounded-lg shadow-md relative">
+        <div className="lg:w-1/2 mt-10  lg:mt-0 lg:ml-10 bg-white p-2 lg:p-12 rounded-lg shadow-md relative">
           <Slider {...customSettings}>
             {slides.map((slide, index) => (
               <div key={index} className="flex flex-col gap-9 justify-between items-center">
                 <h3 className="text-3xl font-semibold ">{slide.title}</h3>
                 <p className="text-gray-600 my-5">{slide.description}</p>
-                <div className="flex gap-4">
+                <div className="flex gap-4 mb-9 lg:mb-aut0">
                   <Image src={slide.image} alt={slide.title} className="rounded-lg w-[80%]" />
                 </div>
               </div>
@@ -45,9 +45,7 @@ export default function SliderComponent({ title, description, slides, settings }
         </div>
       </div>
       {/* Custom Dot Lines Under Description */}
-      <div className="flex justify-center items-center mt-6">
-        <div className="custom-dots"></div>
-      </div>
+     
     </div>
   );
 }

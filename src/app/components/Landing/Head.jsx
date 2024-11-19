@@ -225,11 +225,11 @@ const SlidingHeader = () => {
       {/* Styling for dots */}
       <style >{`
         .slick-dots {
-          bottom: 15px; /* Adjust position */
+          bottom: 1px; /* Adjust position */
         }
         .slick-dots li button:before {
           font-size: 12px; /* Adjust dot size */
-          color: white; /* Dot color */
+          color: black; /* Dot color */
         }
         .slick-dots li.slick-active button:before {
           color: #292ecf; /* Active dot color */

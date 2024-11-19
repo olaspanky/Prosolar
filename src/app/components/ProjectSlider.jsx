@@ -94,7 +94,7 @@ export default function ProjectSlider() {
   return (
     <div className="lg:p-5 rounded-xl">
       <div className="container max-w-[1344px] mx-auto">
-        <h1 className="text-md lg:text-6xl text-[#292ECF] text-center font-syne my-5">Some of our past projects</h1>
+        <h1 className="text-xl lg:text-6xl text-[#292ECF]  text-center font-syne my-5">Some of our past projects</h1>
         <Slider {...settings} className="relative lg:grid grid-cols-4 gap-5">
           {projects.map((project, index) => (
             <div key={index} className="col-span-1 flex flex-col gap-3 h-auto justify-between p-1 lg:p-5">
@@ -107,7 +107,7 @@ export default function ProjectSlider() {
                   className="rounded-lg"
                 />
               </div>
-              <h1 className="font-bold text-sm lg:text-md font-syne2  text-[#22222] lg:text-xl">{project.title}</h1>
+              <h1 className="font-bold text-sm lg:text-md font-syne2  text-[#22222] lg:text-xl mb-9 lg:mb-aut0">{project.title}</h1>
               
             </div>
           ))}

@@ -77,7 +77,7 @@ const Testimonials = () => {
       <Slider {...settings}>
         {testimonials.map((testimonial, index) => (
           <div key={index} className=" p-2  xl:p-9 h-auto flex justify-center items-center ">
-            <div className="rounded-2xl flex flex-col gap-3 bg-[#282828] p-2 lg:p-9 mt-[25%] text-[#D9D9D9] ">
+            <div className="rounded-2xl flex flex-col gap-3 bg-[#282828] p-2 mb-9 lg:mb-aut0 lg:p-9 mt-[25%] text-[#D9D9D9] ">
             <div className="mt-[-20%]">
                 <Image src={t1} className="w-20"/>
             </div>
