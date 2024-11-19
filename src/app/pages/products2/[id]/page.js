@@ -7,10 +7,7 @@ import Nav from '../../../components/Nav';
 import ProductModal from '@/app/components/ProductModal';
 
 const ProductDetails = () => {
-  const [selectedProduct, setSelectedProduct] = useState(null);
-
   const { id } = useParams();
-
 
   // Find the product in both data and data2 arrays
   const productFromData = data.find((p) => p.id === parseInt(id, 10));
@@ -18,8 +15,15 @@ const ProductDetails = () => {
 
   // Determine which array the product is from
   let product = productFromData || productFromData2;
-  let isFromData = productFromData ? true : false; // True if product is from data, else false for data2
+  let isFromData = false;
 
+  if (productFromData) {
+    isFromData = true; // The product is from the 'data' array
+  } else if (productFromData2) {
+    isFromData = false; // The product is from the 'data2' array
+  }
+
+  const [selectedProduct, setSelectedProduct] = useState(null);
 
   if (!product) {
     return (
@@ -48,7 +52,7 @@ const ProductDetails = () => {
       <Nav />
 
       {/* Breadcrumb */}
-      <div className="xl:pt-20 py-5 xl:pl-20 mx-auto text-sm text-gray-600">
+      <div className="xl:pt-20 xl:pl-20 mx-auto text-sm text-gray-600">
         <nav className="flex items-center space-x-2">
           <a href="/" className="hover:underline text-blue-600">
             Home
