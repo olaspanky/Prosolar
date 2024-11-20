@@ -13,7 +13,7 @@ const SolarProductCard = ({ pathname }) => {
     const currentPath = window.location.pathname;
     
     // Set products based on URL path
-    if (currentPath === '/pages/wet-cell') {
+    if (currentPath === 'pbr-ghana/company_analytic/performance') {
       setProducts(data2);
     } else {
       setProducts(data);
