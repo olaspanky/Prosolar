@@ -6,7 +6,10 @@ import { IoLogoWhatsapp } from "react-icons/io";
 import { FaTwitter } from "react-icons/fa6";
 import { FaFacebookF } from "react-icons/fa";
 import { FaLinkedin } from 'react-icons/fa';
+import { FaEnvelope } from 'react-icons/fa'; // Import the envelope icon
 import { motion, Variants } from 'framer-motion';
+import ReCAPTCHA from "react-google-recaptcha";
+
 
 
 
@@ -24,6 +27,15 @@ const validationSchema = Yup.object({
 
 
 export const Hero = () => {
+  const [captchaVerified, setCaptchaVerified] = useState(false);
+
+  const handleCaptchaChange = (value) => {
+    if (value) {
+      setCaptchaVerified(true);
+    } else {
+      setCaptchaVerified(false);
+    }
+  };
 
 
     const formik = useFormik({
@@ -39,6 +51,10 @@ export const Hero = () => {
         },
         validationSchema,
         onSubmit: values => {
+          if (!captchaVerified) {
+            alert("Please verify the CAPTCHA before submitting.");
+            return;
+          }
           console.log(values);
           // Handle form submission
         },
@@ -47,7 +63,7 @@ export const Hero = () => {
     <div className="xl:px-12  xl:py-9 p-1 text-black">
       
     
-<div className="grid lg:grid-cols-12 ">
+<div className="lg:grid flex flex-col-reverse lg:grid-cols-12 ">
     <div className="col-span-4 flex flex-col gap-5 lg:p-9 p-3 shadow-md border  rounded-3xl">
 <h1 className="text-3xl font-bold">Contact Us</h1>
 <div className="flex flex-col gap-5">
@@ -74,6 +90,12 @@ export const Hero = () => {
   whileInView={{y: 0, opacity:1}}
   transition={{duration: 0.5, delay:1.5, ease: "easeInOut"}}
   className="text-sm lg:text-lg xl:text-md lg:text-xl  border-2 rounded-xl w-full shadow-md p-2 flex gap-2 justify-center items-center"><FaTwitter/>Twitter</motion.div>
+   
+    < motion.div
+  initial={{y: 200, opacity: 0}}
+  whileInView={{y: 0, opacity:1}}
+  transition={{duration: 0.5, delay:1.5, ease: "easeInOut"}}
+  className="text-sm lg:text-lg xl:text-md lg:text-xl  border-2 rounded-xl w-full shadow-md p-2 flex gap-2 justify-center items-center"><FaEnvelope/>Gmail</motion.div>
    
   
 </div>
@@ -149,6 +171,8 @@ export const Hero = () => {
             <div className="text-red-600 text-sm">{formik.errors.email}</div>
           )}
         </div>
+        <input type="hidden" name="favorite_color" value="" />
+
         
         <div className="mb-4">
           <label className="block text-gray-700">Address/Location</label>
@@ -230,8 +254,16 @@ export const Hero = () => {
             <div className="text-red-600 text-sm">{formik.errors.contactMethod}</div>
           )}
         </div>
+
+        <div className="mb-4">
+        <ReCAPTCHA
+          sitekey="your-site-key" // Replace with your site key
+          onChange={handleCaptchaChange}
+        />
+      </div>
         
-        <button type="submit" className="w-full bg-[#292ECF] text-white p-2 rounded-xl hover:bg-blue-600">
+        <button type="submit"         disabled={!captchaVerified}
+ className="w-full bg-[#292ECF] text-white p-2 rounded-xl hover:bg-blue-600">
           Submit
         </button>
       </form>
