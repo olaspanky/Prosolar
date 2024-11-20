@@ -26,16 +26,7 @@ const validationSchema = Yup.object({
 
 
 export const Hero = () => {
-  const [captchaVerified, setCaptchaVerified] = useState(false);
-
-  const handleCaptchaChange = (value) => {
-    if (value) {
-      setCaptchaVerified(true);
-    } else {
-      setCaptchaVerified(false);
-    }
-  };
-
+ 
 
     const formik = useFormik({
         initialValues: {
