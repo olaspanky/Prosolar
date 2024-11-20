@@ -8,7 +8,6 @@ import { FaFacebookF } from "react-icons/fa";
 import { FaLinkedin } from 'react-icons/fa';
 import { FaEnvelope } from 'react-icons/fa'; // Import the envelope icon
 import { motion, Variants } from 'framer-motion';
-import ReCAPTCHA from "react-google-recaptcha";
 
 
 
@@ -51,10 +50,7 @@ export const Hero = () => {
         },
         validationSchema,
         onSubmit: values => {
-          if (!captchaVerified) {
-            alert("Please verify the CAPTCHA before submitting.");
-            return;
-          }
+          
           console.log(values);
           // Handle form submission
         },
@@ -171,8 +167,6 @@ export const Hero = () => {
             <div className="text-red-600 text-sm">{formik.errors.email}</div>
           )}
         </div>
-        <input type="hidden" name="favorite_color" value="" />
-
         
         <div className="mb-4">
           <label className="block text-gray-700">Address/Location</label>
@@ -254,16 +248,8 @@ export const Hero = () => {
             <div className="text-red-600 text-sm">{formik.errors.contactMethod}</div>
           )}
         </div>
-
-        <div className="mb-4">
-        <ReCAPTCHA
-          sitekey="your-site-key" // Replace with your site key
-          onChange={handleCaptchaChange}
-        />
-      </div>
         
-        <button type="submit"         disabled={!captchaVerified}
- className="w-full bg-[#292ECF] text-white p-2 rounded-xl hover:bg-blue-600">
+        <button type="submit" className="w-full bg-[#292ECF] text-white p-2 rounded-xl hover:bg-blue-600">
           Submit
         </button>
       </form>
