@@ -134,7 +134,6 @@ import Link from 'next/link';
 const SlidingHeader = () => {
   const settings = {
     infinite: true,
-    dots: true, // Enable dots
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
