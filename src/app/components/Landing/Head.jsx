@@ -195,7 +195,7 @@ const SlidingHeader = () => {
             <Image
               src={slide.image}
               alt={slide.title}
-              className="w-full h-[50vh] xl:h-full object-cover "
+              className="w-full h-[50vh] xl:h-[100vh] object-cover "
             />
             <div className="absolute  flex justify-center items-center inset-0  text-white  ">
               <div className="bg-cover bg-center h-auto  flex m-3 lg:m-20 flex-col gap-5 lg:gap-9 justify-center  items-center  xl:p-20 2xl:p-36 ">
