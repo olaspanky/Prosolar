@@ -31,40 +31,10 @@ const Dropdown = ({ item }) => {
   const dropdownRef = useRef(null);
   const timeoutRef = useRef(null);
 
-
-  // Handle click outside of dropdown
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setIsOpen(false);
-      }
-    };
-
-    // Add click event listener to document
-    document.addEventListener('mousedown', handleClickOutside);
-
-    // Cleanup event listener
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-      
-      // Clear timeout on unmount
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current);
-      }
-    };
-  }, []);
-
-  // Reset timeout when dropdown opens or mouse enters
-  useEffect(() => {
-    if (isOpen) {
-      resetTimeout();
-    }
-  }, [isOpen]);
-
-
-
   // Ensure item has children before rendering
-  if (!item || !item.children) return null;
+  if (!item || !item.children) {
+    return null; // Return null if no children, this prevents rendering the dropdown.
+  }
 
   // Toggle dropdown
   const toggleDropdown = () => {
@@ -83,6 +53,43 @@ const Dropdown = ({ item }) => {
       setIsOpen(false);
     }, 2000);
   };
+
+  // Handle click outside of dropdown
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
+
+    // Add click event listener to document
+    document.addEventListener('mousedown', handleClickOutside);
+
+    // Cleanup event listener
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+
+      // Clear timeout on unmount
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+    };
+  }, []); // Empty dependency array means this effect runs once when the component mounts.
+
+  // Reset timeout when dropdown opens or mouse enters
+  useEffect(() => {
+    if (isOpen) {
+      resetTimeout();
+    }
+  }, [isOpen]); // This runs when `isOpen` changes.
+
+
+  // Reset timeout when dropdown opens or mouse enters
+  useEffect(() => {
+    if (isOpen) {
+      resetTimeout();
+    }
+  }, [isOpen]);
 
   return (
     <div ref={dropdownRef} className="relative group">
