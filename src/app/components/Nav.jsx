@@ -1,6 +1,4 @@
-
-
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
@@ -11,32 +9,82 @@ const menuItems = [
   {
     title: "Solar Packages",
     children: [
-      { title: "Solar Home Systems", route: "/pages/li-ion" },
-      { title: "Commercial Solar Systems", route: "/pages/wet-cell" }
+      { title: "Solar Home Systems", route: "/solar/shs" },
+      { title: "Commercial Solar Systems", route: "/solar/scs" }
     ],
   },
-    { title: "Services", route: "/blog" },
-  
+  { title: "Services", route: "/blog" },
   {
     title: "Projects",
     children: [
-      { title: "LATC", route: "/pages/project1" },
-      { title: "OTUAN", route: "/pages/project2" },
-      { title: "AGB", route: "/pages/project3" },
-      { title: "KORO", route: "/pages/project4" },
+      { title: "LATC", route: "/solar/project1" },
+      { title: "OTUAN", route: "/solar/project2" },
+      { title: "AGB", route: "/solar/project3" },
+      { title: "KORO", route: "/solar/project4" },
     ],
   },
-  { title: "Contact Us", route: "/pages/contact" },
-
+  { title: "Contact Us", route: "/solar/contact" },
 ];
 
 const Dropdown = ({ item }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const dropdownRef = useRef(null);
+  const timeoutRef = useRef(null);
+
+  // Ensure item has children before rendering
+  if (!item || !item.children) return null;
+
+  // Toggle dropdown
+  const toggleDropdown = () => {
+    setIsOpen(!isOpen);
+  };
+
+  // Reset timeout when dropdown is open
+  const resetTimeout = () => {
+    // Clear any existing timeout
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+
+    // Set new timeout to close dropdown after 2 seconds of inactivity
+    timeoutRef.current = setTimeout(() => {
+      setIsOpen(false);
+    }, 2000);
+  };
+
+  // Handle click outside of dropdown
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
+
+    // Add click event listener to document
+    document.addEventListener('mousedown', handleClickOutside);
+
+    // Cleanup event listener
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      
+      // Clear timeout on unmount
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+    };
+  }, []);
+
+  // Reset timeout when dropdown opens or mouse enters
+  useEffect(() => {
+    if (isOpen) {
+      resetTimeout();
+    }
+  }, [isOpen]);
 
   return (
-    <div className="relative group">
+    <div ref={dropdownRef} className="relative group">
       <button
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={toggleDropdown}
         className="flex items-center gap-1 hover:text-blue-600 transition-colors"
       >
         {item.title}
@@ -56,7 +104,7 @@ const Dropdown = ({ item }) => {
           />
         </svg>
       </button>
-      
+
       <div
         className={`absolute left-0 mt-2 w-auto rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 transition-all duration-200 ease-in-out ${
           isOpen
@@ -86,7 +134,7 @@ export default function Header() {
 
   return (
     <header className="sticky font-jak top-0 z-50 bg-white shadow-md">
-      <div className=" lg:mx-20">
+      <div className="lg:mx-20">
         <div className="flex justify-between items-center px-4 py-4">
           {/* Logo */}
           <div className="flex-shrink-0">

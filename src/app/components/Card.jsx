@@ -13,7 +13,7 @@ const SolarProductCard = ({ pathname }) => {
     const currentPath = window.location.pathname;
     
     // Set products based on URL path
-    if (currentPath === '/pages/wet-cell') {
+    if (currentPath === '/solar/cs') {
       setProducts(data2);
     } else {
       setProducts(data);
@@ -75,7 +75,7 @@ const SolarProductCard = ({ pathname }) => {
 
           {/* Button to see more details */}
           <div className="flex w-full bg-red-200 lg:mt-5 justify-center items-center">
-            <Link className='w-full' href={`/pages/products/${product.id}`}>
+            <Link className='w-full' href={`/solar/products/${product.id}`}>
               <button className="bg-[#292ECF] lg:px-5 w-full  p-3 lg:py-3 text-white lg:text-[14px] rounded-[4px]">
                 See more Details
               </button>
