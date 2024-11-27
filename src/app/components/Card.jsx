@@ -13,7 +13,7 @@ const SolarProductCard = ({ pathname }) => {
     const currentPath = window.location.pathname;
     
     // Set products based on URL path
-    if (currentPath === '/solar/cs') {
+    if (currentPath === '/solar/scs') {
       setProducts(data2);
     } else {
       setProducts(data);
