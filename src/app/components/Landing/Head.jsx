@@ -167,7 +167,7 @@ const SlidingHeader = () => {
       description:
         'Affordable solar solutions designed for homes – cut down your bills, power your life, and enjoy uninterrupted energy with finance options',
       button: 'Discover Home Solutions',
-      link: '/pages/li-ion',
+      link: '/solar/shs',
     },
     {
       image: frame2,
@@ -175,7 +175,7 @@ const SlidingHeader = () => {
       description:
         'Providing rural communities with reliable solar power for a brighter, greener future across Nigeria',
       button: 'Learn About Rural Solutions',
-      link: '/pages/li-ion',
+      link: '/',
     },
     {
       image: frame3,
@@ -183,7 +183,7 @@ const SlidingHeader = () => {
       description:
         'Customized solar solutions to reduce operational costs, enhance productivity, and power business growth with finance options',
       button: 'Explore Business Solutions',
-      link: '/pages/wet-cell',
+      link: '/solar/scs',
     },
   ];
 

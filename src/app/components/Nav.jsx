@@ -238,7 +238,7 @@ export default function Header() {
           </div>
           <div className="p-4 border-t">
             <Link
-              href="/pages/contact"
+              href="/solar/contact"
               onClick={() => setIsMenuOpen(false)}
               className="flex items-center justify-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-white bg-[#292ECF] hover:bg-[#292ECF] transition-colors"
             >

@@ -46,7 +46,7 @@ const ProductDetails = () => {
 
   // Conditional breadcrumb text and link based on the source array
   const breadcrumbText = isFromData ? "Solar Packages for Home" : "Solar Packages for Offices";
-  const breadcrumbLink = isFromData ? "/pages/wet-cell" : "/pages/li-ion";
+  const breadcrumbLink = isFromData ? "/solar/shs" : "/solar/scs";
 
   return (
     <div className="bg-gray-100 min-h-screen font-jak text-gray-900">
