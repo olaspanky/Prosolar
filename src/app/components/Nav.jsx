@@ -33,7 +33,7 @@ const Dropdown = ({ item }) => {
 
   // Ensure item has children before rendering
   if (!item || !item.children) {
-    return null; // Return null if no children, this prevents rendering the dropdown.
+    return null;
   }
 
   // Toggle dropdown
@@ -76,20 +76,7 @@ const Dropdown = ({ item }) => {
     };
   }, []); // Empty dependency array means this effect runs once when the component mounts.
 
-  // Reset timeout when dropdown opens or mouse enters
-  useEffect(() => {
-    if (isOpen) {
-      resetTimeout();
-    }
-  }, [isOpen]); // This runs when `isOpen` changes.
-
-
-  // Reset timeout when dropdown opens or mouse enters
-  useEffect(() => {
-    if (isOpen) {
-      resetTimeout();
-    }
-  }, [isOpen]);
+  
 
   return (
     <div ref={dropdownRef} className="relative group">
