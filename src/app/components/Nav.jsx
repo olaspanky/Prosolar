@@ -31,26 +31,6 @@ const Dropdown = ({ item }) => {
   const dropdownRef = useRef(null);
   const timeoutRef = useRef(null);
 
-  // Ensure item has children before rendering
-  if (!item || !item.children) return null;
-
-  // Toggle dropdown
-  const toggleDropdown = () => {
-    setIsOpen(!isOpen);
-  };
-
-  // Reset timeout when dropdown is open
-  const resetTimeout = () => {
-    // Clear any existing timeout
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current);
-    }
-
-    // Set new timeout to close dropdown after 2 seconds of inactivity
-    timeoutRef.current = setTimeout(() => {
-      setIsOpen(false);
-    }, 2000);
-  };
 
   // Handle click outside of dropdown
   useEffect(() => {
@@ -80,6 +60,29 @@ const Dropdown = ({ item }) => {
       resetTimeout();
     }
   }, [isOpen]);
+
+
+
+  // Ensure item has children before rendering
+  if (!item || !item.children) return null;
+
+  // Toggle dropdown
+  const toggleDropdown = () => {
+    setIsOpen(!isOpen);
+  };
+
+  // Reset timeout when dropdown is open
+  const resetTimeout = () => {
+    // Clear any existing timeout
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+
+    // Set new timeout to close dropdown after 2 seconds of inactivity
+    timeoutRef.current = setTimeout(() => {
+      setIsOpen(false);
+    }, 2000);
+  };
 
   return (
     <div ref={dropdownRef} className="relative group">
