@@ -14,6 +14,10 @@ const solarPackages = [
     monthlyRepaymentTotal: 2757396.40,
     monthlyRepaymentFirstDown: 827218.92,
     monthlyRepayment: 160848.12,
+    payBackPeriod: 5,
+    annualFuelSavings: 2000000,
+    litresSaved: 1800,
+    postMaintanace: "5 years Warranty on Battery, 1 year on Inverter, 25 years on solar panels, 1 year FREE Maintenance services. 5 years Warranty on Battery, 1 year on Inverter, 25 years on solar panels, 1 year FREE Maintenance services."
   },
 
   {
@@ -30,6 +34,10 @@ const solarPackages = [
     monthlyRepaymentTotal: 3549583.40,
     monthlyRepaymentFirstDown: 1064875.02,
     monthlyRepayment: 207059.03,
+     payBackPeriod: 4.28,
+    annualFuelSavings: 2000000,
+    litresSaved: 43800,
+    postMaintanace: "5 years Warranty on Battery, 1 year on Inverter, 25 years on solar panels, 1 year FREE Maintenance services."
   },
   
   {
@@ -47,6 +55,10 @@ const solarPackages = [
     monthlyRepaymentTotal: 5338175.15,
     monthlyRepaymentFirstDown: 1601452.55,
     monthlyRepayment: 311393.55,
+     payBackPeriod: 4.63,
+    annualFuelSavings: 2000000,
+    litresSaved: 51000,
+    postMaintanace: "5 years Warranty on Battery, 1 year on Inverter, 25 years on solar panels, 1 year FREE Maintenance services."
   },
  
   {
@@ -64,6 +76,10 @@ const solarPackages = [
     monthlyRepaymentTotal: 7070350.65,
     monthlyRepaymentFirstDown: 2121105.20,
     monthlyRepayment: 412437.12,
+     payBackPeriod: 4.53,
+    annualFuelSavings: 2000000,
+    litresSaved: 58000,
+    postMaintanace: "5 years Warranty on Battery, 1 year on Inverter, 25 years on solar panels, 1 year FREE Maintenance services."
   },
 
 ];

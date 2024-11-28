@@ -128,19 +128,19 @@ const ProductDetails = () => {
         <div className='flex flex-col gap-2 lg:gap-5'>
           <div className='flex gap-3'>
           <Image src={wallet} className='w-auto h-5 lg:h-9'/>
-            <p>₦700k Cost savings per year</p>
+            <p>{product.annualFuelSavings} Cost savings per year</p>
             </div>
           <div className='flex gap-3'>
           <Image src={transact} className='w-auto h-5 lg:h-9'/>
-            <p>3 years Return on investment</p>
+            <p>{product.payBackPeriod} years Return on investment</p>
             </div>
           <div className='flex gap-3'>
           <Image src={v2} className='w-auto h-5 lg:h-9'/>
-            <p>250 litres of fuel saved per annum</p>
+            <p>{product.litresSaved} litres of fuel saved per annum</p>
             </div>
           <div className='flex gap-3'>
           <Image src={verified} className='w-auto h-5 lg:h-9'/>
-            <p>5 Years warranty on Battery, 1 year on inverter, 25years on Solar panels and 1 year free maintenance service  </p>
+            <p>{product.postMaintanace}</p>
             </div>
         </div>
       </div>
