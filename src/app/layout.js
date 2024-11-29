@@ -7,7 +7,7 @@ import "slick-carousel/slick/slick-theme.css";
 import CartProviders from "./components/Provider";
 import { Footer } from "./components/Footer";
 import GoogleAnalytics from "./components/GoogleAnalytics";
-import Pixel from "./components/Pixel";
+// import Pixel from "./components/Pixel";
 const syne = Syne({
   weight: '700',
   subsets: ['latin'],
@@ -85,7 +85,7 @@ export default function RootLayout({ children }) {
               src="https://px.ads.linkedin.com/collect/?pid=1613905&fmt=gif"
             />
           </noscript>
-          <Pixel name='FACEBOOK_PIXEL_1' />
+          {/* <Pixel name='FACEBOOK_PIXEL_1' /> */}
           <Footer />
         </CartProviders>
       </body>
