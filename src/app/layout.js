@@ -7,6 +7,8 @@ import "slick-carousel/slick/slick-theme.css";
 import { Footer } from "./components/Footer";
 import GoogleAnalytics from "./components/GoogleAnalytics";
 import { Providers } from "./Provider";
+import { Suspense } from 'react'
+
 
 // import Pixel from "./components/Pixel";
 const syne = Syne({
@@ -38,7 +40,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${syne.variable} ${syne2.variable} ${jak.variable}`}>
       <body>
-        <Providers>
+      <Suspense>
+      <Providers/>
+        </Suspense>
           <GoogleAnalytics />
           
           <div className="max-w-[100vw]">
@@ -88,7 +92,6 @@ export default function RootLayout({ children }) {
           </noscript>
           {/* <Pixel name='FACEBOOK_PIXEL_1' /> */}
           <Footer />
-        </Providers>
       </body>
     </html>
   );
