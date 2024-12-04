@@ -1,35 +1,65 @@
-// components/SolarProductCard.js
 import React, { useState, useEffect } from 'react';
-import data from './data';
-import data2 from './data2'
 import Link from 'next/link';
 import ProductModal from './ProductModal';
 
 const SolarProductCard = ({ pathname }) => {
   const [products, setProducts] = useState([]);
+  const [selectedProduct, setSelectedProduct] = useState(null);
 
   useEffect(() => {
     // Get the current path
     const currentPath = window.location.pathname;
-    
-    // Set products based on URL path
-    if (currentPath === '/solar/scs') {
-      setProducts(data2);
-    } else {
-      setProducts(data);
-    }
-  }, []); // Empty dependency array means this runs once on mount
 
-  const [selectedProduct, setSelectedProduct] = useState(null);
+    // Check if products are in localStorage
+    let storedProducts = localStorage.getItem(currentPath === '/solar/scs' ? 'commercialProducts' : 'homeProducts');
+
+    // If products are not found in localStorage, fetch from API
+    if (storedProducts) {
+      setProducts(JSON.parse(storedProducts));
+    } else {
+      fetchProducts(currentPath);
+    }
+  }, [pathname]);
+
+  const fetchProducts = async (currentPath) => {
+    try {
+      let apiUrl = '';
+      let packageType = '';
+  
+      if (currentPath === '/solar/scs') {
+        // Set commercial package type and fetch commercial packages
+        apiUrl = '/api/solarpackages/commercial';
+        packageType = 'commercial'; // Store package type
+      } else {
+        // Set home package type and fetch home packages
+        apiUrl = '/api/solarpackages/home';
+        packageType = 'home'; // Store package type
+      }
+  
+      // Save the package type to localStorage
+      localStorage.setItem('packageType', packageType);
+  
+      const res = await fetch(apiUrl);
+      const data = await res.json();
+      setProducts(data);
+  
+      // Save fetched data to localStorage for future use
+      localStorage.setItem(`${packageType}`, JSON.stringify(data));
+    } catch (err) {
+      console.error("Error fetching products:", err);
+    }
+  };
+  
 
   const handleCloseModal = () => {
     setSelectedProduct(null);
   };
+
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 font-jak p-2  md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 2xl:grid-cols-4 gap-5 lg:gap-5">
       {products.map((product) => (
         <div
-          key={product.id}
+          key={product._id} // Use _id for key to ensure consistency
           className="bg-white border border-[#787878] text-[#787878] flex flex-col gap-5 shadow-lg p-5 2xl:p-9 rounded-3xl lg:rounded-[16px] overflow-hidden cursor-pointer"
         >
           <div className="flex flex-col lg:h-[70px] lg:gap-2">
@@ -39,9 +69,8 @@ const SolarProductCard = ({ pathname }) => {
 
           <div className="w-full border my-1 border-[#292ECF]"></div>
 
-
-           {/* System Components Section */}
-           <div className="flex flex-col lg:gap-5 gap-2  text-black lg:h-[100px]  2xl:h-[120px]">
+          {/* System Components Section */}
+          <div className="flex flex-col lg:gap-5 gap-2  text-black lg:h-[100px]  2xl:h-[120px]">
             <h1 className="  text-sm lg:text-[14px] 2xl:text-[16px]  font-bold text-black ">Appliances it can Power </h1>
             <h3 className="text-sm lg:text-[12px] 2xl:text-[16px] leading-normal text-[#787878]">{product.components}</h3>
           </div>
@@ -50,15 +79,14 @@ const SolarProductCard = ({ pathname }) => {
           <div className="flex flex-col lg:gap-3 2xl:gap-7 gap-3 lg:h-[150px] 2xl:h-[250px]">
             <h1 className="text-sm lg:text-[14px] 2xl:text-[16px] font-bold text-black">System Components</h1>
             <div className='flex text-[#787878] flex-col gap-3 lg:gap-3 2xl:gap-7'>
-            {product.appliances.appliance1 && <h3 className="text-sm lg:text-[12px] 2xl:text-[16px]">{product.appliances.appliance1}</h3>}
-            {product.appliances.appliance2 && <h3 className="text-sm lg:text-[12px] 2xl:text-[16px]">{product.appliances.appliance2}</h3>}
-            {product.appliances.appliance3 && <h3 className="text-sm lg:text-[12px] 2xl:text-[16px]">{product.appliances.appliance3}</h3>}
-            {product.appliances.appliance4 && <h3 className="text-sm lg:text-[12px] 2xl:text-[16px]">{product.appliances.appliance4}</h3>}
-            {product.appliances.appliance5 && <h3 className="text-sm lg:text-[12px] 2xl:text-[16px]">{product.appliances.appliance5}</h3>}
-          </div>
+              {product.appliances.appliance1 && <h3 className="text-sm lg:text-[12px] 2xl:text-[16px]">{product.appliances.appliance1}</h3>}
+              {product.appliances.appliance2 && <h3 className="text-sm lg:text-[12px] 2xl:text-[16px]">{product.appliances.appliance2}</h3>}
+              {product.appliances.appliance3 && <h3 className="text-sm lg:text-[12px] 2xl:text-[16px]">{product.appliances.appliance3}</h3>}
+              {product.appliances.appliance4 && <h3 className="text-sm lg:text-[12px] 2xl:text-[16px]">{product.appliances.appliance4}</h3>}
+              {product.appliances.appliance5 && <h3 className="text-sm lg:text-[12px] 2xl:text-[16px]">{product.appliances.appliance5}</h3>}
+            </div>
           </div>
 
-         
           <div className="w-full border border-[#292ECF]"></div>
 
           {/* Pricing Section */}
@@ -75,7 +103,7 @@ const SolarProductCard = ({ pathname }) => {
 
           {/* Button to see more details */}
           <div className="flex w-full bg-red-200 lg:mt-5 justify-center items-center">
-            <Link className='w-full' href={`/solar/products/${product.id}`}>
+            <Link className='w-full' href={`/solar/products/${product._id}`}>
               <button className="bg-[#292ECF] lg:px-5 w-full  p-3 lg:py-3 text-white lg:text-[14px] rounded-[4px]">
                 See more Details
               </button>
