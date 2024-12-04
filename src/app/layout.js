@@ -6,7 +6,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Footer } from "./components/Footer";
 import GoogleAnalytics from "./components/GoogleAnalytics";
-import { Providers } from "./components/Provider";
+import { Providers } from "./Provider";
 
 // import Pixel from "./components/Pixel";
 const syne = Syne({
