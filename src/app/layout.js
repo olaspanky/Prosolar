@@ -4,10 +4,9 @@ import "./globals.css";
 import { Syne, Plus_Jakarta_Sans } from 'next/font/google';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import CartProviders from "./components/Provider";
 import { Footer } from "./components/Footer";
 import GoogleAnalytics from "./components/GoogleAnalytics";
-import { Providers } from "./components/Provider";
-
 // import Pixel from "./components/Pixel";
 const syne = Syne({
   weight: '700',
@@ -38,7 +37,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${syne.variable} ${syne2.variable} ${jak.variable}`}>
       <body>
-        <Providers>
+        <CartProviders>
           <GoogleAnalytics />
           
           <div className="max-w-[100vw]">
@@ -88,7 +87,7 @@ export default function RootLayout({ children }) {
           </noscript>
           {/* <Pixel name='FACEBOOK_PIXEL_1' /> */}
           <Footer />
-        </Providers>
+        </CartProviders>
       </body>
     </html>
   );
