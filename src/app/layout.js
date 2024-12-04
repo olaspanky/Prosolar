@@ -4,10 +4,9 @@ import "./globals.css";
 import { Syne, Plus_Jakarta_Sans } from 'next/font/google';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import {Providers} from "./components/Provider";
 import { Footer } from "./components/Footer";
 import GoogleAnalytics from "./components/GoogleAnalytics";
-
+import { Providers } from "./components/Provider";
 
 // import Pixel from "./components/Pixel";
 const syne = Syne({
