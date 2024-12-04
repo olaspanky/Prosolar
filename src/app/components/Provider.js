@@ -13,14 +13,14 @@ export function Providers({ children }) {
         const ReactPixel = (await import('react-facebook-pixel')).default;
         
         ReactPixel.init('382348839135035'); // Replace with your Facebook Pixel ID
-        ReactPixel.pageView();
+        ReactPixel.pageView(); // Track page view event
       } catch (error) {
         console.error('Failed to initialize Facebook Pixel', error);
       }
     };
 
-    initPixel();
-  }, [pathname, searchParams]);
+    initPixel(); // Initialize Facebook Pixel when pathname or searchParams change
+  }, [pathname, searchParams]); // Dependency array ensures it's initialized when pathname or searchParams change
 
   return <>{children}</>;
 }
