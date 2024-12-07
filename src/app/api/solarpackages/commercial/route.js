@@ -1,5 +1,8 @@
 import { NextResponse } from "next/server";
 import clientPromise from "@/lib/mongodb";
+import { ObjectId } from 'mongodb'; // Add this import
+
+
 
 export async function GET() {
   try {
@@ -29,13 +32,25 @@ export async function PUT(request) {
     const client = await clientPromise;
     const db = client.db("solarApp");
     const body = await request.json();
-    const { id, ...update } = body;
-    const result = await db.collection("commercialPackages").updateOne({ id }, { $set: update });
+    
+    // Don't remove commas. Keep them as is.
+    const { _id, ...update } = body;
+
+    const result = await db.collection("commercialPackages").updateOne(
+      { _id: new ObjectId(_id) }, 
+      { $set: update }
+    );
+    
     return NextResponse.json(result);
   } catch (error) {
-    return NextResponse.json({ error: error.message }, { status: 500 });
+    return NextResponse.json({ 
+      error: error.message, 
+      stack: error.stack 
+    }, { status: 500 });
   }
 }
+
+
 
 export async function DELETE(request) {
   try {

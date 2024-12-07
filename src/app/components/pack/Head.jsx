@@ -1,85 +1,67 @@
 
 
-import React, { useState, useEffect, useRef } from 'react';
-import Image from 'next/image';
-import frame1 from"../../../../public/assets/frame1.jpg";
-import frame2 from"../../../../public/assets/frame2.jpg";
-import { Fade } from 'react-slideshow-image';
-import 'react-slideshow-image/dist/styles.css';
-import Navbar from "../Nav"
-
-const spanStyle = {
-  padding: '20px',
-  position: 'absolute', // Added position relative
-
-
-};
-
-const divStyle = {
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  backgroundSize: 'cover',
-  position: 'relative', // Added position relative
-  zIndex: 1, // Added z-
-};
-
-const buttonStyle = {
-  width: "0px",
-  background: 'none',
-  border: '0px',
-
-};
+// import React, { useState, useEffect, useRef } from 'react';
+// import Image from 'next/image';
+// import frame1 from"../../../../public/assets/frame1.jpg";
+// import frame2 from"../../../../public/assets/frame2.jpg";
+// import { Fade } from 'react-slideshow-image';
+// import 'react-slideshow-image/dist/styles.css';
+// import Navbar from "../Nav"
 
 
 
-const properties = {
-  prevArrow: <button style={{ ...buttonStyle }}><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none"><path d="M242 180.6v-138L0 256l242 213.4V331.2h270V180.6z"/></svg></button>,
-  nextArrow: <button style={{ ...buttonStyle }}><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none"><path d="M512 256L270 42.6v138.2H0v150.6h270v138z"/></svg></button>
-};
-
-const slideImages = [
-  {
-    url: frame1,
-    caption: 'We Provide you with Reliable and Affordable solar solution'
-  },
-  {
-    url: frame1,
-    caption: 'We help our customers save money with Solar Solutions'
-  },
-
- 
-];
-
-const Hero = ({ scrollToHero }) => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const slideRef = useRef(null);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      if (slideRef.current) {
-        setCurrentIndex((prevIndex) => (prevIndex + 1) % slideImages.length);
-        slideRef.current.goTo(currentIndex);
-      }
-    }, 15000); // 15 seconds
-
-    return () => {
-      clearInterval(interval);
-    };
-  }, [currentIndex]);
-
-  return (
-  <div className='w-full h- auto px-5 '>
-    <div className='bg-lbg bg-cover bg-center h-[30vh] lg:h-[60vh] flex flex-col gap-5 lg:gap-9 justify-center items-center p-5 xl:p-20 2xl:p-36 rounded-xl'>
-    <h1 className={` font-syne xl:max-w-[1000px] text-center text-white text-3xl xl:text-[64px] xl:leading-[79px]`}>Solar Packages for your Homes</h1>               
+// const Hero = () => {
 
 
-    </div>
+
+//   return (
+//   <div className='w-full h- auto px-5 '>
+//     <div className='bg-lbg bg-cover bg-center h-[30vh] lg:h-[60vh] flex flex-col gap-5 lg:gap-9 justify-center items-center p-5 xl:p-20 2xl:p-36 rounded-xl'>
+//     <h1 className={` font-syne xl:max-w-[1000px] text-center text-white text-3xl xl:text-[64px] xl:leading-[79px]`}>Solar Packages for your Homes</h1>               
+
+
+//     </div>
 
 
     
-  </div>
+//   </div>
+//   );
+// };
+
+// export default Hero;
+import React, { useState, useEffect } from "react";
+import Image from "next/image";
+import frame1 from "../../../../public/assets/frame1.jpg";
+import frame2 from "../../../../public/assets/frame2.jpg";
+
+const Hero = () => {
+  const [isLoading, setIsLoading] = useState(true);
+
+  // Simulate a loading period
+  useEffect(() => {
+    const timer = setTimeout(() => setIsLoading(false), 2000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Skeleton Loader
+  const SkeletonLoader = () => (
+    <div className="w-full h-[30vh] lg:h-[60vh] flex flex-col justify-center items-center bg-gray-300 animate-pulse rounded-xl">
+      <div className="w-3/4 h-12 bg-gray-400 rounded mb-4"></div>
+    </div>
   );
+
+  // Content to display when loaded
+  const HeroContent = () => (
+    <div className="bg-lbg bg-cover bg-center h-[30vh] lg:h-[60vh] flex flex-col gap-5 lg:gap-9 justify-center items-center p-5 xl:p-20 2xl:p-36 rounded-xl">
+      <h1
+        className={`font-syne xl:max-w-[1000px] text-center text-white text-3xl xl:text-[64px] xl:leading-[79px]`}
+      >
+        Solar Packages for your Homes
+      </h1>
+    </div>
+  );
+
+  return <div className="w-full h-auto px-5">{isLoading ? <SkeletonLoader /> : <HeroContent />}</div>;
 };
 
 export default Hero;

@@ -2,6 +2,9 @@
 
 import { useState, useEffect } from "react";
 import Nav from "@/app/components/Nav"
+import PasswordProtect from "@/app/components/Passprotect";
+
+
 const Dashboard = () => {
   const [view, setView] = useState("home"); // 'home' for Solar Home Systems, 'commercial' for Commercial Systems
   const [homePackages, setHomePackages] = useState([]);
@@ -53,27 +56,51 @@ const Dashboard = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    if (name.startsWith("appliance")) {
-      // For appliances, handle each appliance separately
-      const applianceNum = name.replace("appliance", "");
-      setNewPackage((prev) => ({
+  
+    // Remove commas from the value for internal processing
+    const sanitizedValue = value.replace(/,/g, '');
+  
+    // Format the value with commas for display
+    const formattedValue = sanitizedValue.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  
+    if (showEditModal) {
+      // Update the `updatedPrices` state when editing
+      setUpdatedPrices((prev) => ({
         ...prev,
-        appliances: {
-          ...prev.appliances,
-          [`appliance${applianceNum}`]: value,
-        },
+        [name]: formattedValue, // Store the value with commas for display
       }));
     } else {
-      setNewPackage((prev) => ({ ...prev, [name]: value }));
+      // Update the `newPackage` state when adding a new package
+      if (name.startsWith("appliance")) {
+        // Handle appliances separately
+        const applianceNum = name.replace("appliance", "");
+        setNewPackage((prev) => ({
+          ...prev,
+          appliances: {
+            ...prev.appliances,
+            [`appliance${applianceNum}`]: formattedValue, // Store the value with commas
+          },
+        }));
+      } else {
+        setNewPackage((prev) => ({ 
+          ...prev, 
+          [name]: formattedValue, // Store the value with commas
+        }));
+      }
     }
   };
+  
 
+const formatNumber = (number) => {
+  return new Intl.NumberFormat().format(number);
+};
+  
   const handleSave = async () => {
     const endpoint =
       view === "home" ? "/api/solarpackages/home" : "/api/solarpackages/commercial";
     const method = editing ? "PUT" : "POST";
     const body = editing ? { id: editing, ...newPackage } : newPackage;
-
+  
     try {
       const res = await fetch(endpoint, {
         method,
@@ -81,12 +108,17 @@ const Dashboard = () => {
         body: JSON.stringify(body),
       });
       if (res.ok) {
-        const updatedPackages = await fetch(endpoint).then((r) => r.json());
+        // Get the added package from the response (assuming the response returns the new package)
+        const newPkg = await res.json();
+        
+        // Add the new package to the state without re-fetching all data
         if (view === "home") {
-          setHomePackages(updatedPackages);
+          setHomePackages((prevPackages) => [...prevPackages, newPkg]);
         } else {
-          setCommercialPackages(updatedPackages);
+          setCommercialPackages((prevPackages) => [...prevPackages, newPkg]);
         }
+  
+        // Reset the form fields after saving
         setNewPackage({
           component: "",
           suitableFor: "",
@@ -112,29 +144,37 @@ const Dashboard = () => {
       console.error("Error saving package:", err);
     }
   };
-
+  
+  
   const handleSavePrices = async () => {
-    const endpoint =
-      view === "home" ? "/api/solarpackages/home" : "/api/solarpackages/commercial";
+    // Use the formatted values directly (no need to sanitize them)
     const updatedPackage = {
       ...editingPackage,
-      ...updatedPrices, // Only updating prices
+      ...updatedPrices, // Use the prices with commas
     };
-
+  
+    const endpoint =
+      view === "home" ? "/api/solarpackages/home" : "/api/solarpackages/commercial";
+  
     try {
       const res = await fetch(endpoint, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(updatedPackage),
       });
+  
       if (res.ok) {
         // Refresh the list after saving
         const updatedPackages = await fetch(endpoint).then((r) => r.json());
+  
+        // Update the state with the new package list
         if (view === "home") {
           setHomePackages(updatedPackages);
         } else {
           setCommercialPackages(updatedPackages);
         }
+  
+        // Reset states after saving
         setShowEditModal(false);
         setEditingPackage(null);
         setUpdatedPrices({
@@ -143,31 +183,40 @@ const Dashboard = () => {
           monthlyRepaymentFirstDown: "",
           monthlyRepayment: "",
         });
+      } else {
+        console.error("Error saving package:", res);
       }
     } catch (err) {
       console.error("Error saving package:", err);
     }
   };
+  
+  
 
   const handleDelete = async (id) => {
     const endpoint =
       view === "home" ? "/api/solarpackages/home" : "/api/solarpackages/commercial";
-
+  
     try {
-      await fetch(endpoint, {
+      const res = await fetch(endpoint, {
         method: "DELETE",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ id }),
       });
-      if (view === "home") {
-        setHomePackages(homePackages.filter((pkg) => pkg.id !== id));
-      } else {
-        setCommercialPackages(commercialPackages.filter((pkg) => pkg.id !== id));
+  
+      if (res.ok) {
+        // Update the local state by filtering out the deleted package
+        if (view === "home") {
+          setHomePackages((prevPackages) => prevPackages.filter((pkg) => pkg.id !== id));
+        } else {
+          setCommercialPackages((prevPackages) => prevPackages.filter((pkg) => pkg.id !== id));
+        }
       }
     } catch (err) {
       console.error("Error deleting package:", err);
     }
   };
+  
 
   const startEditing = (pkg) => {
     setEditingPackage(pkg);
@@ -179,10 +228,13 @@ const Dashboard = () => {
     });
     setShowEditModal(true);
   };
+  
 
   const currentPackages = view === "home" ? homePackages : commercialPackages;
 
   return (
+    <PasswordProtect>
+
     <div className="">
         <Nav/>
 <div className="p-4 min-h-[100vh]">
@@ -357,71 +409,73 @@ const Dashboard = () => {
 
        {/* Modal for Editing Package */}
        {showEditModal && (
-        <div className="fixed inset-0 bg-gray-500 bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white p-6 rounded-lg w-">
-          <h2 className="text-2xl font-bold mb-4">Editing: {editingPackage.component}</h2>
+  <div className="fixed inset-0 bg-gray-500 bg-opacity-50 flex items-center justify-center z-50">
+    <div className="bg-white p-6 rounded-lg">
+      <h2 className="text-2xl font-bold mb-4">Editing: {editingPackage.component}</h2>
 
-            <div className="mb-4">
-              <label className="block mb-1">Outright Payment</label>
-              <input
-                type="text"
-                name="OutrightPayment"
-                value={updatedPrices.OutrightPayment}
-                onChange={handleChange}
-                className="border p-2 w-full"
-              />
-            </div>
-            <div className="mb-4">
-              <label className="block mb-1">Monthly Repayment (Total)</label>
-              <input
-                type="text"
-                name="monthlyRepaymentTotal"
-                value={updatedPrices.monthlyRepaymentTotal}
-                onChange={handleChange}
-                className="border p-2 w-full"
-              />
-            </div>
-            <div className="mb-4">
-              <label className="block mb-1">Monthly Repayment (First Down)</label>
-              <input
-                type="text"
-                name="monthlyRepaymentFirstDown"
-                value={updatedPrices.monthlyRepaymentFirstDown}
-                onChange={handleChange}
-                className="border p-2 w-full"
-              />
-            </div>
-            <div className="mb-4">
-              <label className="block mb-1">Monthly Repayment</label>
-              <input
-                type="text"
-                name="monthlyRepayment"
-                value={updatedPrices.monthlyRepayment}
-                onChange={handleChange}
-                className="border p-2 w-full"
-              />
-            </div>
+      <div className="mb-4">
+        <label className="block mb-1">Outright Payment</label>
+        <input
+          type="text"
+          name="OutrightPayment"
+          value={updatedPrices.OutrightPayment}
+          onChange={handleChange}
+          className="border p-2 w-full"
+        />
+      </div>
+      <div className="mb-4">
+        <label className="block mb-1">Monthly Repayment (Total)</label>
+        <input
+          type="text"
+          name="monthlyRepaymentTotal"
+          value={updatedPrices.monthlyRepaymentTotal}
+          onChange={handleChange}
+          className="border p-2 w-full"
+        />
+      </div>
+      <div className="mb-4">
+        <label className="block mb-1">Monthly Repayment (First Down)</label>
+        <input
+          type="text"
+          name="monthlyRepaymentFirstDown"
+          value={updatedPrices.monthlyRepaymentFirstDown}
+          onChange={handleChange}
+          className="border p-2 w-full"
+        />
+      </div>
+      <div className="mb-4">
+        <label className="block mb-1">Monthly Repayment</label>
+        <input
+          type="text"
+          name="monthlyRepayment"
+          value={updatedPrices.monthlyRepayment}
+          onChange={handleChange}
+          className="border p-2 w-full"
+        />
+      </div>
 
-            <div className="flex justify-between">
-              <button
-                onClick={() => setShowEditModal(false)}
-                className="bg-gray-500 text-white px-4 py-2 rounded"
-              >
-                Cancel
-              </button>
-              <button
-                onClick={handleSavePrices}
-                className="bg-blue-500 text-white px-4 py-2 rounded"
-              >
-                Save
-              </button>
-             
-            </div>
-          </div>
-        </div>
-      )}
+      <div className="flex justify-between">
+        <button
+          onClick={() => setShowEditModal(false)}
+          className="bg-gray-500 text-white px-4 py-2 rounded"
+        >
+          Cancel
+        </button>
+        <button
+          onClick={handleSavePrices}
+          className="bg-blue-500 text-white px-4 py-2 rounded"
+        >
+          Save
+        </button>
+      </div>
+    </div>
+  </div>
+)}
+
     </div>
     </div>
+    </PasswordProtect>
+
   );
 };
 

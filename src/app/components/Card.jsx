@@ -2,58 +2,119 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import ProductModal from './ProductModal';
 
+
+
+const SkeletonCard = () => (
+  <div className="bg-white border border-[#787878] text-[#787878] flex flex-col gap-5 shadow-lg p-5 2xl:p-9 rounded-3xl lg:rounded-[16px] overflow-hidden animate-pulse h-full">
+    <div className="flex flex-col lg:h-[70px] lg:gap-2">
+      <div className="h-5 bg-gray-300 rounded w-3/4 mb-2"></div>
+      <div className="h-4 bg-gray-300 rounded w-1/2"></div>
+    </div>
+
+    <div className="w-full border my-1 border-[#292ECF]"></div>
+
+    <div className="flex flex-col lg:gap-5 gap-2 text-black lg:h-[100px] 2xl:h-[120px]">
+      <div className="h-4 bg-gray-300 rounded w-2/3 mb-2"></div>
+      <div className="h-3 bg-gray-300 rounded w-full"></div>
+      <div className="h-3 bg-gray-300 rounded w-full"></div>
+    </div>
+
+    <div className="flex flex-col lg:gap-3 2xl:gap-7 gap-3 lg:h-[150px] 2xl:h-[250px]">
+      <div className="h-4 bg-gray-300 rounded w-1/2 mb-2"></div>
+      <div className="space-y-2">
+        {[...Array(5)].map((_, i) => (
+          <div key={i} className="h-3 bg-gray-300 rounded w-3/4"></div>
+        ))}
+      </div>
+    </div>
+
+    <div className="w-full border border-[#292ECF]"></div>
+
+    <div className="flex justify-between lg:mt-5 gap-3">
+      <div className="w-1/2">
+        <div className="h-4 bg-gray-300 rounded w-3/4 mb-2"></div>
+        <div className="h-5 bg-gray-300 rounded w-full"></div>
+      </div>
+      <div className="w-1/2">
+        <div className="h-4 bg-gray-300 rounded w-3/4 mb-2"></div>
+        <div className="h-5 bg-gray-300 rounded w-full"></div>
+      </div>
+    </div>
+
+    <div className="flex w-full justify-center items-center">
+      <div className="h-10 bg-gray-300 rounded w-full"></div>
+    </div>
+  </div>
+);
+
 const SolarProductCard = ({ pathname }) => {
   const [products, setProducts] = useState([]);
   const [selectedProduct, setSelectedProduct] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+
 
   useEffect(() => {
-    // Get the current path
+    setIsLoading(true);
     const currentPath = window.location.pathname;
-
-    // Check if products are in localStorage
-    let storedProducts = localStorage.getItem(currentPath === '/solar/scs' ? 'commercialProducts' : 'homeProducts');
-
-    // If products are not found in localStorage, fetch from API
+  
+    const storedProducts = localStorage.getItem(
+      currentPath === '/solar/scs' ? 'commercialProducts' : 'homeProducts'
+    );
+  
     if (storedProducts) {
       setProducts(JSON.parse(storedProducts));
+      setIsLoading(false);
     } else {
       fetchProducts(currentPath);
     }
-  }, [pathname]);
-
+  }, []);
+  
   const fetchProducts = async (currentPath) => {
     try {
-      let apiUrl = '';
-      let packageType = '';
-  
-      if (currentPath === '/solar/scs') {
-        // Set commercial package type and fetch commercial packages
-        apiUrl = '/api/solarpackages/commercial';
-        packageType = 'commercial'; // Store package type
-      } else {
-        // Set home package type and fetch home packages
-        apiUrl = '/api/solarpackages/home';
-        packageType = 'home'; // Store package type
-      }
-  
-      // Save the package type to localStorage
-      localStorage.setItem('packageType', packageType);
+      const apiUrl = currentPath === '/solar/scs'
+        ? '/api/solarpackages/commercial'
+        : '/api/solarpackages/home';
   
       const res = await fetch(apiUrl);
+      if (!res.ok) throw new Error("Failed to fetch products");
+  
       const data = await res.json();
       setProducts(data);
   
-      // Save fetched data to localStorage for future use
-      localStorage.setItem(`${packageType}`, JSON.stringify(data));
+      localStorage.setItem(
+        currentPath === '/solar/scs' ? 'commercialProducts' : 'homeProducts',
+        JSON.stringify(data)
+      );
     } catch (err) {
       console.error("Error fetching products:", err);
+    } finally {
+      setIsLoading(false); // Always reset loading state
     }
   };
+
+  console.log("products are", products)
+  
+
+
   
 
   const handleCloseModal = () => {
     setSelectedProduct(null);
   };
+  const formatNumber = (number) => {
+    return new Intl.NumberFormat().format(number);
+  };
+  
+
+  if (isLoading) {
+    return (
+      <div className="grid grid-cols-1 sm:grid-cols-2 font-jak p-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 2xl:grid-cols-4 gap-5 lg:gap-5">
+        {[...Array(4)].map((_, index) => (
+          <SkeletonCard key={index} />
+        ))}
+      </div>
+    );
+  }
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 font-jak p-2  md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 2xl:grid-cols-4 gap-5 lg:gap-5">
@@ -69,14 +130,8 @@ const SolarProductCard = ({ pathname }) => {
 
           <div className="w-full border my-1 border-[#292ECF]"></div>
 
-          {/* System Components Section */}
-          <div className="flex flex-col lg:gap-5 gap-2  text-black lg:h-[100px]  2xl:h-[120px]">
-            <h1 className="  text-sm lg:text-[14px] 2xl:text-[16px]  font-bold text-black ">Appliances it can Power </h1>
-            <h3 className="text-sm lg:text-[12px] 2xl:text-[16px] leading-normal text-[#787878]">{product.components}</h3>
-          </div>
-
-          {/* Appliances Section */}
-          <div className="flex flex-col lg:gap-3 2xl:gap-7 gap-3 lg:h-[150px] 2xl:h-[250px]">
+            {/* Appliances Section */}
+            <div className="flex flex-col lg:gap-3 2xl:gap-7 gap-3 lg:h-[150px] 2xl:h-[250px]">
             <h1 className="text-sm lg:text-[14px] 2xl:text-[16px] font-bold text-black">System Components</h1>
             <div className='flex text-[#787878] flex-col gap-3 lg:gap-3 2xl:gap-7'>
               {product.appliances.appliance1 && <h3 className="text-sm lg:text-[12px] 2xl:text-[16px]">{product.appliances.appliance1}</h3>}
@@ -86,6 +141,14 @@ const SolarProductCard = ({ pathname }) => {
               {product.appliances.appliance5 && <h3 className="text-sm lg:text-[12px] 2xl:text-[16px]">{product.appliances.appliance5}</h3>}
             </div>
           </div>
+
+          {/* System Components Section */}
+          <div className="flex flex-col lg:gap-5 gap-2  text-black lg:h-[100px]  2xl:h-[120px]">
+            <h1 className="  text-sm lg:text-[14px] 2xl:text-[16px]  font-bold text-black ">Appliances it can Power </h1>
+            <h3 className="text-sm lg:text-[12px] 2xl:text-[16px] leading-normal text-[#787878]">{product.components}</h3>
+          </div>
+
+        
 
           <div className="w-full border border-[#292ECF]"></div>
 
