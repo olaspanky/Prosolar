@@ -129,10 +129,14 @@ const SolarProductCard = ({ pathname }) => {
           </div>
 
           <div className="w-full border my-1 border-[#292ECF]"></div>
+          <div className="flex flex-col lg:gap-5 gap-2  text-black lg:h-[100px]  2xl:h-[120px]">
+            <h1 className="  text-sm lg:text-[14px] 2xl:text-[16px]  font-bold text-black ">System Components</h1>
+            <h3 className="text-sm lg:text-[12px] 2xl:text-[16px] leading-normal text-[#787878]">{product.components}</h3>
+          </div>
 
             {/* Appliances Section */}
             <div className="flex flex-col lg:gap-3 2xl:gap-7 gap-3 lg:h-[150px] 2xl:h-[250px]">
-            <h1 className="text-sm lg:text-[14px] 2xl:text-[16px] font-bold text-black">System Components</h1>
+            <h1 className="text-sm lg:text-[14px] 2xl:text-[16px] font-bold text-black">Appliances it can Power </h1>
             <div className='flex text-[#787878] flex-col gap-3 lg:gap-3 2xl:gap-7'>
               {product.appliances.appliance1 && <h3 className="text-sm lg:text-[12px] 2xl:text-[16px]">{product.appliances.appliance1}</h3>}
               {product.appliances.appliance2 && <h3 className="text-sm lg:text-[12px] 2xl:text-[16px]">{product.appliances.appliance2}</h3>}
