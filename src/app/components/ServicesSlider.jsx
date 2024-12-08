@@ -31,7 +31,7 @@ export default function SliderComponent({ title, description, slides, settings }
 
         {/* Right Side Slider */}
         <div className="lg:w-1/2 mt-10  lg:mt-0 lg:ml-10 bg-white p-2 lg:p-12 rounded-lg shadow-md relative">
-          <Slider {...customSettings}>
+          <Slider className="slider-2" {...customSettings}>
             {slides.map((slide, index) => (
               <div key={index} className="flex flex-col gap-9 justify-between items-center">
                 <h3 className="text-3xl font-semibold ">{slide.title}</h3>
@@ -45,6 +45,26 @@ export default function SliderComponent({ title, description, slides, settings }
         </div>
       </div>
       {/* Custom Dot Lines Under Description */}
+      <style>{`
+  /* Slider 1: Dots with white color */
+  .slider-1 .slick-dots li button:before {
+    font-size: 12px;
+    color: white;
+  }
+  .slider-1 .slick-dots li.slick-active button:before {
+    color: #292ecf; /* active dot color for slider 1 */
+  }
+
+  /* Slider 2: Dots with black color */
+  .slider-2 .slick-dots li button:before {
+    font-size: 12px;
+    color: black;
+  }
+  .slider-2 .slick-dots li.slick-active button:before {
+    color: #292ecf; /* active dot color for slider 2 */
+  }
+`}</style>
+
      
     </div>
   );

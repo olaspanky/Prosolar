@@ -222,7 +222,7 @@ export default function ProjectSlider() {
         <h1 className="text-xl lg:text-6xl text-[#292ECF] text-center font-syne my-5">
           Some of our past projects
         </h1>
-        <Slider {...settings} className="relative">
+        <Slider className="slider-2 relative" {...settings} >
           {projects.map((project, index) => (
             <div
               key={index}

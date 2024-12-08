@@ -136,6 +136,7 @@ const SlidingHeader = () => {
     autoplay: true,
     autoplaySpeed: 3000,
     pauseOnHover: false,
+    dots: true,
     responsive: [
       {
         breakpoint: 1024,
@@ -215,10 +216,10 @@ const SlidingHeader = () => {
               alt={slide.title}
               className="w-full h-[50vh] xl:h-[100vh] object-cover "
             />
-            <div className="absolute flex justify-center items-center inset-0 text-white">
-              <div className="bg-cover bg-center h-auto flex m-3 lg:m-20 flex-col gap-5 lg:gap-9 justify-center items-center xl:p-20 2xl:p-36 ">
+            <div className="absolute w-full  flex justify-center items-center inset-0 text-white">
+              <div className="bg-cover bg-center h-auto flex m-3 w-full  flex-col gap-5 lg:gap-9 justify-center items-center xl:p-9 2xl:p-3  ">
                 <h1
-                  className={`text-center text-xl font-syne xl:max-w-[1000px] md:text-5xl xl:text-[64px] xl:leading-[79px]`}
+                  className={`text-center text-xl font-syne xl:max-w-[1200px] md:text-5xl xl:text-[64px] xl:leading-[79px]`}
                 >
                   {slide.title}
                 </h1>
@@ -245,7 +246,7 @@ const SlidingHeader = () => {
         }
         .slick-dots li button:before {
           font-size: 12px;
-          color: black;
+          color: white;
         }
         .slick-dots li.slick-active button:before {
           color: #292ecf;

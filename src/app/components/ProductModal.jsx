@@ -243,7 +243,7 @@ import 'jspdf-autotable';
 
 const ProductModal = ({ product, onClose }) => {
   const modalRef = useRef();
-  const [paymentPlan, setPaymentPlan] = useState('');
+  // const [paymentPlan, setPaymentPlan] = useState('');
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -271,9 +271,9 @@ const ProductModal = ({ product, onClose }) => {
     setFormData((prev) => ({ ...prev, [id]: value }));
   };
 
-  const handlePaymentPlanChange = (event) => {
-    setPaymentPlan(event.target.value);
-  };
+  // const handlePaymentPlanChange = (event) => {
+  //   setPaymentPlan(event.target.value);
+  // };
 
   const generatePDF = () => {
     const doc = new jsPDF();
@@ -471,7 +471,7 @@ const ProductModal = ({ product, onClose }) => {
           email: formData.email,
           phone: formData.phone,
           location: formData.location,
-          paymentPlan,
+          // paymentPlan,
           product,
           pdfBlob: pdfBase64,
         }),
@@ -559,7 +559,7 @@ const ProductModal = ({ product, onClose }) => {
               className="mt-1 block w-full border border-gray-300 rounded-md p-2 shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
             />
           </div>
-          <div>
+          {/* <div>
             <label className="block text-sm font-medium text-gray-700">Payment Plan</label>
             <div className="flex space-x-4">
               <label className="inline-flex items-center">
@@ -585,7 +585,7 @@ const ProductModal = ({ product, onClose }) => {
                 <span className="ml-2">Pay Small Small</span>
               </label>
             </div>
-          </div>
+          </div> */}
           <button
             type="submit"
             className={`w-full py-2 px-4 text-white rounded-md focus:outline-none ${

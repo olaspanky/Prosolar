@@ -124,8 +124,8 @@ const SolarProductCard = ({ pathname }) => {
           className="bg-white border border-[#787878] text-[#787878] flex flex-col gap-5 shadow-lg p-5 2xl:p-9 rounded-3xl lg:rounded-[16px] overflow-hidden cursor-pointer"
         >
           <div className="flex flex-col lg:h-[70px] lg:gap-2">
-            <h3 className="text-md lg:text-[16px] 2xl:text-[20px] font-bold text-black">{product.component}</h3>
-            <p className="text-[#22222] mt-2 font-jak text-sm lg:text-[12px] 2xl:text-[16px]">{product.suitableFor}</p>
+            <h3 className="text-md lg:text-[16px] 2xl:text-[20px] font-bold text-black">{product.component} Solar Package</h3>
+            <p className="text-[#22222] mt-2 font-jak text-sm lg:text-[12px] 2xl:text-[16px]">Suitable for {product.suitableFor}</p>
           </div>
 
           <div className="w-full border my-1 border-[#292ECF]"></div>
@@ -155,20 +155,27 @@ const SolarProductCard = ({ pathname }) => {
           <div className="flex justify-between lg:mt-5 gap-3">
             <div>
               <span className="text-sm lg:text-[14px]">Outright Price</span>
-              <h1 className="text-sm lg:text-[16px] text-center font-bold text-black">&#8358;{product.OutrightPayment.toLocaleString()}</h1>
+              <h1 className="text-sm lg:text-[16px] text-center font-bold text-black"><span className='font-serif'> &#x20A6;</span>{product.OutrightPayment.toLocaleString()}</h1>
             </div>
             <div>
               <span className="text-sm lg:text-[14px]">Pay small small</span>
-              <h1 className="text-sm lg:text-[16px] text-center font-bold text-black">&#8358;{product.monthlyRepayment.toLocaleString()}</h1>
+              <h1 className="text-sm lg:text-[16px] text-center font-bold text-black">  <span className='font-serif'> &#x20A6;</span>
+{product.monthlyRepayment.toLocaleString()}</h1>
             </div>
           </div>
 
           {/* Button to see more details */}
-          <div className="flex w-full bg-red-200 lg:mt-5 justify-center items-center">
+          <div className="flex w-full bg-red-200 lg:mt-5 justify-center  items-center">
             <Link className='w-full' href={`/solar/products/${product._id}`}>
-              <button className="bg-[#292ECF] lg:px-5 w-full  p-3 lg:py-3 text-white lg:text-[14px] rounded-[4px]">
-                See more Details
-              </button>
+            <button
+  onClick={() => {
+    localStorage.setItem("selectedProduct", JSON.stringify(product));
+  }}
+  className="bg-[#292ECF] lg:px-5 w-full p-3 lg:py-3 text-white lg:text-[14px] rounded-[4px]"
+>
+  See more Details
+</button>
+
             </Link>
           </div>
         </div>
