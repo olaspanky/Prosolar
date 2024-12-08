@@ -5,7 +5,7 @@ import Head from "../app/components/Landing/Head"
 import { Hero } from "./components/Landing/Hero";
 export default function Home() {
   return (
-    <main className="bg-white ">
+    <main className="w-[100vw] ">
 <Nav/>
      <Head/>
      <Hero/>

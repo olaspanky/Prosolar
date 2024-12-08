@@ -109,11 +109,14 @@ export const Hero = () => {
 
 
 <div className="w-full bg-[#1B1B1B] rounded-xl h-auto lg:p-5">
-<div className="container max-w-[1344px] mx-auto p-1 lg:p-10">
+<div className=" max-w-[1344px] mx-auto p-1 lg:p-10">
 
 <h2 className="testimonial-title text-center text-md font-syne lg:text-md  lg:text-6xl text-white my-5">Voice of Confidence,<br/>
 What Our Clients Say</h2>
-  <Testimonials/>
+<div className="max-w-[100vw] p-5">
+<Testimonials/>
+
+</div>
   </div>
 </div>
 

@@ -45,7 +45,7 @@ export default function RootLayout({ children }) {
         </Suspense>
           <GoogleAnalytics />
           
-          <div className="max-w-[100vw]">
+          <div className="w-[100vw]">
             {children}
           </div>
           

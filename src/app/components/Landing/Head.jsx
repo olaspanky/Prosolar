@@ -207,11 +207,11 @@ const SlidingHeader = () => {
   }
 
   return (
-    <div className="relative max-w-[100vw] h-[50vh] xl:min-h-[100vh] overflow-hidden ">
+    <div className="relative w-full max-w-[100vw] h-[50vh] xl:min-h-[100vh] overflow-hidden ">
       <Slider {...settings} className="h-full ">
         {slides.map((slide, index) => (
           <div key={index} className="relative w-full h-full ">
-            <Image
+            {/* <Image
               src={slide.image}
               alt={slide.title}
               className="w-full h-[50vh] xl:h-[100vh] object-cover "
@@ -234,7 +234,7 @@ const SlidingHeader = () => {
                   </button>
                 </Link>
               </div>
-            </div>
+            </div> */}
           </div>
         ))}
       </Slider>

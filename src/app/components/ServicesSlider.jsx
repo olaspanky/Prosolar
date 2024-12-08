@@ -45,8 +45,13 @@ export default function SliderComponent({ title, description, slides, settings }
         </div>
       </div>
       {/* Custom Dot Lines Under Description */}
-      <style>{`
+    
+<style>{`
   /* Slider 1: Dots with white color */
+
+  .slick-dots {
+    bottom: 1px;
+  }
   .slider-1 .slick-dots li button:before {
     font-size: 12px;
     color: white;
@@ -64,7 +69,6 @@ export default function SliderComponent({ title, description, slides, settings }
     color: #292ecf; /* active dot color for slider 2 */
   }
 `}</style>
-
      
     </div>
   );
