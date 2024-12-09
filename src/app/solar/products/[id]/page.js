@@ -138,12 +138,12 @@ const ProductDetails = () => {
         <div className=''>
           <h1 className="text-xl lg:text-[48px]  text-black font-extrabold mb-4">{product.component}</h1>
 
-          <div className='grid xl:grid-cols-12 gap-5 pt-3 xl:pt-10 p-5'>
+          <div className='flex flex-col lg:grid xl:grid-cols-12 gap-5 pt-3 xl:pt-10 p-2 lg:p-5'>
 
-          <div className=" col-span-3">
+          <div className=" lg:col-span-3">
             <Image src={prsol}/>
           </div>
-            <div className=" col-span-6">
+            <div className="w-full lg:col-span-6">
               <div className="">
 
                 {/* Appliances */}
@@ -161,14 +161,14 @@ const ProductDetails = () => {
                 </div>
 
                 {/* Payment Options */}
-                <div className="bg-white shadow-lg rounded-lg p-6 border border-gray-100">
+                <div className="bg-white shadow-lg rounded-lg p-2 lg:p-6 border border-gray-100">
       <h2 className="text-xl lg:text-2xl font-bold text-gray-900 mb-6 pb-3 border-b border-gray-200">
         Payment Plans
       </h2>
 
       <div className="flex flex-col md:flex-row space-y-6 md:space-y-0 md:space-x-8">
         {/* Outright Payment */}
-        <div className="md:w-1/2 bg-gray-50 p-5 rounded-lg shadow-sm border border-gray-100 flex flex-col justify-between">
+        <div className="md:w-1/2 bg-gray-50 p-1 lg:p-5 rounded-lg shadow-sm border border-gray-100 flex flex-col justify-between">
           <div>
             <h3 className="text-lg lg:text-xl font-semibold text-gray-800 mb-4">
               Outright Payment
@@ -189,7 +189,7 @@ const ProductDetails = () => {
         </div>
 
         {/* Pay Small Small (Installment) */}
-        <div className="md:w-1/2 bg-blue-50 p-5 rounded-lg shadow-sm border border-blue-100 flex flex-col">
+        <div className="md:w-1/2 bg-blue-50 p-1 lg:p-5 rounded-lg shadow-sm border border-blue-100 flex flex-col">
           <h3 className="text-lg lg:text-xl font-semibold text-gray-800 mb-4">
             Pay Installmentally
           </h3>
@@ -232,11 +232,11 @@ const ProductDetails = () => {
               </div>
             </div>
 
-            <div className='col-span-3 text-[14px] lg:text-[20px]  text-[#787878]'>
-              <div className='flex flex-col gap-2 lg:gap-5'>
-                <div className='flex gap-3'>
+            <div className='w-full  lg:col-span-3 text-[14px]  lg:text-[20px]  text-[#787878]'>
+              <div className='flex flex-col gap-2 w-full  lg:gap-5'>
+                <div className='flex gap-3 '>
                   <Image src={wallet} className='w-auto h-5 lg:h-9' />
-                  <p>{product.annualFuelSavings} Cost savings per year</p>
+                  <p><span className='font-serif'> &#x20A6;</span>{product.annualFuelSavings} Cost savings per year</p>
                 </div>
                 <div className='flex gap-3'>
                   <Image src={transact} className='w-auto h-5 lg:h-9' />
