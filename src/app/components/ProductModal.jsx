@@ -484,7 +484,7 @@ const ProductModal = ({ product, onClose }) => {
         setTimeout(() => {
           onClose();
           setIsSuccess(null);
-        }, 3000);
+        }, 10000);
       } else {
         setIsSuccess(false);
       }
