@@ -41,7 +41,7 @@ export const Hero = () => {
     
     <div className="max-w-[1920px]  text-black">
      
-      <div className=" p-2 lg:p-9 rounded-xl">
+      <div className="  lg:p-9 rounded-xl">
         <h1 className="text-3xl font-syne2 lg:text-6xl text-[black] text-center  my-5 lg:my-20">With Lithium Batteries</h1>
        
        
