@@ -70,7 +70,7 @@ const Hero = ({ scrollToHero }) => {
 
   return (
   <div className='w-full h- auto px-5 '>
-    <div className='bg-csf bg-cover bg-center h-[30vh] lg:h-[60vh] flex flex-col gap-5 lg:gap-9 justify-center items-center p-5 xl:p-20 2xl:p-36 rounded-xl'>
+    <div className='bg-csf bg-cover bg-center h-[30vh] lg:h-[60vh] flex flex-col gap-5 lg:gap-9 justify-center items-center p-2 lg:p-5 xl:p-20 2xl:p-36 rounded-xl'>
     <h1 className={` font-syne xl:max-w-[1000px] text-center text-white text-3xl xl:text-[64px] xl:leading-[79px]`}>Commercial Solar Systems For Your Business</h1>               
 
 

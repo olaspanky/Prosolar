@@ -117,7 +117,7 @@ const SolarProductCard = ({ pathname }) => {
   }
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 font-jak p-2  md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 2xl:grid-cols-4 gap-5 lg:gap-5">
+    <div className="grid grid-cols-1 sm:grid-cols-2 font-jak lg:p-2  md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 2xl:grid-cols-4 gap-5 lg:gap-5">
       {products.map((product) => (
         <div
           key={product._id} // Use _id for key to ensure consistency

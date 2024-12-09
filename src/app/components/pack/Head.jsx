@@ -52,7 +52,7 @@ const Hero = () => {
 
   // Content to display when loaded
   const HeroContent = () => (
-    <div className="bg-lbg bg-cover bg-center h-[30vh] lg:h-[60vh] flex flex-col gap-5 lg:gap-9 justify-center items-center p-5 xl:p-20 2xl:p-36 rounded-xl">
+    <div className="bg-lbg bg-cover bg-center h-[30vh] lg:h-[60vh] flex flex-col gap-2 lg:gap-9 justify-center w-full items-center p-2 lg:p-5 xl:p-20 2xl:p-36 rounded-xl">
       <h1
         className={`font-syne xl:max-w-[1000px] text-center text-white text-3xl xl:text-[64px] xl:leading-[79px]`}
       >
@@ -61,7 +61,7 @@ const Hero = () => {
     </div>
   );
 
-  return <div className="w-full h-auto px-5">{isLoading ? <SkeletonLoader /> : <HeroContent />}</div>;
+  return <div className="w-full h-auto p-1 lg:px-5">{isLoading ? <SkeletonLoader /> : <HeroContent />}</div>;
 };
 
 export default Hero;

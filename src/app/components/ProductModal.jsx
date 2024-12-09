@@ -494,10 +494,10 @@ const ProductModal = ({ product, onClose }) => {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-      <div ref={modalRef} className="bg-white rounded-lg shadow-lg max-w-lg w-full p-8 relative">
+      <div ref={modalRef} className="bg-white rounded-lg shadow-lg max-w-lg w-full lg:p-8 p-2 m-2 relative">
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 text-gray-500 hover:text-gray-700 focus:outline-none"
+          className="absolute top-1 right-1  lg:top-4 lg:right-4 text-red-500 hover:text-gray-700 focus:outline-none"
           aria-label="Close"
         >
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" className="w-6 h-6">
@@ -505,7 +505,7 @@ const ProductModal = ({ product, onClose }) => {
           </svg>
         </button>
 
-        <h2 className="text-3xl font-semibold text-center mb-6">Let's Get You Started</h2>
+        <h2 className="lg:text-3xl font-semibold text-center my-6">Let's Get You Started</h2>
         <form className="space-y-4" onSubmit={handleSubmit}>
           <div>
             <label htmlFor="name" className="block text-sm font-medium text-gray-700">
