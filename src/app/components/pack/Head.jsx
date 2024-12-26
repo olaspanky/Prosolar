@@ -43,12 +43,7 @@ const Hero = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  // Skeleton Loader
-  const SkeletonLoader = () => (
-    <div className="w-full h-[30vh] lg:h-[60vh] flex flex-col justify-center items-center bg-gray-300 animate-pulse rounded-xl">
-      <div className="w-3/4 h-12 bg-gray-400 rounded mb-4"></div>
-    </div>
-  );
+
 
   // Content to display when loaded
   const HeroContent = () => (
@@ -61,7 +56,7 @@ const Hero = () => {
     </div>
   );
 
-  return <div className="w-full h-auto p-1 lg:px-5">{isLoading ? <SkeletonLoader /> : <HeroContent />}</div>;
+  return <div className="w-full h-auto p-1 lg:px-5"> <HeroContent /></div>;
 };
 
 export default Hero;

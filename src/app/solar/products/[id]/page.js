@@ -14,39 +14,7 @@ import verified from "../../../../../public/assets/i4.svg";
 
 const SkeletonLoader = () => (
   <div className="animate-pulse">
-    <div className="bg-gray-200 h-6 w-48 mb-4 rounded"></div>
-    <div className="grid lg:grid-cols-12 gap-5">
-      <div className="col-span-9">
-        <div className="bg-gray-200 h-6 w-40 mb-2 rounded"></div>
-        <div className="bg-gray-200 h-4 w-full mb-4 rounded"></div>
-        <div className="bg-gray-200 h-6 w-40 mb-2 rounded"></div>
-        <div className="bg-gray-200 h-4 w-full mb-4 rounded"></div>
-        <div className="bg-gray-200 h-6 w-40 mb-2 rounded"></div>
-        <div className="grid grid-cols-2 gap-3">
-          <div className="bg-gray-200 h-4 w-full rounded"></div>
-          <div className="bg-gray-200 h-4 w-full rounded"></div>
-        </div>
-        <div className="mt-6 bg-gray-300 h-10 w-full rounded"></div>
-      </div>
-      <div className="col-span-3 space-y-4">
-        <div className="flex items-center gap-3">
-          <div className="bg-gray-200 h-8 w-8 rounded-full"></div>
-          <div className="bg-gray-200 h-4 w-3/4 rounded"></div>
-        </div>
-        <div className="flex items-center gap-3">
-          <div className="bg-gray-200 h-8 w-8 rounded-full"></div>
-          <div className="bg-gray-200 h-4 w-3/4 rounded"></div>
-        </div>
-        <div className="flex items-center gap-3">
-          <div className="bg-gray-200 h-8 w-8 rounded-full"></div>
-          <div className="bg-gray-200 h-4 w-3/4 rounded"></div>
-        </div>
-        <div className="flex items-center gap-3">
-          <div className="bg-gray-200 h-8 w-8 rounded-full"></div>
-          <div className="bg-gray-200 h-4 w-3/4 rounded"></div>
-        </div>
-      </div>
-    </div>
+   
   </div>
 );
 
