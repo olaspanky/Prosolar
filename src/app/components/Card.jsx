@@ -70,12 +70,14 @@ const SolarProductCard = ({ pathname }) => {
   }, []);
   
   const fetchProducts = async (currentPath) => {
+    setIsLoading(true); // Set loading state before fetching
     try {
       const apiUrl = currentPath === '/solar/scs'
         ? '/api/solarpackages/commercial'
         : '/api/solarpackages/home';
   
       const res = await fetch(apiUrl);
+  
       if (!res.ok) throw new Error("Failed to fetch products");
   
       const data = await res.json();
@@ -91,6 +93,7 @@ const SolarProductCard = ({ pathname }) => {
       setIsLoading(false); // Always reset loading state
     }
   };
+  
 
   console.log("products are", products)
   
