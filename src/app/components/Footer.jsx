@@ -40,10 +40,7 @@ export const Footer = () => {
                     <FaPhoneAlt />
 <p>08029068303</p>
                     </div>
-                    <div className='flex gap-2  items-center '>
-                    <IoMdMail />
-<p>info@prosolarng.com</p>
-                    </div>
+                 
                    </div>
                 </div>
             </div>

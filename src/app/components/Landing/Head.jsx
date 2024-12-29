@@ -95,23 +95,22 @@ const SlidingHeader = () => {
               className="w-full h-[50vh] xl:h-[100vh] object-cover "
             />
             <div className="absolute w-full  flex justify-center items-center inset-0 text-white">
-              <div className="bg-cover bg-center h-auto flex m-3 w-full  flex-col gap-5 lg:gap-9 justify-center items-center xl:p-9 2xl:p-3  ">
-                <h1
-                  className={`text-center text-xl font-syne xl:max-w-[1200px] md:text-5xl xl:text-[64px] xl:leading-[79px]`}
-                >
-                  {slide.title}
-                </h1>
-                <p
-                  className={`max-w-[871px] text-sm text-center md:text-xl font-inter xl:text-[24px] leading-normal tracking-wider`}
-                >
-                  {slide.description}
-                </p>
-                <Link href={slide.link} className="mt-4 sm:mt-6 md:mt-8">
-                  <button className="bg-gradient-to-r from-[#292ECF] to-[#151769] text-white text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl px-5 py-2 sm:px-8 sm:py-4 md:px-10 md:py-5 rounded-lg sm:rounded-xl lg:rounded-2xl transition-transform hover:scale-105 active:scale-95">
-                    {slide.button}
-                  </button>
-                </Link>
-              </div>
+            <div
+  className="bg-cover bg-center h-auto flex m-3 w-full flex-col gap-5 lg:gap-9 justify-center items-center xl:p-9 2xl:p-3 animate-fade-in-up"
+>
+  <h1 className="text-center text-xl font-syne xl:max-w-[1200px] md:text-5xl xl:text-[64px] xl:leading-[79px]">
+    {slide.title}
+  </h1>
+  <p className="max-w-[871px] text-sm text-center md:text-xl font-inter xl:text-[24px] leading-normal tracking-wider">
+    {slide.description}
+  </p>
+  <Link href={slide.link} className="mt-4 sm:mt-6 md:mt-8">
+    <button className="bg-gradient-to-r from-[#292ECF] to-[#151769] text-white text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl px-5 py-2 sm:px-8 sm:py-4 md:px-10 md:py-5 rounded-lg sm:rounded-xl lg:rounded-2xl transition-transform hover:scale-105 active:scale-95">
+      {slide.button}
+    </button>
+  </Link>
+</div>
+
             </div>
           </div>
         ))}

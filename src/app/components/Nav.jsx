@@ -13,7 +13,7 @@ const menuItems = [
       { title: "Commercial Solar Systems", route: "/solar/scs" }
     ],
   },
-  { title: "Services", route: "/blog" },
+  { title: "Services", route: "/solar/services" },
   {
     title: "Projects",
     children: [

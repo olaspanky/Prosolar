@@ -52,7 +52,7 @@ export const Hero = () => {
     
 <div className="lg:grid flex flex-col-reverse lg:grid-cols-12 ">
     <div className="col-span-4 flex flex-col gap-5 lg:p-9 p-3 shadow-md border  rounded-3xl">
-<h1 className="text-3xl font-bold">Contact Us</h1>
+<h1 className="text-3xl font-bold">We are social</h1>
 <div className="flex flex-col gap-5">
     <motion.div
   initial={{y: 50, opacity: 0}}
