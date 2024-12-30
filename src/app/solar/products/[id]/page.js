@@ -78,7 +78,7 @@ const ProductDetails = () => {
 
   const breadcrumbText = isHomePackage
     ? "Solar Packages for Home"
-    : "Solar Packages for Offices";
+    : "Solar Packages for Business";
   const breadcrumbLink = isHomePackage ? "/solar/shs" : "/solar/scs";
 
   return (
@@ -104,7 +104,10 @@ const ProductDetails = () => {
         <div className=' flex gap-12'>
 
         <div className=''>
-          <h1 className="text-xl lg:text-[48px]  text-black font-extrabold mb-4">{product.component}</h1>
+          <h1 className="text-xl lg:text-[48px] text-center text-black font-extrabold mb-4">{product.component} Solar Package</h1>
+
+          <div className="w-full border my-5 border-[#292ECF]"></div>
+
 
           <div className='flex flex-col lg:grid xl:grid-cols-12 gap-5 pt-3 xl:pt-10 p-2 lg:p-5'>
 
@@ -141,7 +144,7 @@ const ProductDetails = () => {
             <h3 className="text-lg lg:text-xl font-semibold text-gray-800 mb-4">
               Outright Payment
             </h3>
-            <div className="text-2xl font-bold text-green-700 mb-4">
+            <div className="text-2xl font-bold text-green-700 mb-4 font-serif">
               &#8358; {product.OutrightPayment.toLocaleString()}
             </div>
           </div>
@@ -157,26 +160,26 @@ const ProductDetails = () => {
         </div>
 
         {/* Pay Small Small (Installment) */}
-        <div className="md:w-1/2 bg-blue-50 p-1 lg:p-5 rounded-lg shadow-sm border border-blue-100 flex flex-col">
-          <h3 className="text-lg lg:text-xl font-semibold text-gray-800 mb-4">
+        <div className="md:w-1/2 bg-blue-50 p-1 lg:p-6 rounded-lg shadow-sm border border-blue-100 flex flex-col">
+          <h3 className="text-lg lg:text-xl  font-semibold text-gray-800 mb-4">
             Pay Installmentally
           </h3>
           <ul className="space-y-3 mb-6 flex-grow">
-            <li className="flex justify-between items-center text-gray-700">
+          <li className="flex lg:flex-col 2xl:flex-row justify-between 2xl:items-center text-gray-700">
               <span>First Down Payment:</span>
-              <span className="font-bold text-blue-800">
-                &#x20A6; {product.monthlyRepaymentFirstDown.toLocaleString()}
+              <span className="font-bold text-blue-800 font-serif">
+              &#x20A6;{product.monthlyRepaymentFirstDown.toLocaleString()}
               </span>
             </li>
-            <li className="flex justify-between items-center text-gray-700">
+            <li className="flex lg:flex-col 2xl:flex-row justify-between 2xl:items-center text-gray-700">
               <span>12 Monthly Repayments:</span>
-              <span className="font-bold text-blue-800">
+              <span className="font-bold text-blue-800 font-serif">
                 &#x20A6; {product.monthlyRepayment.toLocaleString()}
               </span>
             </li>
-            <li className="flex justify-between items-center text-gray-700 font-semibold">
+            <li className="flex lg:flex-col 2xl:flex-row justify-between 2xl:items-center text-gray-700">
               <span>Total Cost:</span>
-              <span className="font-bold text-blue-900">
+              <span className="font-bold text-blue-900 font-serif">
                 &#x20A6; {product.monthlyRepaymentTotal.toLocaleString()}
               </span>
             </li>

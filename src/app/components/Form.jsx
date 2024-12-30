@@ -7,7 +7,7 @@ import { FaTwitter } from "react-icons/fa6";
 import { FaFacebookF } from "react-icons/fa";
 import { FaLinkedin } from 'react-icons/fa';
 import { FaEnvelope } from 'react-icons/fa'; // Import the envelope icon
-import { motion, Variants } from 'framer-motion';
+import { m, motion, Variants } from 'framer-motion';
 
 
 
@@ -35,6 +35,7 @@ export const Hero = () => {
           phone: '',
           email: '',
           address: '',
+          more: '',
           powerNeeds: [],
           paymentPlan: '',
           contactMethod: '',
@@ -78,11 +79,6 @@ export const Hero = () => {
   transition={{duration: 0.5, delay:1.5, ease: "easeInOut"}}
   className="text-sm lg:text-lg xl:text-md lg:text-xl  border-2 rounded-xl w-full shadow-md p-2 flex gap-2 justify-center items-center"><FaTwitter/>Twitter</motion.div>
    
-    < motion.div
-  initial={{y: 200, opacity: 0}}
-  whileInView={{y: 0, opacity:1}}
-  transition={{duration: 0.5, delay:1.5, ease: "easeInOut"}}
-  className="text-sm lg:text-lg xl:text-md lg:text-xl  border-2 rounded-xl w-full shadow-md p-2 flex gap-2 justify-center items-center"><FaEnvelope/>Gmail</motion.div>
    
   
 </div>
@@ -238,6 +234,19 @@ export const Hero = () => {
           {formik.touched.contactMethod && formik.errors.contactMethod && (
             <div className="text-red-600 text-sm">{formik.errors.contactMethod}</div>
           )}
+        </div>
+
+        <div className="mb-4">
+          <label className="block text-gray-700">Say more</label>
+          <textarea
+            type="text"
+            name="more"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.more}
+            className="w-full p-2 border border-black rounded-xl"
+            placeholder='any additional information?'
+            />
         </div>
         
         <button type="submit" className="w-full bg-[#292ECF] text-white p-2 rounded-xl hover:bg-blue-600">

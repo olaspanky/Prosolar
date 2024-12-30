@@ -102,7 +102,7 @@ const ProductDetails = () => {
             <div className="rounded-lg shadow-sm">
               <h3 className="text-lg font-semibold text-gray-800">Pay Small Small</h3>
               <p className="text-gray-700">Flexible monthly payment option:</p>
-              <ul className="text-gray-700 mt-2 flex flex-col gap-3">
+              <ul className="text-gray-700 mt-2 flex flex-col 2xl:gap-3">
                 <li>First Down Payment: <span className="text-xl lg:text-2xl font-bold text-gray-900 mt-2">&#8358;{product.monthlyRepaymentFirstDown.toLocaleString()}</span></li>
                 <li>12 Monthly Repayments: <span className="text-xl lg:text-2xl font-bold text-gray-900 mt-2">&#8358;{product.monthlyRepayment.toLocaleString()}</span></li>
                 <li>Total Cost: <span className="text-xl lg:text-2xl font-bold text-gray-900 mt-2">&#8358;{product.monthlyRepaymentTotal.toLocaleString()}</span></li>

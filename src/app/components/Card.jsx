@@ -134,7 +134,11 @@ const SolarProductCard = ({ pathname }) => {
           <div className="w-full border my-1 border-[#292ECF]"></div>
           <div className="flex flex-col lg:gap-5 gap-2  text-black lg:h-[100px]  2xl:h-[120px]">
             <h1 className="  text-sm lg:text-[14px] 2xl:text-[16px]  font-bold text-black ">System Components</h1>
-            <h3 className="text-sm lg:text-[12px] 2xl:text-[16px] leading-normal text-[#787878]">{product.components}</h3>
+            <h3 className="text-sm lg:text-[12px] 2xl:text-[16px] leading-normal text-[#787878]">
+  {product.components.split(', ').map((component, index) => (
+    <div key={index} className="mb-2 text-sm lg:text-[12px] 2xl:text-[16px]">{component}</div>
+  ))}
+</h3>
           </div>
 
             {/* Appliances Section */}
