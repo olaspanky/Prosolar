@@ -12,7 +12,7 @@ export async function POST(req) {
       });
   
       if (response.ok) {
-        return new Response(JSON.stringify({ message: 'Form submitted successfully omo ogbon!' }), { status: 200 });
+        return new Response(JSON.stringify({ message: 'Form submitted successfully' }), { status: 200 });
       } else {
         return new Response(JSON.stringify({ error: 'Failed to submit the form' }), { status: response.status });
       }
