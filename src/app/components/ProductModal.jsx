@@ -242,13 +242,15 @@ import 'jspdf-autotable';
 import ZohoForm from './Zohoform';
 
 const ProductModal = ({ product, onClose }) => {
+
+
   const modalRef = useRef();
   // const [paymentPlan, setPaymentPlan] = useState('');
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    location: '',
+    Last_Name: '',
+    Email: '',
+    Mobile: '',
+    City: '',
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(null);
@@ -467,10 +469,10 @@ const ProductModal = ({ product, onClose }) => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          phone: formData.phone,
-          location: formData.location,
+          name: formData.Last_Name,
+          email: formData.Email,
+          phone: formData.Mobile,
+          location: formData.City,
           // paymentPlan,
           product,
           pdfBlob: pdfBase64,
@@ -489,8 +491,7 @@ const ProductModal = ({ product, onClose }) => {
         setIsSuccess(false);
       }
     };
-    reader.readAsDataURL(pdfBlob);
-  };
+    reader.readAsDataURL(pdfBlob);}
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
@@ -506,171 +507,8 @@ const ProductModal = ({ product, onClose }) => {
         </button>
 
         <h2 className="lg:text-3xl font-semibold text-center my-6">Let's Get You Started</h2>
-        <form className="space-y-4" onSubmit={handleSubmit}>
-          <div>
-            <label htmlFor="name" className="block text-sm font-medium text-gray-700">
-              Full Name
-            </label>
-            <input
-              id="name"
-              type="text"
-              placeholder="Enter your full name"
-              value={formData.name}
-              onChange={handleInputChange}
-              className="mt-1 block w-full border border-gray-300 rounded-md p-2 shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-            />
-          </div>
-          <div>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-              Email
-            </label>
-            <input
-              id="email"
-              type="email"
-              placeholder="Enter your email"
-              value={formData.email}
-              onChange={handleInputChange}
-              className="mt-1 block w-full border border-gray-300 rounded-md p-2 shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-            />
-          </div>
-          <div>
-            <label htmlFor="phone" className="block text-sm font-medium text-gray-700">
-              Phone Number
-            </label>
-            <input
-              id="phone"
-              type="tel"
-              placeholder="Enter your phone number"
-              value={formData.phone}
-              onChange={handleInputChange}
-              className="mt-1 block w-full border border-gray-300 rounded-md p-2 shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-            />
-          </div>
-          <div>
-            <label htmlFor="location" className="block text-sm font-medium text-gray-700">
-              Location/City
-            </label>
-            <input
-              id="location"
-              type="text"
-              placeholder="Enter your location"
-              value={formData.location}
-              onChange={handleInputChange}
-              className="mt-1 block w-full border border-gray-300 rounded-md p-2 shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-            />
-          </div>
-          {/* <div>
-            <label className="block text-sm font-medium text-gray-700">Payment Plan</label>
-            <div className="flex space-x-4">
-              <label className="inline-flex items-center">
-                <input
-                  type="radio"
-                  name="paymentPlan"
-                  value="Outright Payment"
-                  checked={paymentPlan === 'Outright Payment'}
-                  onChange={handlePaymentPlanChange}
-                  className="form-radio"
-                />
-                <span className="ml-2">Outright Payment</span>
-              </label>
-              <label className="inline-flex items-center">
-                <input
-                  type="radio"
-                  name="paymentPlan"
-                  value="Pay Small Small"
-                  checked={paymentPlan === 'Pay Small Small'}
-                  onChange={handlePaymentPlanChange}
-                  className="form-radio"
-                />
-                <span className="ml-2">Pay Small Small</span>
-              </label>
-            </div>
-          </div> */}
-          <button
-            type="submit"
-            className={`w-full py-2 px-4 text-white rounded-md focus:outline-none ${
-              isSubmitting ? 'bg-gray-500' : 'bg-indigo-600 hover:bg-indigo-700'
-            }`}
-            disabled={isSubmitting}
-          >
-            {isSubmitting ? 'Submitting...' : 'Submit'}
-          </button>
-        </form>
-
-        <ZohoForm/>
-
-        {isSuccess === true && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-            <div className="bg-gradient-to-r bg-[#292ECF] text-white text-center p-8 rounded-xl shadow-2xl max-w-md w-full">
-              <div className="mb-4">
-                <svg 
-                  xmlns="http://www.w3.org/2000/svg" 
-                  className="h-16 w-16 mx-auto text-white" 
-                  fill="none" 
-                  viewBox="0 0 24 24" 
-                  stroke="currentColor"
-                >
-                  <path 
-                    strokeLinecap="round" 
-                    strokeLinejoin="round" 
-                    strokeWidth="2" 
-                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" 
-                  />
-                </svg>
-              </div>
-              <h3 className="text-2xl font-bold mb-4">Quote Submitted Successfully!</h3>
-              <p className="text-sm mb-6">
-                Your solar system quote has been processed. 
-                A detailed PDF has been sent to your email.
-              </p>
-              <div className="flex justify-center">
-                <button 
-                  onClick={onClose} 
-                  className="bg-white text-green-600 px-6 py-2 rounded-full font-semibold hover:bg-green-50 transition duration-300"
-                >
-                  Close
-                </button>
-              </div>
-            </div>
-          </div>
-        )}
-
-        {isSuccess === false && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-            <div className="bg-gradient-to-r from-red-400 to-red-600 text-white text-center p-8 rounded-xl shadow-2xl max-w-md w-full">
-              <div className="mb-4">
-                <svg 
-                  xmlns="http://www.w3.org/2000/svg" 
-                  className="h-16 w-16 mx-auto text-white" 
-                  fill="none" 
-                  viewBox="0 0 24 24" 
-                  stroke="currentColor"
-                >
-                  <path 
-                    strokeLinecap="round" 
-                    strokeLinejoin="round" 
-                    strokeWidth="2" 
-                    d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" 
-                  />
-                </svg>
-              </div>
-              <h3 className="text-2xl font-bold mb-4">Submission Failed</h3>
-              <p className="text-sm mb-6">
-                We couldn't process your quote at the moment. 
-                Please try again later or contact our support.
-              </p>
-              <div className="flex justify-center">
-                <button 
-                  onClick={onClose} 
-                  className="bg-white text-red-600 px-6 py-2 rounded-full font-semibold hover:bg-red-50 transition duration-300"
-                >
-                  Close
-                </button>
-              </div>
-            </div>
-          </div>
-        )}
-      </div>
+        <ZohoForm product={product} onClose={onClose} />
+    </div>
     </div>
   );
 };
