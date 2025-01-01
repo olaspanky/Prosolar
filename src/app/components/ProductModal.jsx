@@ -193,46 +193,46 @@ const CombinedForm = ({ product, onClose }) => {
 
     return doc.output('blob');
   };
-
   const handleSubmit = async (event) => {
     event.preventDefault();
     setIsSubmitting(true);
-
+  
+    // Submit to Zoho CRM using a traditional HTML form
+    const zohoForm = document.createElement('form');
+    zohoForm.method = 'POST';
+    zohoForm.action = 'https://crm.zoho.com/crm/WebToLeadForm';
+    zohoForm.style.display = 'none';
+  
+    const fields = {
+      'xnQsjsdp': '806bd8d403c98a55a505965f9d6df98f7543767875865b8fc754479fd8f78585',
+      'zc_gad': '',
+      'xmIwtLD': 'fd4fb529a3bb7e0c44cebd74185e423ee9cafbf787a8f2d56afd298b8d0fcde127a731ce80f3f61dc36d2e61119d3a36',
+      'actionType': 'TGVhZHM=',
+      'returnURL': 'https://prosolarng.com',
+      'Last Name': formData.Last_Name,
+      'Email': formData.Email,
+      'Mobile': formData.Mobile,
+      'City': formData.City,
+    };
+  
+    for (const [key, value] of Object.entries(fields)) {
+      const input = document.createElement('input');
+      input.type = 'hidden';
+      input.name = key;
+      input.value = value;
+      zohoForm.appendChild(input);
+    }
+  
+    document.body.appendChild(zohoForm);
+    zohoForm.submit();
+  
+    // Generate PDF and send email
     const pdfBlob = generatePDF();
-
+  
     const reader = new FileReader();
     reader.onloadend = async () => {
       const pdfBase64 = reader.result.split(',')[1];
-
-      // Submit to Zoho CRM using a traditional HTML form
-      const zohoForm = document.createElement('form');
-      zohoForm.method = 'POST';
-      zohoForm.action = 'https://crm.zoho.com/crm/WebToLeadForm';
-      zohoForm.style.display = 'none';
-
-      const fields = {
-        'xnQsjsdp': '806bd8d403c98a55a505965f9d6df98f7543767875865b8fc754479fd8f78585',
-        'zc_gad': '',
-        'xmIwtLD': 'fd4fb529a3bb7e0c44cebd74185e423ee9cafbf787a8f2d56afd298b8d0fcde127a731ce80f3f61dc36d2e61119d3a36',
-        'actionType': 'TGVhZHM=',
-        'returnURL': 'https://prosolarng.com',
-        'Last Name': formData.Last_Name,
-        'Email': formData.Email,
-        'Mobile': formData.Mobile,
-        'City': formData.City,
-      };
-
-      for (const [key, value] of Object.entries(fields)) {
-        const input = document.createElement('input');
-        input.type = 'hidden';
-        input.name = key;
-        input.value = value;
-        zohoForm.appendChild(input);
-      }
-
-      document.body.appendChild(zohoForm);
-      zohoForm.submit();
-
+  
       // Send PDF to user
       const emailResponse = await fetch('/api/submitForm', {
         method: 'POST',
@@ -248,9 +248,9 @@ const CombinedForm = ({ product, onClose }) => {
           pdfBlob: pdfBase64,
         }),
       });
-
+  
       setIsSubmitting(false);
-
+  
       if (emailResponse.ok) {
         setIsSuccess(true);
         setTimeout(() => {
@@ -279,69 +279,69 @@ const CombinedForm = ({ product, onClose }) => {
 
         <h2 className="lg:text-3xl font-semibold text-center my-6">Let's Get You Started</h2>
         <form className="space-y-4" onSubmit={handleSubmit}>
-          <div>
-            <label htmlFor="Last_Name" className="block text-sm font-medium text-gray-700">
-              Full Name
-            </label>
-            <input
-              id="Last_Name"
-              type="text"
-              placeholder="Enter your full name"
-              value={formData.Last_Name}
-              onChange={handleInputChange}
-              className="mt-1 block w-full border border-gray-300 rounded-md p-2 shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-            />
-          </div>
-          <div>
-            <label htmlFor="Email" className="block text-sm font-medium text-gray-700">
-              Email
-            </label>
-            <input
-              id="Email"
-              type="email"
-              placeholder="Enter your email"
-              value={formData.Email}
-              onChange={handleInputChange}
-              className="mt-1 block w-full border border-gray-300 rounded-md p-2 shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-            />
-          </div>
-          <div>
-            <label htmlFor="Mobile" className="block text-sm font-medium text-gray-700">
-              Phone Number
-            </label>
-            <input
-              id="Mobile"
-              type="tel"
-              placeholder="Enter your phone number"
-              value={formData.Mobile}
-              onChange={handleInputChange}
-              className="mt-1 block w-full border border-gray-300 rounded-md p-2 shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-            />
-          </div>
-          <div>
-            <label htmlFor="City" className="block text-sm font-medium text-gray-700">
-              Location/City
-            </label>
-            <input
-              id="City"
-              type="text"
-              placeholder="Enter your location"
-              value={formData.City}
-              onChange={handleInputChange}
-              className="mt-1 block w-full border border-gray-300 rounded-md p-2 shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-            />
-          </div>
-          
-          <button
-            type="submit"
-            className={`w-full py-2 px-4 text-white rounded-md focus:outline-none ${
-              isSubmitting ? 'bg-gray-500' : 'bg-indigo-600 hover:bg-indigo-700'
-            }`}
-            disabled={isSubmitting}
-          >
-            {isSubmitting ? 'Submitting...' : 'Submit'}
-          </button>
-        </form>
+  <div>
+    <label htmlFor="Last_Name" className="block text-sm font-medium text-gray-700">
+      Full Name
+    </label>
+    <input
+      id="Last_Name"
+      type="text"
+      placeholder="Enter your full name"
+      value={formData.Last_Name}
+      onChange={handleInputChange}
+      className="mt-1 block w-full border border-gray-300 rounded-md p-2 shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+    />
+  </div>
+  <div>
+    <label htmlFor="Email" className="block text-sm font-medium text-gray-700">
+      Email
+    </label>
+    <input
+      id="Email"
+      type="email"
+      placeholder="Enter your email"
+      value={formData.Email}
+      onChange={handleInputChange}
+      className="mt-1 block w-full border border-gray-300 rounded-md p-2 shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+    />
+  </div>
+  <div>
+    <label htmlFor="Mobile" className="block text-sm font-medium text-gray-700">
+      Phone Number
+    </label>
+    <input
+      id="Mobile"
+      type="tel"
+      placeholder="Enter your phone number"
+      value={formData.Mobile}
+      onChange={handleInputChange}
+      className="mt-1 block w-full border border-gray-300 rounded-md p-2 shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+    />
+  </div>
+  <div>
+    <label htmlFor="City" className="block text-sm font-medium text-gray-700">
+      Location/City
+    </label>
+    <input
+      id="City"
+      type="text"
+      placeholder="Enter your location"
+      value={formData.City}
+      onChange={handleInputChange}
+      className="mt-1 block w-full border border-gray-300 rounded-md p-2 shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+    />
+  </div>
+  
+  <button
+    type="submit"
+    className={`w-full py-2 px-4 text-white rounded-md focus:outline-none ${
+      isSubmitting ? 'bg-gray-500' : 'bg-indigo-600 hover:bg-indigo-700'
+    }`}
+    disabled={isSubmitting}
+  >
+    {isSubmitting ? 'Submitting...' : 'Submit'}
+  </button>
+</form>
 
         {isSuccess === true && (
           <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
