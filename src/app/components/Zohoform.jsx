@@ -1,5 +1,6 @@
-// ZohoForm.js
+// ZohoForm.jsx
 import React from 'react';
+import Script from 'next/script';
 
 const ZohoForm = () => {
   return (
@@ -101,7 +102,9 @@ const ZohoForm = () => {
       </form>
 
       {/* Scripts */}
-      <script
+      <Script
+        id="form-scripts"
+        strategy="afterInteractive"
         dangerouslySetInnerHTML={{
           __html: `
             function validateEmail5131685000001937009() {
@@ -163,10 +166,12 @@ const ZohoForm = () => {
           `,
         }}
       />
+
       {/* Analytics Tracking Code */}
-      <script
+      <Script
         id="wf_anal"
         src="https://crm.zohopublic.com/crm/WebFormAnalyticsServeServlet?rid=78fa4ea56bd5d23d9c58922b280b1a1ad2c6707fe717d41ed3ec9d7e8cf8ae10f375362857b6d24279ef1bcd73252dccgid25ca9289320fd14f1043f21dcc135e9bb8ae6f95a6b54dd41819633eccd3eefcgid848067c21d6c7d6b897110077b28cf90d43b759bd1552776afed09d81e1c85dbgidbe559b889c2255b5f5a383d6180402c8d82dac5dfe73a4e1943b22fe27c9cb2c&tw=d4d1245fb00539dbe0d2920fd5905317629f76b3ccbe4a738278863e38708dea"
+        strategy="afterInteractive"
       />
     </div>
   );
