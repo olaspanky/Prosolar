@@ -2,7 +2,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { jsPDF } from 'jspdf';
 import 'jspdf-autotable';
-import Script from 'next/script';
 
 const CombinedForm = ({ product, onClose }) => {
   const modalRef = useRef();
@@ -205,24 +204,34 @@ const CombinedForm = ({ product, onClose }) => {
     reader.onloadend = async () => {
       const pdfBase64 = reader.result.split(',')[1];
 
-      // Submit to Zoho CRM
-      const zohoResponse = await fetch('https://crm.zoho.com/crm/WebToLeadForm', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: new URLSearchParams({
-          'xnQsjsdp': '806bd8d403c98a55a505965f9d6df98f7543767875865b8fc754479fd8f78585',
-          'zc_gad': '',
-          'xmIwtLD': 'fd4fb529a3bb7e0c44cebd74185e423ee9cafbf787a8f2d56afd298b8d0fcde127a731ce80f3f61dc36d2e61119d3a36',
-          'actionType': 'TGVhZHM=',
-          'returnURL': 'https://prosolarng.com',
-          'Last Name': formData.Last_Name,
-          'Email': formData.Email,
-          'Mobile': formData.Mobile,
-          'City': formData.City,
-        }),
-      });
+      // Submit to Zoho CRM using a traditional HTML form
+      const zohoForm = document.createElement('form');
+      zohoForm.method = 'POST';
+      zohoForm.action = 'https://crm.zoho.com/crm/WebToLeadForm';
+      zohoForm.style.display = 'none';
+
+      const fields = {
+        'xnQsjsdp': '806bd8d403c98a55a505965f9d6df98f7543767875865b8fc754479fd8f78585',
+        'zc_gad': '',
+        'xmIwtLD': 'fd4fb529a3bb7e0c44cebd74185e423ee9cafbf787a8f2d56afd298b8d0fcde127a731ce80f3f61dc36d2e61119d3a36',
+        'actionType': 'TGVhZHM=',
+        'returnURL': 'https://prosolarng.com',
+        'Last Name': formData.Last_Name,
+        'Email': formData.Email,
+        'Mobile': formData.Mobile,
+        'City': formData.City,
+      };
+
+      for (const [key, value] of Object.entries(fields)) {
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = key;
+        input.value = value;
+        zohoForm.appendChild(input);
+      }
+
+      document.body.appendChild(zohoForm);
+      zohoForm.submit();
 
       // Send PDF to user
       const emailResponse = await fetch('/api/submitForm', {
@@ -242,7 +251,7 @@ const CombinedForm = ({ product, onClose }) => {
 
       setIsSubmitting(false);
 
-      if (zohoResponse.ok && emailResponse.ok) {
+      if (emailResponse.ok) {
         setIsSuccess(true);
         setTimeout(() => {
           onClose();
