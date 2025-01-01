@@ -1,12 +1,18 @@
+// ZohoForm.jsx
 "use client"
 import React, { useEffect, useRef, useState } from 'react';
 import { jsPDF } from 'jspdf';
 import 'jspdf-autotable';
 import Script from 'next/script';
 
-const ZohoForm = ({ product, onClose }) => {
+
+
+
+const ZohoForm = () => {
+
+
   const modalRef = useRef();
-  console.log("product is", product);
+  // const [paymentPlan, setPaymentPlan] = useState('');
   const [formData, setFormData] = useState({
     Last_Name: '',
     Email: '',
@@ -16,10 +22,16 @@ const ZohoForm = ({ product, onClose }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(null);
 
+  
+
   const handleInputChange = (event) => {
     const { id, value } = event.target;
     setFormData((prev) => ({ ...prev, [id]: value }));
   };
+
+  // const handlePaymentPlanChange = (event) => {
+  //   setPaymentPlan(event.target.value);
+  // };
 
   const generatePDF = () => {
     const doc = new jsPDF();
@@ -82,10 +94,10 @@ const ZohoForm = ({ product, onClose }) => {
 
     // Bill To Section
     doc.text('Bill To:', 14, 95);
-    doc.text(formData.Last_Name, 14, 101);
-    doc.text(formData.Email, 14, 107);
-    doc.text(formData.Mobile, 14, 113);
-    doc.text(formData.City, 14, 119);
+    doc.text(formData.name, 14, 101);
+    doc.text(formData.email, 14, 107);
+    doc.text(formData.phone, 14, 113);
+    doc.text(formData.location, 14, 119);
 
     // Product Details Section
     doc.setFont('helvetica', 'bold');
@@ -207,34 +219,25 @@ const ZohoForm = ({ product, onClose }) => {
     const reader = new FileReader();
     reader.onloadend = async () => {
       const pdfBase64 = reader.result.split(',')[1];
-
-      // Submit to your API
-      const apiResponse = await fetch('/api/submitForm', {
+      const response = await fetch('/api/submitForm', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
           name: formData.Last_Name,
-    email: formData.Email,
-    phone: formData.Mobile,
-    location: formData.City,
-    product, // Ensure this is defined in your component
-    pdfBlob: pdfBase64, // Generated from the PDF blob
+          email: formData.Email,
+          phone: formData.Mobile,
+          location: formData.City,
+          // paymentPlan,
+          product,
+          pdfBlob: pdfBase64,
         }),
-      });
-
-      // Submit to Zoho
-      const zohoForm = document.forms['WebToLeads5131685000001937009'];
-      const zohoFormData = new FormData(zohoForm);
-      const zohoResponse = await fetch(zohoForm.action, {
-        method: 'POST',
-        body: zohoFormData,
       });
 
       setIsSubmitting(false);
 
-      if (apiResponse.ok && zohoResponse.ok) {
+      if (response.ok) {
         setIsSuccess(true);
         setTimeout(() => {
           onClose();
@@ -244,9 +247,7 @@ const ZohoForm = ({ product, onClose }) => {
         setIsSuccess(false);
       }
     };
-    reader.readAsDataURL(pdfBlob);
-  };
-
+    reader.readAsDataURL(pdfBlob);}
   return (
     <div id="crmWebToEntityForm" className="bg-white text-black max-w-[600px] mx-auto p-6">
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -257,7 +258,7 @@ const ZohoForm = ({ product, onClose }) => {
         action="https://crm.zoho.com/crm/WebToLeadForm"
         name="WebToLeads5131685000001937009"
         method="POST"
-        onSubmit={handleSubmit}
+        onSubmit="javascript:document.charset='UTF-8'; return checkMandatory5131685000001937009()"
         acceptCharset="UTF-8"
       >
         {/* Hidden Inputs */}
@@ -277,13 +278,13 @@ const ZohoForm = ({ product, onClose }) => {
             id="Last_Name"
             name="Last Name"
             placeholder="Enter your full name"
-            value={formData.Last_Name}
+            value={formData.name}
             onChange={handleInputChange}
             aria-required="true"
             aria-label="Last Name"
             maxLength="80"
             className="mt-1 block w-full border border-gray-300 rounded-md p-2 shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-          />
+            />
         </div>
 
         <div className="mb-4">
@@ -295,13 +296,13 @@ const ZohoForm = ({ product, onClose }) => {
             id="Email"
             name="Email"
             placeholder="Enter your email"
-            value={formData.Email}
+            value={formData.email}
             onChange={handleInputChange}
             aria-required="false"
             aria-label="Email"
             maxLength="100"
             className="mt-1 block w-full border border-gray-300 rounded-md p-2 shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-          />
+            />
         </div>
 
         <div className="mb-4">
@@ -313,13 +314,13 @@ const ZohoForm = ({ product, onClose }) => {
             id="Mobile"
             name="Mobile"
             placeholder="Enter your phone number"
-            value={formData.Mobile}
+            value={formData.phone}
             onChange={handleInputChange}
             aria-required="false"
             aria-label="Mobile"
             maxLength="30"
             className="mt-1 block w-full border border-gray-300 rounded-md p-2 shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-          />
+            />
         </div>
 
         <div className="mb-4">
@@ -331,13 +332,12 @@ const ZohoForm = ({ product, onClose }) => {
             id="City"
             name="City"
             placeholder="Enter your location"
-            value={formData.City}
-            onChange={handleInputChange}
+            value={formData.location}
             aria-required="false"
             aria-label="City"
             maxLength="100"
             className="mt-1 block w-full border border-gray-300 rounded-md p-2 shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-          />
+            />
         </div>
 
         <div className="mt-6">

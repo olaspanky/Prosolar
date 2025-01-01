@@ -9,7 +9,7 @@ import { NextResponse } from 'next/server'; // Import NextResponse
 export async function POST(req) {
   try {
     const body = await req.json();
-    const { name, email, phone, location, product, pdfBlob } = body;
+    const { name, email, phone, location, paymentPlan, product, pdfBlob } = body;
 
     // Step 1: Save User Info in MongoDB
     const client = await clientPromise;
@@ -21,6 +21,7 @@ export async function POST(req) {
       email,
       phone,
       location,
+      paymentPlan,
       product,
       timestamp: new Date()
     });
