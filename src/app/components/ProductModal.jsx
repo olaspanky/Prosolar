@@ -1,23 +1,279 @@
-"use client"
+// import React, { useEffect, useRef, useState } from 'react';
+// import { jsPDF } from 'jspdf';
+
+// const ProductModal = ({ product, onClose }) => {
+//   const modalRef = useRef();
+//   const [paymentPlan, setPaymentPlan] = useState('');
+//   const [formData, setFormData] = useState({
+//     name: '',
+//     email: '',
+//     phone: '',
+//     location: '',
+//   });
+//   const [isSubmitting, setIsSubmitting] = useState(false);
+//   const [isSuccess, setIsSuccess] = useState(null);
+
+//   useEffect(() => {
+//     const handleOutsideClick = (event) => {
+//       if (modalRef.current && !modalRef.current.contains(event.target)) {
+//         onClose();
+//       }
+//     };
+
+//     document.addEventListener('mousedown', handleOutsideClick);
+//     return () => {
+//       document.removeEventListener('mousedown', handleOutsideClick);
+//     };
+//   }, [onClose]);
+
+//   const handleInputChange = (event) => {
+//     const { id, value } = event.target;
+//     setFormData((prev) => ({ ...prev, [id]: value }));
+//   };
+
+//   const handlePaymentPlanChange = (event) => {
+//     setPaymentPlan(event.target.value);
+//   };
+
+//   const generatePDF = () => {
+//     const doc = new jsPDF();
+
+//     doc.setFont('helvetica', 'bold');
+//     doc.setFontSize(18);
+//     doc.text('Quote for Solar System', 10, 10);
+
+//     doc.setFont('helvetica', 'normal');
+//     doc.setFontSize(12);
+//     doc.text(`Name: ${formData.name}`, 10, 30);
+//     doc.text(`Email: ${formData.email}`, 10, 40);
+//     doc.text(`Phone: ${formData.phone}`, 10, 50);
+//     doc.text(`Location: ${formData.location}`, 10, 60);
+
+//     doc.text(`Component: ${product.component}`, 10, 80);
+//     doc.text(`Suitable For: ${product.suitableFor}`, 10, 90);
+//     doc.text(`Components: ${product.components}`, 10, 100);
+//     doc.text('Appliances:', 10, 110);
+//     doc.text(`- ${product.appliances.appliance1}`, 20, 120);
+//     doc.text(`- ${product.appliances.appliance2}`, 20, 130);
+
+//     doc.setFont('helvetica', 'bold');
+//     doc.text('Payment Plan Details:', 10, 150);
+//     if (paymentPlan === 'Outright Payment') {
+//       doc.text(`Total: ₦${product.OutrightPayment.toLocaleString()}`, 20, 160);
+//     } else {
+//       doc.text(`First Down Payment: ₦${product.monthlyRepaymentFirstDown.toLocaleString()}`, 20, 160);
+//       doc.text(`Monthly Repayment: ₦${product.monthlyRepayment.toLocaleString()}`, 20, 170);
+//       doc.text(`Total (Over Tenure): ₦${product.monthlyRepaymentTotal.toLocaleString()}`, 20, 180);
+//     }
+
+//     return doc.output('blob');
+//   };
+
+//   const handleSubmit = async (event) => {
+//     event.preventDefault();
+//     setIsSubmitting(true);
+
+//     const pdfBlob = generatePDF();
+
+//     const reader = new FileReader();
+//     reader.onloadend = async () => {
+//       const pdfBase64 = reader.result.split(',')[1];
+//       const response = await fetch('/api/submitForm', {
+//         method: 'POST',
+//         headers: {
+//           'Content-Type': 'application/json',
+//         },
+//         body: JSON.stringify({
+//           name: formData.name,
+//           email: formData.email,
+//           phone: formData.phone,
+//           location: formData.location,
+//           paymentPlan,
+//           product,
+//           pdfBlob: pdfBase64,
+//         }),
+//       });
+
+//       setIsSubmitting(false);
+
+//       if (response.ok) {
+//         setIsSuccess(true);
+//         setTimeout(() => {
+//           onClose();
+//           setIsSuccess(null);
+//         }, 3000);
+//       } else {
+//         setIsSuccess(false);
+//       }
+//     };
+//     reader.readAsDataURL(pdfBlob);
+//   };
+
+//   return (
+//     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+//       <div ref={modalRef} className="bg-white rounded-lg shadow-lg max-w-lg w-full p-8 relative">
+//         <button
+//           onClick={onClose}
+//           className="absolute top-4 right-4 text-gray-500 hover:text-gray-700 focus:outline-none"
+//           aria-label="Close"
+//         >
+//           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" className="w-6 h-6">
+//             <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+//           </svg>
+//         </button>
+
+//         <h2 className="text-3xl font-semibold text-center mb-6">Let’s Get You Started</h2>
+        // <form className="space-y-4" onSubmit={handleSubmit}>
+        //   <div>
+        //     <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+        //       Full Name
+        //     </label>
+        //     <input
+        //       id="name"
+        //       type="text"
+        //       placeholder="Enter your full name"
+        //       value={formData.name}
+        //       onChange={handleInputChange}
+        //       className="mt-1 block w-full border border-gray-300 rounded-md p-2 shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+        //     />
+        //   </div>
+        //   <div>
+        //     <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+        //       Email
+        //     </label>
+        //     <input
+        //       id="email"
+        //       type="email"
+        //       placeholder="Enter your email"
+        //       value={formData.email}
+        //       onChange={handleInputChange}
+        //       className="mt-1 block w-full border border-gray-300 rounded-md p-2 shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+        //     />
+        //   </div>
+        //   <div>
+        //     <label htmlFor="phone" className="block text-sm font-medium text-gray-700">
+        //       Phone Number
+        //     </label>
+        //     <input
+        //       id="phone"
+        //       type="tel"
+        //       placeholder="Enter your phone number"
+        //       value={formData.phone}
+        //       onChange={handleInputChange}
+        //       className="mt-1 block w-full border border-gray-300 rounded-md p-2 shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+        //     />
+        //   </div>
+        //   <div>
+        //     <label htmlFor="location" className="block text-sm font-medium text-gray-700">
+        //       Location/City
+        //     </label>
+        //     <input
+        //       id="location"
+        //       type="text"
+        //       placeholder="Enter your location"
+        //       value={formData.location}
+        //       onChange={handleInputChange}
+        //       className="mt-1 block w-full border border-gray-300 rounded-md p-2 shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+        //     />
+        //   </div>
+        //   <div>
+        //     <label className="block text-sm font-medium text-gray-700">Payment Plan</label>
+        //     <div className="flex space-x-4">
+        //       <label className="inline-flex items-center">
+        //         <input
+        //           type="radio"
+        //           name="paymentPlan"
+        //           value="Outright Payment"
+        //           checked={paymentPlan === 'Outright Payment'}
+        //           onChange={handlePaymentPlanChange}
+        //           className="form-radio"
+        //         />
+        //         <span className="ml-2">Outright Payment</span>
+        //       </label>
+        //       <label className="inline-flex items-center">
+        //         <input
+        //           type="radio"
+        //           name="paymentPlan"
+        //           value="Pay Small Small"
+        //           checked={paymentPlan === 'Pay Small Small'}
+        //           onChange={handlePaymentPlanChange}
+        //           className="form-radio"
+        //         />
+        //         <span className="ml-2">Pay Small Small</span>
+        //       </label>
+        //     </div>
+        //   </div>
+        //   <button
+        //     type="submit"
+        //     className={`w-full py-2 px-4 text-white rounded-md focus:outline-none ${
+        //       isSubmitting ? 'bg-gray-500' : 'bg-indigo-600 hover:bg-indigo-700'
+        //     }`}
+        //     disabled={isSubmitting}
+        //   >
+        //     {isSubmitting ? 'Submitting...' : 'Submit'}
+        //   </button>
+        // </form>
+
+//         {isSuccess === true && (
+//           <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+//             <div className="bg-green-500 text-white text-center p-6 rounded shadow-md">
+//               <h3 className="text-xl font-bold mb-2">Congratulations!</h3>
+//               <p>Your quote has been successfully submitted and sent to your email.</p>
+//             </div>
+//           </div>
+//         )}
+//         {isSuccess === false && (
+//           <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+//             <div className="bg-red-500 text-white text-center p-6 rounded shadow-md">
+//               <h3 className="text-xl font-bold mb-2">Submission Failed</h3>
+//               <p>Please try again later.</p>
+//             </div>
+//           </div>
+//         )}
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default ProductModal;
 import React, { useEffect, useRef, useState } from 'react';
 import { jsPDF } from 'jspdf';
 import 'jspdf-autotable';
 
-const CombinedForm = ({ product, onClose }) => {
+
+const ProductModal = ({ product, onClose }) => {
   const modalRef = useRef();
+  // const [paymentPlan, setPaymentPlan] = useState('');
   const [formData, setFormData] = useState({
-    Last_Name: '',
-    Email: '',
-    Mobile: '',
-    City: '',
+    name: '',
+    email: '',
+    phone: '',
+    location: '',
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(null);
+
+  useEffect(() => {
+    const handleOutsideClick = (event) => {
+      if (modalRef.current && !modalRef.current.contains(event.target)) {
+        onClose();
+      }
+    };
+
+    document.addEventListener('mousedown', handleOutsideClick);
+    return () => {
+      document.removeEventListener('mousedown', handleOutsideClick);
+    };
+  }, [onClose]);
 
   const handleInputChange = (event) => {
     const { id, value } = event.target;
     setFormData((prev) => ({ ...prev, [id]: value }));
   };
+
+  // const handlePaymentPlanChange = (event) => {
+  //   setPaymentPlan(event.target.value);
+  // };
 
   const generatePDF = () => {
     const doc = new jsPDF();
@@ -26,6 +282,8 @@ const CombinedForm = ({ product, onClose }) => {
     try {
       const logoImg = new Image();
       logoImg.src = '/lgo.png';
+      
+      // Wait for logo to load (synchronous approach for simplicity)
       doc.addImage(logoImg, 'PNG', 14, 10, 40, 0);
     } catch (error) {
       console.error('Logo could not be added:', error);
@@ -78,10 +336,10 @@ const CombinedForm = ({ product, onClose }) => {
 
     // Bill To Section
     doc.text('Bill To:', 14, 95);
-    doc.text(formData.Last_Name, 14, 101);
-    doc.text(formData.Email, 14, 107);
-    doc.text(formData.Mobile, 14, 113);
-    doc.text(formData.City, 14, 119);
+    doc.text(formData.name, 14, 101);
+    doc.text(formData.email, 14, 107);
+    doc.text(formData.phone, 14, 113);
+    doc.text(formData.location, 14, 119);
 
     // Product Details Section
     doc.setFont('helvetica', 'bold');
@@ -193,65 +451,35 @@ const CombinedForm = ({ product, onClose }) => {
 
     return doc.output('blob');
   };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     setIsSubmitting(true);
-  
-    // Submit to Zoho CRM using a traditional HTML form
-    const zohoForm = document.createElement('form');
-    zohoForm.method = 'POST';
-    zohoForm.action = 'https://crm.zoho.com/crm/WebToLeadForm';
-    zohoForm.style.display = 'none';
-  
-    const fields = {
-      'xnQsjsdp': '806bd8d403c98a55a505965f9d6df98f7543767875865b8fc754479fd8f78585',
-      'zc_gad': '',
-      'xmIwtLD': 'fd4fb529a3bb7e0c44cebd74185e423ee9cafbf787a8f2d56afd298b8d0fcde127a731ce80f3f61dc36d2e61119d3a36',
-      'actionType': 'TGVhZHM=',
-      'returnURL': 'https://prosolarng.com',
-      'Last Name': formData.Last_Name,
-      'Email': formData.Email,
-      'Mobile': formData.Mobile,
-      'City': formData.City,
-    };
-  
-    for (const [key, value] of Object.entries(fields)) {
-      const input = document.createElement('input');
-      input.type = 'hidden';
-      input.name = key;
-      input.value = value;
-      zohoForm.appendChild(input);
-    }
-  
-    document.body.appendChild(zohoForm);
-    zohoForm.submit();
-  
-    // Generate PDF and send email
+
     const pdfBlob = generatePDF();
-  
+
     const reader = new FileReader();
     reader.onloadend = async () => {
       const pdfBase64 = reader.result.split(',')[1];
-  
-      // Send PDF to user
-      const emailResponse = await fetch('/api/submitForm', {
+      const response = await fetch('/api/submitForm', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          name: formData.Last_Name,
-          email: formData.Email,
-          phone: formData.Mobile,
-          location: formData.City,
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          location: formData.location,
+          // paymentPlan,
           product,
           pdfBlob: pdfBase64,
         }),
       });
-  
+
       setIsSubmitting(false);
-  
-      if (emailResponse.ok) {
+
+      if (response.ok) {
         setIsSuccess(true);
         setTimeout(() => {
           onClose();
@@ -278,70 +506,64 @@ const CombinedForm = ({ product, onClose }) => {
         </button>
 
         <h2 className="lg:text-3xl font-semibold text-center my-6">Let's Get You Started</h2>
-        <form className="space-y-4" onSubmit={handleSubmit}>
-  <div>
-    <label htmlFor="Last_Name" className="block text-sm font-medium text-gray-700">
-      Full Name
-    </label>
-    <input
-      id="Last_Name"
-      type="text"
-      placeholder="Enter your full name"
-      value={formData.Last_Name}
-      onChange={handleInputChange}
-      className="mt-1 block w-full border border-gray-300 rounded-md p-2 shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-    />
-  </div>
-  <div>
-    <label htmlFor="Email" className="block text-sm font-medium text-gray-700">
-      Email
-    </label>
-    <input
-      id="Email"
-      type="email"
-      placeholder="Enter your email"
-      value={formData.Email}
-      onChange={handleInputChange}
-      className="mt-1 block w-full border border-gray-300 rounded-md p-2 shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-    />
-  </div>
-  <div>
-    <label htmlFor="Mobile" className="block text-sm font-medium text-gray-700">
-      Phone Number
-    </label>
-    <input
-      id="Mobile"
-      type="tel"
-      placeholder="Enter your phone number"
-      value={formData.Mobile}
-      onChange={handleInputChange}
-      className="mt-1 block w-full border border-gray-300 rounded-md p-2 shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-    />
-  </div>
-  <div>
-    <label htmlFor="City" className="block text-sm font-medium text-gray-700">
-      Location/City
-    </label>
-    <input
-      id="City"
-      type="text"
-      placeholder="Enter your location"
-      value={formData.City}
-      onChange={handleInputChange}
-      className="mt-1 block w-full border border-gray-300 rounded-md p-2 shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-    />
-  </div>
-  
-  <button
-    type="submit"
-    className={`w-full py-2 px-4 text-white rounded-md focus:outline-none ${
-      isSubmitting ? 'bg-gray-500' : 'bg-indigo-600 hover:bg-indigo-700'
-    }`}
-    disabled={isSubmitting}
-  >
-    {isSubmitting ? 'Submitting...' : 'Submit'}
-  </button>
-</form>
+        {/* Zoho Webform */}
+        <div id='crmWebToEntityForm' className='zcwf_lblLeft crmWebToEntityForm' style={{ backgroundColor: 'white', color: 'black', maxWidth: '600px' }}>
+          <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+          <meta http-equiv='content-type' content='text/html;charset=UTF-8' />
+
+          <form id='webform5131685000001937009' action='https://crm.zoho.com/crm/WebToLeadForm' name='WebToLeads5131685000001937009' method='POST' onSubmit='javascript:document.charset="UTF-8"; return checkMandatory5131685000001937009()' accept-charset='UTF-8'>
+            <input type='text' style={{ display: 'none' }} name='xnQsjsdp' value='b4483d0e10fd96061e0519ee9b7449847c3541c24aefa4a9ef87728e523c558c' />
+            <input type='hidden' name='zc_gad' id='zc_gad' value='' />
+            <input type='text' style={{ display: 'none' }} name='xmIwtLD' value='9c571424d85f79081aedaa93af0238ad65dedead1cc74f827effb92efd67ffcfa4b7f93cf03a293304d6e7ef33caef78' />
+            <input type='text' style={{ display: 'none' }} name='actionType' value='TGVhZHM=' />
+            <input type='text' style={{ display: 'none' }} name='returnURL' value='https&#x3a;&#x2f;&#x2f;prosolarng.com' />
+
+            <div className='zcwf_title' style={{ maxWidth: '600px', color: 'black', fontFamily: 'Arial' }}>Test</div>
+            <div className='zcwf_row'>
+              <div className='zcwf_col_lab' style={{ fontSize: '12px', fontFamily: 'Arial' }}>
+                <label htmlFor='Last_Name'>Full Name<span style={{ color: 'red' }}>*</span></label>
+              </div>
+              <div className='zcwf_col_fld'>
+                <input type='text' id='Last_Name' aria-required='true' aria-label='Last Name' name='Last Name' aria-valuemax='80' maxLength='80' />
+                <div className='zcwf_col_help'></div>
+              </div>
+            </div>
+            <div className='zcwf_row'>
+              <div className='zcwf_col_lab' style={{ fontSize: '12px', fontFamily: 'Arial' }}>
+                <label htmlFor='Email'>Email</label>
+              </div>
+              <div className='zcwf_col_fld'>
+                <input type='text' ftype='email' autocomplete='false' id='Email' aria-required='false' aria-label='Email' name='Email' aria-valuemax='100' crmlabel='' maxLength='100' />
+                <div className='zcwf_col_help'></div>
+              </div>
+            </div>
+            <div className='zcwf_row'>
+              <div className='zcwf_col_lab' style={{ fontSize: '12px', fontFamily: 'Arial' }}>
+                <label htmlFor='Mobile'>Mobile</label>
+              </div>
+              <div className='zcwf_col_fld'>
+                <input type='text' id='Mobile' aria-required='false' aria-label='Mobile' name='Mobile' aria-valuemax='30' maxLength='30' />
+                <div className='zcwf_col_help'></div>
+              </div>
+            </div>
+            <div className='zcwf_row'>
+              <div className='zcwf_col_lab' style={{ fontSize: '12px', fontFamily: 'Arial' }}>
+                <label htmlFor='City'>City</label>
+              </div>
+              <div className='zcwf_col_fld'>
+                <input type='text' id='City' aria-required='false' aria-label='City' name='City' aria-valuemax='100' maxLength='100' />
+                <div className='zcwf_col_help'></div>
+              </div>
+            </div>
+            <div className='zcwf_row'>
+              <div className='zcwf_col_lab'></div>
+              <div className='zcwf_col_fld'>
+                <input type='submit' id='formsubmit' role='button' className='formsubmit zcwf_button' value='Submit' aria-label='Submit' title='Submit' />
+                <input type='reset' className='zcwf_button' role='button' name='reset' value='Reset' aria-label='Reset' title='Reset' />
+              </div>
+            </div>
+          </form>
+        </div>
 
         {isSuccess === true && (
           <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
@@ -419,4 +641,4 @@ const CombinedForm = ({ product, onClose }) => {
   );
 };
 
-export default CombinedForm;
+export default ProductModal;
