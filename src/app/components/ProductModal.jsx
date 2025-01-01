@@ -506,64 +506,96 @@ const ProductModal = ({ product, onClose }) => {
         </button>
 
         <h2 className="lg:text-3xl font-semibold text-center my-6">Let's Get You Started</h2>
-        {/* Zoho Webform */}
-        <div id='crmWebToEntityForm' className='zcwf_lblLeft crmWebToEntityForm' style={{ backgroundColor: 'white', color: 'black', maxWidth: '600px' }}>
-          <meta name='viewport' content='width=device-width, initial-scale=1.0' />
-          <meta http-equiv='content-type' content='text/html;charset=UTF-8' />
-
-          <form id='webform5131685000001937009' action='https://crm.zoho.com/crm/WebToLeadForm' name='WebToLeads5131685000001937009' method='POST' onSubmit='javascript:document.charset="UTF-8"; return checkMandatory5131685000001937009()' accept-charset='UTF-8'>
-            <input type='text' style={{ display: 'none' }} name='xnQsjsdp' value='b4483d0e10fd96061e0519ee9b7449847c3541c24aefa4a9ef87728e523c558c' />
-            <input type='hidden' name='zc_gad' id='zc_gad' value='' />
-            <input type='text' style={{ display: 'none' }} name='xmIwtLD' value='9c571424d85f79081aedaa93af0238ad65dedead1cc74f827effb92efd67ffcfa4b7f93cf03a293304d6e7ef33caef78' />
-            <input type='text' style={{ display: 'none' }} name='actionType' value='TGVhZHM=' />
-            <input type='text' style={{ display: 'none' }} name='returnURL' value='https&#x3a;&#x2f;&#x2f;prosolarng.com' />
-
-            <div className='zcwf_title' style={{ maxWidth: '600px', color: 'black', fontFamily: 'Arial' }}>Test</div>
-            <div className='zcwf_row'>
-              <div className='zcwf_col_lab' style={{ fontSize: '12px', fontFamily: 'Arial' }}>
-                <label htmlFor='Last_Name'>Full Name<span style={{ color: 'red' }}>*</span></label>
-              </div>
-              <div className='zcwf_col_fld'>
-                <input type='text' id='Last_Name' aria-required='true' aria-label='Last Name' name='Last Name' aria-valuemax='80' maxLength='80' />
-                <div className='zcwf_col_help'></div>
-              </div>
+        <form className="space-y-4" onSubmit={handleSubmit}>
+          <div>
+            <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+              Full Name
+            </label>
+            <input
+              id="name"
+              type="text"
+              placeholder="Enter your full name"
+              value={formData.name}
+              onChange={handleInputChange}
+              className="mt-1 block w-full border border-gray-300 rounded-md p-2 shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+            />
+          </div>
+          <div>
+            <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+              Email
+            </label>
+            <input
+              id="email"
+              type="email"
+              placeholder="Enter your email"
+              value={formData.email}
+              onChange={handleInputChange}
+              className="mt-1 block w-full border border-gray-300 rounded-md p-2 shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+            />
+          </div>
+          <div>
+            <label htmlFor="phone" className="block text-sm font-medium text-gray-700">
+              Phone Number
+            </label>
+            <input
+              id="phone"
+              type="tel"
+              placeholder="Enter your phone number"
+              value={formData.phone}
+              onChange={handleInputChange}
+              className="mt-1 block w-full border border-gray-300 rounded-md p-2 shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+            />
+          </div>
+          <div>
+            <label htmlFor="location" className="block text-sm font-medium text-gray-700">
+              Location/City
+            </label>
+            <input
+              id="location"
+              type="text"
+              placeholder="Enter your location"
+              value={formData.location}
+              onChange={handleInputChange}
+              className="mt-1 block w-full border border-gray-300 rounded-md p-2 shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+            />
+          </div>
+          {/* <div>
+            <label className="block text-sm font-medium text-gray-700">Payment Plan</label>
+            <div className="flex space-x-4">
+              <label className="inline-flex items-center">
+                <input
+                  type="radio"
+                  name="paymentPlan"
+                  value="Outright Payment"
+                  checked={paymentPlan === 'Outright Payment'}
+                  onChange={handlePaymentPlanChange}
+                  className="form-radio"
+                />
+                <span className="ml-2">Outright Payment</span>
+              </label>
+              <label className="inline-flex items-center">
+                <input
+                  type="radio"
+                  name="paymentPlan"
+                  value="Pay Small Small"
+                  checked={paymentPlan === 'Pay Small Small'}
+                  onChange={handlePaymentPlanChange}
+                  className="form-radio"
+                />
+                <span className="ml-2">Pay Small Small</span>
+              </label>
             </div>
-            <div className='zcwf_row'>
-              <div className='zcwf_col_lab' style={{ fontSize: '12px', fontFamily: 'Arial' }}>
-                <label htmlFor='Email'>Email</label>
-              </div>
-              <div className='zcwf_col_fld'>
-                <input type='text' ftype='email' autocomplete='false' id='Email' aria-required='false' aria-label='Email' name='Email' aria-valuemax='100' crmlabel='' maxLength='100' />
-                <div className='zcwf_col_help'></div>
-              </div>
-            </div>
-            <div className='zcwf_row'>
-              <div className='zcwf_col_lab' style={{ fontSize: '12px', fontFamily: 'Arial' }}>
-                <label htmlFor='Mobile'>Mobile</label>
-              </div>
-              <div className='zcwf_col_fld'>
-                <input type='text' id='Mobile' aria-required='false' aria-label='Mobile' name='Mobile' aria-valuemax='30' maxLength='30' />
-                <div className='zcwf_col_help'></div>
-              </div>
-            </div>
-            <div className='zcwf_row'>
-              <div className='zcwf_col_lab' style={{ fontSize: '12px', fontFamily: 'Arial' }}>
-                <label htmlFor='City'>City</label>
-              </div>
-              <div className='zcwf_col_fld'>
-                <input type='text' id='City' aria-required='false' aria-label='City' name='City' aria-valuemax='100' maxLength='100' />
-                <div className='zcwf_col_help'></div>
-              </div>
-            </div>
-            <div className='zcwf_row'>
-              <div className='zcwf_col_lab'></div>
-              <div className='zcwf_col_fld'>
-                <input type='submit' id='formsubmit' role='button' className='formsubmit zcwf_button' value='Submit' aria-label='Submit' title='Submit' />
-                <input type='reset' className='zcwf_button' role='button' name='reset' value='Reset' aria-label='Reset' title='Reset' />
-              </div>
-            </div>
-          </form>
-        </div>
+          </div> */}
+          <button
+            type="submit"
+            className={`w-full py-2 px-4 text-white rounded-md focus:outline-none ${
+              isSubmitting ? 'bg-gray-500' : 'bg-indigo-600 hover:bg-indigo-700'
+            }`}
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? 'Submitting...' : 'Submit'}
+          </button>
+        </form>
 
         {isSuccess === true && (
           <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
