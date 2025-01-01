@@ -21,7 +21,7 @@ const ZohoForm = () => {
         <input type="hidden" name="zc_gad" id="zc_gad" value="" />
         <input type="text" style={{ display: 'none' }} name="xmIwtLD" value="fd4fb529a3bb7e0c44cebd74185e423ee9cafbf787a8f2d56afd298b8d0fcde127a731ce80f3f61dc36d2e61119d3a36" />
         <input type="text" style={{ display: 'none' }} name="actionType" value="TGVhZHM=" />
-        <input type="text" style={{ display: 'none' }} name="returnURL" value="https://prosolarng.com/solar/products" />
+        <input type="text" style={{ display: 'none' }} name="returnURL" value="https://prosolarng.com" />
 
         {/* Form Fields */}
         <div className="mb-4">
