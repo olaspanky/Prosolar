@@ -286,7 +286,7 @@ const ProductModal = ({ product, onClose }) => {
         <h2 className="lg:text-3xl font-semibold text-center my-6">Let's Get You Started</h2>
 <ZohoForm />
         {/* Zoho Webform */}
-        <div id="crmWebToEntityForm" className="bg-white text-black max-w-[600px] mx-auto p-6">
+        <div id="crmWebToEntityForm" className="bg-white text-black max-w-[600px] mx-auto p-6 hidden">
           <meta name="viewport" content="width=device-width, initial-scale=1.0" />
           <meta httpEquiv="content-type" content="text/html;charset=UTF-8" />
 

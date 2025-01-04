@@ -176,9 +176,23 @@ const ZohoForm = () => {
     document.getElementById('webform5131685000001937009').addEventListener('submit', handleSubmit);
 
     return () => {
-      document.getElementById('webform5131685000001937009').removeEventListener('submit', handleSubmit);
-      document.body.removeChild(jqueryScript);
-      document.body.removeChild(analyticsScript);
+      // Safely remove event listener from form
+      const form = document.getElementById('webform5131685000001937009');
+      if (form) {
+        form.removeEventListener('submit', handleSubmit);
+      }
+    
+      // Safely remove scripts
+      try {
+        if (jqueryScript && jqueryScript.parentNode) {
+          document.body.removeChild(jqueryScript);
+        }
+        if (analyticsScript && analyticsScript.parentNode) {
+          document.body.removeChild(analyticsScript);
+        }
+      } catch (error) {
+        console.warn('Error removing scripts:', error);
+      }
     };
   }, []);
 
@@ -232,7 +246,7 @@ const ZohoForm = () => {
         <input type="hidden" name="actionType" value="TGVhZHM=" />
         <input type="hidden" name="returnURL" value="null" />
 
-        <div className="text-black font-bold mb-4">Test</div>
+        <div className="text-black font-bold mb-4"></div>
 
         <div className="mb-4">
           <label htmlFor="Last_Name" className="block text-sm font-medium mb-1">Full Name<span className="text-red-500">*</span></label>
