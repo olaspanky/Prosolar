@@ -110,11 +110,11 @@ const ProductModal = ({ product, onClose }) => {
 
     // Add Logo
     try {
-      const logoImg = new Image();
-      logoImg.src = '/lgo.png';
-      doc.addImage(logoImg, 'PNG', 14, 10, 40, 0);
+        const logoImg = new Image();
+        logoImg.src = '/logo.png'; // Ensure the logo path is correct
+        doc.addImage(logoImg, 'PNG', 14, 10, 40, 0);
     } catch (error) {
-      console.error('Logo could not be added:', error);
+        console.error('Logo could not be added:', error);
     }
 
     // Company Header
@@ -130,10 +130,10 @@ const ProductModal = ({ product, onClose }) => {
     // Invoice Title
     doc.setFont('helvetica', 'bold');
     doc.setFontSize(16);
-    doc.text('SOLAR SYSTEM QUOTATION', 105, 55, { align: 'center' });
+    doc.text('INVOICE', 105, 55, { align: 'center' });
 
     // Invoice Number and Date
-    const invoiceNumber = `QUO-${Math.floor(Math.random() * 1000000).toString().padStart(6, '0')}`;
+    const invoiceNumber = `INV-${Math.floor(Math.random() * 1000000).toString().padStart(6, '0')}`;
     const currentDate = new Date();
     const dueDate = new Date(currentDate);
     dueDate.setDate(currentDate.getDate() + 7);
@@ -141,24 +141,24 @@ const ProductModal = ({ product, onClose }) => {
     doc.setFont('helvetica', 'normal');
     doc.setFontSize(10);
     doc.autoTable({
-      startY: 65,
-      theme: 'plain',
-      body: [
-        [
-          { content: 'Quotation Number:', styles: { fontStyle: 'bold' } },
-          invoiceNumber,
-          { content: 'Quotation Date:', styles: { fontStyle: 'bold' } },
-          currentDate.toLocaleDateString('en-GB')
+        startY: 65,
+        theme: 'plain',
+        body: [
+            [
+                { content: 'Invoice Number:', styles: { fontStyle: 'bold' } },
+                invoiceNumber,
+                { content: 'Invoice Date:', styles: { fontStyle: 'bold' } },
+                currentDate.toLocaleDateString('en-GB')
+            ],
+            [
+                { content: 'Due Date:', styles: { fontStyle: 'bold' } },
+                dueDate.toLocaleDateString('en-GB'),
+                { content: 'Terms:', styles: { fontStyle: 'bold' } },
+                'Due on Receipt'
+            ]
         ],
-        [
-          { content: 'Valid Until:', styles: { fontStyle: 'bold' } },
-          dueDate.toLocaleDateString('en-GB'),
-          { content: 'Terms:', styles: { fontStyle: 'bold' } },
-          'Custom'
-        ]
-      ],
-      styles: { cellPadding: 2 },
-      columnStyles: { 0: { fontStyle: 'bold' } }
+        styles: { cellPadding: 2 },
+        columnStyles: { 0: { fontStyle: 'bold' } }
     });
 
     // Bill To Section
@@ -168,107 +168,62 @@ const ProductModal = ({ product, onClose }) => {
     doc.text(formData.phone, 14, 113);
     doc.text(formData.location, 14, 119);
 
-    // Product Details Section
+    // Item Details Section
     doc.setFont('helvetica', 'bold');
-    doc.text('Product Details:', 14, 129);
-    const productDetailsBody = [
-      ['Component', product.component],
-      ['Suitable For', product.suitableFor],
-      ['Included Components', product.components]
+    doc.text('Item & Description', 14, 129);
+    doc.text('Qty', 120, 129);
+    doc.text('Rate', 140, 129);
+    doc.text('Amount', 170, 129);
+
+    const items = [
+        { description: '6.2kW / 48v Hybrid Inverter', qty: 1, rate: 466000.0, amount: 466000.00 },
+        { description: '5kWh Lithium Ion Battery', qty: 1, rate: 1300000.0, amount: 1300000.00 },
+        { description: '400W Monocrystalline Solar Panel', qty: 9, rate: 102000.0, amount: 918000.00 },
+        { description: 'Solar DC cable (60 of 10mm)', qty: 60, rate: 3000.0, amount: 180000.00 },
+        { description: 'Inverter Load Cable (40m of 6mm.sq)', qty: 40, rate: 1000.0, amount: 40000.00 },
+        { description: 'Solar Panel Mounting Rack System', qty: 1, rate: 50000.0, amount: 50000.00 },
+        { description: 'Battery Rack', qty: 1, rate: 25000.0, amount: 25000.00 },
+        { description: 'Installation accessories', qty: 1, rate: 210000.0, amount: 210000.00 },
+        { description: 'Labour & Professional Fee', qty: 1, rate: 90000.0, amount: 90000.00 },
+        { description: 'Transport and Logistics', qty: 1, rate: 40000.0, amount: 40000.00 }
     ];
-    doc.autoTable({
-      startY: 135,
-      body: productDetailsBody,
-      theme: 'plain',
-      styles: { fontSize: 10 },
-      columnStyles: { 
-        0: { cellWidth: 50, fontStyle: 'bold' },
-        1: { cellWidth: 130 }
-      }
+
+    let startY = 135;
+    items.forEach(item => {
+        doc.setFont('helvetica', 'normal');
+        doc.setFontSize(10);
+        doc.text(item.description, 14, startY);
+        doc.text(item.qty.toString(), 120, startY);
+        doc.text(item.rate.toLocaleString(), 140, startY);
+        doc.text(item.amount.toLocaleString(), 170, startY);
+        startY += 6;
     });
 
-    // Appliances Section
+    // Sub Total and Total
     doc.setFont('helvetica', 'bold');
-    doc.text('System Components:', 14, doc.previousAutoTable.finalY + 10);
-    const appliancesBody = [
-      ['Solar Panels', product.appliances.appliance1],
-      ['Inverter', product.appliances.appliance2],
-      ['Battery', product.appliances.appliance3],
-      ['Controller', product.appliances.appliance4]
-    ];
-    doc.autoTable({
-      startY: doc.previousAutoTable.finalY + 16,
-      body: appliancesBody,
-      theme: 'plain',
-      styles: { fontSize: 10 },
-      columnStyles: { 
-        0: { cellWidth: 50, fontStyle: 'bold' },
-        1: { cellWidth: 130 }
-      }
-    });
+    doc.text('Sub Total', 140, startY + 10);
+    doc.text('NGN3,319,000.00', 170, startY + 10);
+    doc.text('Total', 140, startY + 16);
+    doc.text('NGN3,319,000.00', 170, startY + 16);
 
-    // Financial Details
-    doc.setFont('helvetica', 'bold');
-    doc.text('Financial Details:', 14, doc.previousAutoTable.finalY + 10);
-    const financialBody = [
-      ['Outright Payment', `₦${product.OutrightPayment.toLocaleString()}`],
-      ['Monthly Repayment Total', `₦${product.monthlyRepaymentTotal.toLocaleString()}`],
-      ['First Down Payment', `₦${product.monthlyRepaymentFirstDown.toLocaleString()}`],
-      ['Monthly Repayment', `₦${product.monthlyRepayment.toLocaleString()}`],
-      ['Payback Period', `${product.payBackPeriod} Years`]
-    ];
-    doc.autoTable({
-      startY: doc.previousAutoTable.finalY + 16,
-      body: financialBody,
-      theme: 'plain',
-      styles: { fontSize: 10 },
-      columnStyles: { 
-        0: { cellWidth: 80, fontStyle: 'bold' },
-        1: { cellWidth: 100 }
-      }
-    });
-
-    // Environmental Impact
-    doc.setFont('helvetica', 'bold');
-    doc.text('Environmental Impact:', 14, doc.previousAutoTable.finalY + 10);
-    const environmentBody = [
-      ['Annual Fuel Savings', `₦${product.annualFuelSavings.toLocaleString()}`],
-      ['Litres of Fuel Saved', `${product.litresSaved.toLocaleString()} Litres`]
-    ];
-    doc.autoTable({
-      startY: doc.previousAutoTable.finalY + 16,
-      body: environmentBody,
-      theme: 'plain',
-      styles: { fontSize: 10 },
-      columnStyles: { 
-        0: { cellWidth: 80, fontStyle: 'bold' },
-        1: { cellWidth: 100 }
-      }
-    });
-
-    // Maintenance and Warranty
-    doc.setFont('helvetica', 'bold');
-    doc.text('Maintenance & Warranty:', 14, doc.previousAutoTable.finalY + 10);
+    // Notes and Bank Details
     doc.setFont('helvetica', 'normal');
-    doc.text(product.postMaintanace, 14, doc.previousAutoTable.finalY + 16, {
-      maxWidth: 180,
-      fontSize: 10
-    });
+    doc.setFontSize(10);
+    doc.text('Notes:', 14, startY + 30);
+    doc.text('Bank details:', 14, startY + 36);
+    doc.text('Account Number: 8839247019', 14, startY + 42);
+    doc.text('Account Name: Prosolar Multiservices Limited', 14, startY + 48);
+    doc.text('Bank Name: FCMB', 14, startY + 54);
 
-    // Payment Terms
-    doc.setFontSize(8);
-    doc.text('Payment Terms:', 14, doc.previousAutoTable.finalY + 40);
-    doc.text('- Client is to make 90% down payment', 14, doc.previousAutoTable.finalY + 44);
-    doc.text('- 10% balance within 72 hours after completion of project', 14, doc.previousAutoTable.finalY + 48);
-
-    // Bank Details
-    doc.text('Bank Details:', 14, doc.previousAutoTable.finalY + 56);
-    doc.text('Account Number: 8839247019', 14, doc.previousAutoTable.finalY + 60);
-    doc.text('Account Name: Prosolar Multiservices Limited', 14, doc.previousAutoTable.finalY + 64);
-    doc.text('Bank Name: FCMB', 14, doc.previousAutoTable.finalY + 68);
+    // Terms & Conditions
+    doc.text('Terms & Conditions:', 14, startY + 60);
+    doc.text('Manufacturer\'s Warranty terms and conditions applies.', 14, startY + 66);
+    doc.text('Backup time from the batteries is dependent on the load on the system. Lower loads provides higher backup time.', 14, startY + 72);
+    doc.text('Prosolar Energy will provide 1 Year post installation maintenance for FREE.', 14, startY + 78);
+    doc.text('NOTE: Client is to make 90% down payment and 10% balance within 72 hours after completion of project.', 14, startY + 84);
 
     return doc.output('blob');
-  };
+};
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
