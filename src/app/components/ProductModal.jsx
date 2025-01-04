@@ -3,7 +3,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { jsPDF } from 'jspdf';
 import 'jspdf-autotable';
-
+import ZohoForm from './Zohoform';
 const ProductModal = ({ product, onClose }) => {
   const modalRef = useRef();
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -284,7 +284,7 @@ const ProductModal = ({ product, onClose }) => {
         </button>
 
         <h2 className="lg:text-3xl font-semibold text-center my-6">Let's Get You Started</h2>
-
+<ZohoForm />
         {/* Zoho Webform */}
         <div id="crmWebToEntityForm" className="bg-white text-black max-w-[600px] mx-auto p-6">
           <meta name="viewport" content="width=device-width, initial-scale=1.0" />
