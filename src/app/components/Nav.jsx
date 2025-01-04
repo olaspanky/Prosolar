@@ -168,7 +168,7 @@ export default function Header() {
               </div>
             ))}
             <Link
-              href="/pages/contact"
+              href="/solar/contact"
               className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-[#292ECF] hover:bg-blue-700 transition-colors"
             >
               Ask for Quote
