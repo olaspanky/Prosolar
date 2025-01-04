@@ -1,20 +1,11 @@
+"use client"; // Required for client-side interactivity in Next.js 14
 
-
-// export default ProductModal;
 import React, { useEffect, useRef, useState } from 'react';
 import { jsPDF } from 'jspdf';
 import 'jspdf-autotable';
 
-
 const ProductModal = ({ product, onClose }) => {
   const modalRef = useRef();
-  // const [paymentPlan, setPaymentPlan] = useState('');
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    location: '',
-  });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(null);
 
@@ -31,24 +22,28 @@ const ProductModal = ({ product, onClose }) => {
     };
   }, [onClose]);
 
-  const handleInputChange = (event) => {
-    const { id, value } = event.target;
-    setFormData((prev) => ({ ...prev, [id]: value }));
-  };
+  // Load Zoho Analytics Script
+  useEffect(() => {
+    const analyticsScript = document.createElement('script');
+    analyticsScript.id = 'wf_anal';
+    analyticsScript.src =
+      'https://crm.zohopublic.com/crm/WebFormAnalyticsServeServlet?rid=e123ec475c025efe26633f403d3a03f429a93f0adef35b04b42df57eac7c6a038572997ecadfede3cce83744c580b740gidf3800c541156da327b59bcf0f5a2077248081d4cb6e2d7847a2ba9c92c5649fegid5ec9a3e8cbe46561c24156be0ecd9c6b91a24f1ad464551d42f1043da7fe49b4gid777d2abeadff6655f3170630ae23af0d3a451ce31b44a287d5a92a2519f5686f&tw=460d8b5f12ec01fabab5d603d0fafdba80db14e9283877cb10fcda2e88743be4';
+    analyticsScript.async = true;
+    document.body.appendChild(analyticsScript);
 
-  // const handlePaymentPlanChange = (event) => {
-  //   setPaymentPlan(event.target.value);
-  // };
+    return () => {
+      document.body.removeChild(analyticsScript);
+    };
+  }, []);
 
-  const generatePDF = () => {
+  // Generate PDF for the quote
+  const generatePDF = (formData) => {
     const doc = new jsPDF();
 
     // Add Logo
     try {
       const logoImg = new Image();
       logoImg.src = '/lgo.png';
-      
-      // Wait for logo to load (synchronous approach for simplicity)
       doc.addImage(logoImg, 'PNG', 14, 10, 40, 0);
     } catch (error) {
       console.error('Logo could not be added:', error);
@@ -58,7 +53,6 @@ const ProductModal = ({ product, onClose }) => {
     doc.setFont('helvetica', 'bold');
     doc.setFontSize(18);
     doc.text('Prosolar Multiservices Limited', 105, 25, { align: 'center' });
-    
     doc.setFontSize(10);
     doc.setFont('helvetica', 'normal');
     doc.text('Suite 4, Third Floor, G Wing, Block A, Bassan Plaza,', 105, 32, { align: 'center' });
@@ -109,13 +103,11 @@ const ProductModal = ({ product, onClose }) => {
     // Product Details Section
     doc.setFont('helvetica', 'bold');
     doc.text('Product Details:', 14, 129);
-    
     const productDetailsBody = [
       ['Component', product.component],
       ['Suitable For', product.suitableFor],
       ['Included Components', product.components]
     ];
-
     doc.autoTable({
       startY: 135,
       body: productDetailsBody,
@@ -130,14 +122,12 @@ const ProductModal = ({ product, onClose }) => {
     // Appliances Section
     doc.setFont('helvetica', 'bold');
     doc.text('System Components:', 14, doc.previousAutoTable.finalY + 10);
-    
     const appliancesBody = [
       ['Solar Panels', product.appliances.appliance1],
       ['Inverter', product.appliances.appliance2],
       ['Battery', product.appliances.appliance3],
       ['Controller', product.appliances.appliance4]
     ];
-
     doc.autoTable({
       startY: doc.previousAutoTable.finalY + 16,
       body: appliancesBody,
@@ -152,7 +142,6 @@ const ProductModal = ({ product, onClose }) => {
     // Financial Details
     doc.setFont('helvetica', 'bold');
     doc.text('Financial Details:', 14, doc.previousAutoTable.finalY + 10);
-    
     const financialBody = [
       ['Outright Payment', `₦${product.OutrightPayment.toLocaleString()}`],
       ['Monthly Repayment Total', `₦${product.monthlyRepaymentTotal.toLocaleString()}`],
@@ -160,7 +149,6 @@ const ProductModal = ({ product, onClose }) => {
       ['Monthly Repayment', `₦${product.monthlyRepayment.toLocaleString()}`],
       ['Payback Period', `${product.payBackPeriod} Years`]
     ];
-
     doc.autoTable({
       startY: doc.previousAutoTable.finalY + 16,
       body: financialBody,
@@ -175,12 +163,10 @@ const ProductModal = ({ product, onClose }) => {
     // Environmental Impact
     doc.setFont('helvetica', 'bold');
     doc.text('Environmental Impact:', 14, doc.previousAutoTable.finalY + 10);
-    
     const environmentBody = [
       ['Annual Fuel Savings', `₦${product.annualFuelSavings.toLocaleString()}`],
       ['Litres of Fuel Saved', `${product.litresSaved.toLocaleString()} Litres`]
     ];
-
     doc.autoTable({
       startY: doc.previousAutoTable.finalY + 16,
       body: environmentBody,
@@ -195,7 +181,6 @@ const ProductModal = ({ product, onClose }) => {
     // Maintenance and Warranty
     doc.setFont('helvetica', 'bold');
     doc.text('Maintenance & Warranty:', 14, doc.previousAutoTable.finalY + 10);
-    
     doc.setFont('helvetica', 'normal');
     doc.text(product.postMaintanace, 14, doc.previousAutoTable.finalY + 16, {
       maxWidth: 180,
@@ -217,11 +202,11 @@ const ProductModal = ({ product, onClose }) => {
     return doc.output('blob');
   };
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+  // Handle Zoho form submission
+  const handleZohoSubmit = async (formData) => {
     setIsSubmitting(true);
 
-    const pdfBlob = generatePDF();
+    const pdfBlob = generatePDF(formData);
 
     const reader = new FileReader();
     reader.onloadend = async () => {
@@ -232,11 +217,7 @@ const ProductModal = ({ product, onClose }) => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          phone: formData.phone,
-          location: formData.location,
-          // paymentPlan,
+          ...formData,
           product,
           pdfBlob: pdfBase64,
         }),
@@ -262,7 +243,7 @@ const ProductModal = ({ product, onClose }) => {
       <div ref={modalRef} className="bg-white rounded-lg shadow-lg max-w-lg w-full lg:p-8 p-2 m-2 relative">
         <button
           onClick={onClose}
-          className="absolute top-1 right-1  lg:top-4 lg:right-4 text-red-500 hover:text-gray-700 focus:outline-none"
+          className="absolute top-1 right-1 lg:top-4 lg:right-4 text-red-500 hover:text-gray-700 focus:outline-none"
           aria-label="Close"
         >
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" className="w-6 h-6">
@@ -271,97 +252,74 @@ const ProductModal = ({ product, onClose }) => {
         </button>
 
         <h2 className="lg:text-3xl font-semibold text-center my-6">Let's Get You Started</h2>
-        <form className="space-y-4" onSubmit={handleSubmit}>
-          <div>
-            <label htmlFor="name" className="block text-sm font-medium text-gray-700">
-              Full Name
-            </label>
-            <input
-              id="name"
-              type="text"
-              placeholder="Enter your full name"
-              value={formData.name}
-              onChange={handleInputChange}
-              className="mt-1 block w-full border border-gray-300 rounded-md p-2 shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-            />
-          </div>
-          <div>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-              Email
-            </label>
-            <input
-              id="email"
-              type="email"
-              placeholder="Enter your email"
-              value={formData.email}
-              onChange={handleInputChange}
-              className="mt-1 block w-full border border-gray-300 rounded-md p-2 shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-            />
-          </div>
-          <div>
-            <label htmlFor="phone" className="block text-sm font-medium text-gray-700">
-              Phone Number
-            </label>
-            <input
-              id="phone"
-              type="tel"
-              placeholder="Enter your phone number"
-              value={formData.phone}
-              onChange={handleInputChange}
-              className="mt-1 block w-full border border-gray-300 rounded-md p-2 shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-            />
-          </div>
-          <div>
-            <label htmlFor="location" className="block text-sm font-medium text-gray-700">
-              Location/City
-            </label>
-            <input
-              id="location"
-              type="text"
-              placeholder="Enter your location"
-              value={formData.location}
-              onChange={handleInputChange}
-              className="mt-1 block w-full border border-gray-300 rounded-md p-2 shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-            />
-          </div>
-          {/* <div>
-            <label className="block text-sm font-medium text-gray-700">Payment Plan</label>
-            <div className="flex space-x-4">
-              <label className="inline-flex items-center">
-                <input
-                  type="radio"
-                  name="paymentPlan"
-                  value="Outright Payment"
-                  checked={paymentPlan === 'Outright Payment'}
-                  onChange={handlePaymentPlanChange}
-                  className="form-radio"
-                />
-                <span className="ml-2">Outright Payment</span>
-              </label>
-              <label className="inline-flex items-center">
-                <input
-                  type="radio"
-                  name="paymentPlan"
-                  value="Pay Small Small"
-                  checked={paymentPlan === 'Pay Small Small'}
-                  onChange={handlePaymentPlanChange}
-                  className="form-radio"
-                />
-                <span className="ml-2">Pay Small Small</span>
-              </label>
-            </div>
-          </div> */}
-          <button
-            type="submit"
-            className={`w-full py-2 px-4 text-white rounded-md focus:outline-none ${
-              isSubmitting ? 'bg-gray-500' : 'bg-indigo-600 hover:bg-indigo-700'
-            }`}
-            disabled={isSubmitting}
-          >
-            {isSubmitting ? 'Submitting...' : 'Submit'}
-          </button>
-        </form>
 
+        {/* Zoho Webform */}
+        <div id="crmWebToEntityForm" className="bg-white text-black max-w-[600px] mx-auto p-6">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+          <meta httpEquiv="content-type" content="text/html;charset=UTF-8" />
+
+          <div id="wf_splash" className="fixed top-5 left-1/2 transform -translate-x-1/2 bg-green-50 border border-green-300 rounded-lg p-3 hidden">
+            <div className="bg-green-500 rounded-full w-5 h-5 flex items-center justify-center mr-2">
+              <div className="w-1.5 h-2 border-b-2 border-r-2 border-white transform rotate-45"></div>
+            </div>
+            <span id="wf_splash_info"></span>
+          </div>
+
+          <form
+            id="webform5131685000001937009"
+            name="WebToLeads5131685000001937009"
+            acceptCharset="UTF-8"
+            onSubmit={(e) => {
+              e.preventDefault();
+              const formData = new FormData(e.target);
+              const data = Object.fromEntries(formData.entries());
+              handleZohoSubmit(data);
+            }}
+          >
+            <input type="hidden" name="xnQsjsdp" value="1a0b7e50c5972d6838d569fd4b6f31d6c950ef7f537673c9daaae68a3837c11a" />
+            <input type="hidden" name="zc_gad" id="zc_gad" value="" />
+            <input type="hidden" name="xmIwtLD" value="596dba562e6ff5fdd33cc7d879cca8066f3160183ee624464bb444967ea812bf24dadc2db81d9bcea9fdc3ce6c9519d5" />
+            <input type="hidden" name="actionType" value="TGVhZHM=" />
+            <input type="hidden" name="returnURL" value="null" />
+
+            <div className="text-black font-bold mb-4">Test</div>
+
+            <div className="mb-4">
+              <label htmlFor="Last_Name" className="block text-sm font-medium mb-1">Full Name<span className="text-red-500">*</span></label>
+              <input type="text" id="Last_Name" name="Last Name" required className="w-full p-2 border border-gray-300 rounded" />
+            </div>
+
+            <div className="mb-4">
+              <label htmlFor="Email" className="block text-sm font-medium mb-1">Email</label>
+              <input type="email" id="Email" name="Email" className="w-full p-2 border border-gray-300 rounded" />
+            </div>
+
+            <div className="mb-4">
+              <label htmlFor="Mobile" className="block text-sm font-medium mb-1">Mobile</label>
+              <input type="tel" id="Mobile" name="Mobile" className="w-full p-2 border border-gray-300 rounded" />
+            </div>
+
+            <div className="mb-4">
+              <label htmlFor="City" className="block text-sm font-medium mb-1">City</label>
+              <input type="text" id="City" name="City" className="w-full p-2 border border-gray-300 rounded" />
+            </div>
+
+            <div className="flex gap-2">
+              <button
+                type="submit"
+                className={`w-full py-2 px-4 text-white rounded-md focus:outline-none ${
+                  isSubmitting ? 'bg-gray-500' : 'bg-indigo-600 hover:bg-indigo-700'
+                }`}
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? 'Submitting...' : 'Submit'}
+              </button>
+              <button type="reset" className="bg-gray-500 text-white px-4 py-2 rounded">Reset</button>
+            </div>
+          </form>
+        </div>
+
+        {/* Success and Error Modals */}
         {isSuccess === true && (
           <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
             <div className="bg-gradient-to-r bg-[#292ECF] text-white text-center p-8 rounded-xl shadow-2xl max-w-md w-full">
