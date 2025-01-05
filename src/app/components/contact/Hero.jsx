@@ -2,6 +2,7 @@ import React from "react";
 import Form from "../Form"
 import data from "../data"
 import products from "../data";
+import ZohoForm from "../ZohoContacts";
 export const Hero = () => {
   const  products = data
   return (
