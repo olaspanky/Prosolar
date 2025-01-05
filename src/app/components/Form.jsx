@@ -8,7 +8,6 @@ import { FaFacebookF } from "react-icons/fa";
 import { FaLinkedin } from 'react-icons/fa';
 import { FaEnvelope } from 'react-icons/fa'; // Import the envelope icon
 import { m, motion, Variants } from 'framer-motion';
-import ZohoForm from './ZohoContacts';
 
 
 
@@ -92,8 +91,6 @@ export const Hero = () => {
     <div className='col-span-8'>
     <div className="mx-auto p-2 lg:px-20 2xl:px-36">
       <form onSubmit={formik.handleSubmit}>
-      <ZohoForm/>
-
         <div className="mb-4">
           <label className="block text-gray-700">Name *</label>
           <div className="flex space-x-4">
