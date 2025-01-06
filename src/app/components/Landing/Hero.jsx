@@ -61,6 +61,11 @@ export const Hero = () => {
 
   return (
     <div className="xl:px-12  text-black">
+<div className="lg:p-5 p-2">
+<Conver/>
+
+</div>
+
       <div className="bg-[#F9F9F9] p-1 lg:p-9 xl:rounded-[64px]">
         <div className="container max-w-[1440px] mx-auto  gap-3 md:flex-row items-center justify-between ">
           <h1 className="text-xl  lg:text-6xl leading-normal text-yellow-300 text-center font-syne my-2">
