@@ -1,4 +1,5 @@
 import React from 'react';
+import Converse from './Converse';
 
 const steps = [
   {
@@ -44,6 +45,7 @@ const ProcessSteps = () => {
         ))}
       </div>
       </div>
+      <Converse/>
     </div>
   );
 };

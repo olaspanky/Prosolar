@@ -2,7 +2,7 @@
 import React from "react";
 import Slider from "react-slick";
 import Image from "next/image";
-
+import Converse from "./Converse";
 export default function SliderComponent({ title, description, slides, settings }) {
   const customSettings = {
     dots: true,
@@ -18,7 +18,8 @@ export default function SliderComponent({ title, description, slides, settings }
   };
 
   return (
-    <div className="flex flex-col lg:flex-row  lg:p-10 bg-gray-100 rounded-lg">
+    <div className="lg:p-10 bg-gray-100 rounded-lg">
+    <div className="flex flex-col lg:flex-row  ">
       <div className="container max-w-[1344px] mx-auto flex flex-col lg:flex-row lg:p-10">
         
         {/* Left Side */}
@@ -44,6 +45,8 @@ export default function SliderComponent({ title, description, slides, settings }
           </Slider>
         </div>
       </div>
+
+      
       {/* Custom Dot Lines Under Description */}
     
 <style>{`
@@ -70,6 +73,9 @@ export default function SliderComponent({ title, description, slides, settings }
   }
 `}</style>
      
+    </div>
+    <Converse/>
+
     </div>
   );
 }

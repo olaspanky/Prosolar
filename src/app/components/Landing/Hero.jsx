@@ -17,6 +17,8 @@ import slide2 from "../../../../public/workers/ps2.png";
 import slide3 from "../../../../public/workers/ps3.png";
 import slide4 from "../../../../public/workers/ps4.png";
 import ProcessSteps from "../Process";
+import Conver from "../Converse"; 
+
 
 export const Hero = () => {
   const sliderSettings = {
@@ -100,6 +102,7 @@ export const Hero = () => {
               </div>
             </div>
           </div>
+          <Conver/>
         </div>
       </div>
 
