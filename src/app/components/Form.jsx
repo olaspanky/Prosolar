@@ -41,10 +41,29 @@ export const Hero = () => {
           contactMethod: '',
         },
         validationSchema,
-        onSubmit: values => {
-          
-          console.log(values);
-          // Handle form submission
+        onSubmit: async (values) => {
+          try {
+            const response = await fetch("/api/submitLead", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(values),
+            });
+    
+            if (response.ok) {
+              const result = await response.json();
+              console.log("Form submission successful:", result);
+              alert("Form submitted successfully!");
+              formik.resetForm(); // Reset the form after submission
+            } else {
+              console.error("Form submission failed:", response.statusText);
+              alert("Failed to submit form. Please try again.");
+            }
+          } catch (error) {
+            console.error("Error submitting form:", error);
+            alert("An error occurred. Please try again.");
+          }
         },
       });
   return (
@@ -249,9 +268,12 @@ export const Hero = () => {
             />
         </div>
         
-        <button type="submit" className="w-full bg-[#292ECF] text-white p-2 rounded-xl hover:bg-blue-600">
-          Submit
-        </button>
+        <button
+                type="submit"
+                className="w-full bg-[#292ECF] text-white p-2 rounded-xl hover:bg-blue-600"
+              >
+                Submit
+              </button>
       </form>
     </div>
     </div>
