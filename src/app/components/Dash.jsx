@@ -290,8 +290,8 @@ Edit Packages          </h1>
 
           {/* Modal for Editing Package */}
           {showEditModal && (
-            <div className="fixed inset-0 bg-gray-500 bg-opacity-50 flex items-center justify-center z-50">
-              <div className="bg-white p-8 rounded-lg w-full max-w-2xl">
+            <div className="fixed inset-0 bg-gray-500 bg-opacity-50 flex items-center justify-center z-50 overflow-auto">
+              <div className="bg-white p-8 rounded-lg w-full max-w-2xl overflow-auto">
                 <h2 className="text-2xl font-bold mb-6 text-gray-800">
                   Editing: {editingPackage.component}
                 </h2>
