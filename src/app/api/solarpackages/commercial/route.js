@@ -5,19 +5,42 @@ import { ObjectId } from 'mongodb'; // Add this import
 
 
 
+// export async function GET() {
+//   try {
+//     const client = await clientPromise;
+//     const db = client.db("solarApp");
+
+//     const commercialPackages = await db
+//       .collection("commercialPackages")
+//       .find({})
+//       .toArray(); // Fetch data from the "commercialPackages" collection
+
+//     // Set Cache-Control headers for revalidation
+//     const response = NextResponse.json(commercialPackages);
+//     response.headers.set("Cache-Control", "s-maxage=1, stale-while-revalidate=59");
+
+//     return response;
+//   } catch (error) {
+//     return NextResponse.json({ error: error.message }, { status: 500 });
+//   }
+// }
+
 export async function GET() {
   try {
     const client = await clientPromise;
     const db = client.db("solarApp");
 
+    // Fetch the most recent data from the database
     const commercialPackages = await db
       .collection("commercialPackages")
       .find({})
-      .toArray(); // Fetch data from the "commercialPackages" collection
+      .toArray();
 
-    // Set Cache-Control headers for revalidation
+    // Create a JSON response
     const response = NextResponse.json(commercialPackages);
-    response.headers.set("Cache-Control", "s-maxage=1, stale-while-revalidate=59");
+
+    // Disable caching entirely
+    response.headers.set("Cache-Control", "no-store, max-age=0");
 
     return response;
   } catch (error) {

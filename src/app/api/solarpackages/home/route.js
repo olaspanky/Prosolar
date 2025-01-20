@@ -17,7 +17,8 @@ export async function GET() {
 
     // Set Cache-Control headers for revalidation
     const response = NextResponse.json(commercialPackages);
-    response.headers.set("Cache-Control", "s-maxage=1, stale-while-revalidate=59");
+    response.headers.set("Cache-Control", "no-store, max-age=0");
+
 
     return response;
   } catch (error) {

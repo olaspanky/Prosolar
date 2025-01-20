@@ -1,3 +1,4 @@
+'use client'
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import ProductModal from './ProductModal';
@@ -76,24 +77,28 @@ const SolarProductCard = ({ pathname }) => {
         ? '/api/solarpackages/commercial'
         : '/api/solarpackages/home';
   
-      const res = await fetch(apiUrl);
+      // Add a cache-busting query parameter to the URL
+      const timestamp = Date.now(); // Unique value for each request
+      const urlWithCacheBusting = `${apiUrl}?cache=${timestamp}`;
+  
+      // Fetch data with cache disabled
+      const res = await fetch(urlWithCacheBusting, {
+        cache: 'no-store', // Force the browser to bypass its cache
+      });
   
       if (!res.ok) throw new Error("Failed to fetch products");
   
       const data = await res.json();
-      setProducts(data);
+      setProducts(data); // Update state with fresh data
   
-      localStorage.setItem(
-        currentPath === '/solar/scs' ? 'commercialProducts' : 'homeProducts',
-        JSON.stringify(data)
-      );
+      // Optionally, you can remove localStorage caching to avoid stale data
+      // localStorage.removeItem(currentPath === '/solar/scs' ? 'commercialProducts' : 'homeProducts');
     } catch (err) {
       console.error("Error fetching products:", err);
     } finally {
       setIsLoading(false); // Always reset loading state
     }
   };
-  
 
   console.log("products are", products)
   
