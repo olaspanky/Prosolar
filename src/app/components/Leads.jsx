@@ -14,23 +14,32 @@ export default function Users() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch('/api/getLeads')
-      .then((response) => {
+    const fetchLeads = async () => {
+      try {
+        const response = await fetch('/api/getLeads', {
+          cache: 'no-store',
+          headers: {
+            'Pragma': 'no-cache',
+            'Cache-Control': 'no-cache'
+          }
+        });
+  
         if (!response.ok) {
-          throw new Error('Failed to fetch data');
+          throw new Error(`HTTP error! status: ${response.status}`);
         }
-        return response.json();
-      })
-      .then((data) => {
+  
+        const data = await response.json();
         console.log('Data fetched successfully:', data);
         setUsers(data);
-        setLoading(false);
-      })
-      .catch((error) => {
+      } catch (error) {
         console.error('Error fetching data:', error);
         setError(error.message);
+      } finally {
         setLoading(false);
-      });
+      }
+    };
+  
+    fetchLeads();
   }, []);
 
   const columns = [
