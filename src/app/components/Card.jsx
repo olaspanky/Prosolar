@@ -1,4 +1,3 @@
-'use client'
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import ProductModal from './ProductModal';
@@ -53,52 +52,37 @@ const SolarProductCard = ({ pathname }) => {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
-
   useEffect(() => {
-    setIsLoading(true);
-    const currentPath = window.location.pathname;
-  
-    const storedProducts = localStorage.getItem(
-      currentPath === '/solar/scs' ? 'commercialProducts' : 'homeProducts'
-    );
-  
-    if (storedProducts) {
-      setProducts(JSON.parse(storedProducts));
-      setIsLoading(false);
-    } else {
-      fetchProducts(currentPath);
-    }
+    const fetchProducts = async () => {
+      setIsLoading(true);
+      try {
+        const currentPath = window.location.pathname;
+        const apiUrl = currentPath === '/solar/scs'
+          ? '/api/solarpackages/commercial'
+          : '/api/solarpackages/home';
+
+        const res = await fetch(apiUrl, {
+          cache: 'no-store',
+          headers: {
+            'Pragma': 'no-cache',
+            'Cache-Control': 'no-cache'
+          }
+        });
+
+        if (!res.ok) throw new Error("Failed to fetch products");
+
+        const data = await res.json();
+        setProducts(data);
+      } catch (err) {
+        console.error("Error fetching products:", err);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchProducts();
   }, []);
   
-  const fetchProducts = async (currentPath) => {
-    setIsLoading(true); // Set loading state before fetching
-    try {
-      const apiUrl = currentPath === '/solar/scs'
-        ? '/api/solarpackages/commercial'
-        : '/api/solarpackages/home';
-  
-      // Add a cache-busting query parameter to the URL
-      const timestamp = Date.now(); // Unique value for each request
-      const urlWithCacheBusting = `${apiUrl}?cache=${timestamp}`;
-  
-      // Fetch data with cache disabled
-      const res = await fetch(urlWithCacheBusting, {
-        cache: 'no-store', // Force the browser to bypass its cache
-      });
-  
-      if (!res.ok) throw new Error("Failed to fetch products");
-  
-      const data = await res.json();
-      setProducts(data); // Update state with fresh data
-  
-      // Optionally, you can remove localStorage caching to avoid stale data
-      // localStorage.removeItem(currentPath === '/solar/scs' ? 'commercialProducts' : 'homeProducts');
-    } catch (err) {
-      console.error("Error fetching products:", err);
-    } finally {
-      setIsLoading(false); // Always reset loading state
-    }
-  };
 
   console.log("products are", products)
   
