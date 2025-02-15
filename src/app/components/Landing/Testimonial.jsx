@@ -5,37 +5,38 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Image from "next/image";
 import t1 from "../../../../public/assets/t1.png"
+import owolabi from "../../../../public/testimonial/owolabi.jpeg"
 
 const testimonials = [
   {
-    quote: "Pro Solar made going solar a breeze! From consultation to installation, their team was top-notch. My bills have dropped, and I m loving the green energy. Highly recommend!.",
-    author: "John Doe",
+    quote: "Pro Solar made going solar a breeze! From consultation to installation, their team was top-notch. My bills have dropped, and I am loving the green energy. Highly recommend!.",
+    author: "Devreemz",
     title: "CEO, Company",
-    image: "/path/to/image1.jpg",
+    image: t1,
   },
   {
-    quote: "Excellent customer service and exceptional quality. Pro Solar made going solar a breeze! From consultation to installation, their team was top-notch. My bills have dropped, and I am loving the green energy. Highly recommend!.",
-    author: "Jane Smith",
+    quote: "The company’s exceptional service, commitment to quality, and customer-centered approach have made all the difference. Thank you, ProSolar Energy, for providing not just a product but a solution that has truly transformed our lives. I highly recommend them to anyone looking to embrace a sustainable and reliable energy future with Prosolar energy!.",
+    author: "Mrs Owolabi",
     title: "Manager, Business",
-    image: "/path/to/image2.jpg",
+    image: owolabi,
   },
   {
     quote: "I would highly recommend this to anyone! Pro Solar made going solar a breeze! From consultation to installation, their team was top-notch. My bills have dropped, and I am loving the green energy. Highly recommend!.",
     author: "Mike Johnson",
     title: "Developer, Tech Co.",
-    image: "/path/to/image3.jpg",
+    image: t1,
   },
   {
     quote: "Fantastic experience, will buy again. Pro Solar made going solar a breeze! From consultation to installation, their team was top-notch. My bills have dropped, and I am loving the green energy. Highly recommend!.",
     author: "Alice Brown",
     title: "Director, Firm",
-    image: "/path/to/image4.jpg",
+    image: t1,
   },
   {
     quote: "High quality and fast delivery. Pro Solar made going solar a breeze! From consultation to installation, their team was top-notch. My bills have dropped, and I am loving the green energy. Highly recommend!.",
     author: "Tom Wilson",
     title: "Owner, Store",
-    image: "/path/to/image5.jpg",
+    image: t1,
   },
 ];
 
@@ -78,8 +79,8 @@ const Testimonials = () => {
         {testimonials.map((testimonial, index) => (
           <div key={index} className=" p-2  xl:p-9 h-auto flex justify-center items-center ">
             <div className="rounded-2xl flex flex-col gap-3 bg-[#282828] p-2 mb-9 lg:mb-aut0 lg:p-9 mt-[25%] text-[#D9D9D9] ">
-            <div className="mt-[-20%]">
-                <Image src={t1} className="w-20"/>
+            <div className="rounded-full w-20 h-20">
+            <Image src={testimonial.image} alt={`Testimonial by ${testimonial.author}`} className="w-20 rounded-full h-auto" />
             </div>
             <p className="font-jak">{testimonial.quote}</p>
             <h3 className=" italic ">{testimonial.author}</h3>

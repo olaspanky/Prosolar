@@ -17,7 +17,6 @@ import slide2 from "../../../../public/workers/ps2.png";
 import slide3 from "../../../../public/workers/ps3.png";
 import slide4 from "../../../../public/workers/ps4.png";
 import ProcessSteps from "../Process";
-import Conver from "../Converse"; 
 
 
 export const Hero = () => {
@@ -62,7 +61,6 @@ export const Hero = () => {
   return (
     <div className="xl:px-12  text-black">
 <div className="lg:p-5 p-2">
-<Conver/>
 
 </div>
 
@@ -107,7 +105,6 @@ export const Hero = () => {
               </div>
             </div>
           </div>
-          <Conver/>
         </div>
       </div>
 
