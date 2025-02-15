@@ -8,7 +8,6 @@ import {
   flexRender,
 } from '@tanstack/react-table';
 import Nav from "@/app/components/Nav";
-
 export default function Users() {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);

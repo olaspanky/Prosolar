@@ -152,13 +152,56 @@ const ProductModal = ({ product, onClose, plan }) => {
     }
   };
 
+  // const handleSubmit = async (event) => {
+  //   event.preventDefault();
+  //   setIsSubmitting(true);
+
+  //   try {
+  //     const pdfBlob = generatePDF(formData);
+
+  //     const reader = new FileReader();
+  //     reader.onloadend = async () => {
+  //       const pdfBase64 = reader.result.split(',')[1];
+  //       const response = await fetch('/api/submitForm', {
+  //         method: 'POST',
+  //         headers: {
+  //           'Content-Type': 'application/json',
+  //         },
+  //         body: JSON.stringify({
+  //           ...formData,
+  //           product,
+  //           paymentPlan: plan,
+  //           pdfBlob: pdfBase64,
+  //         }),
+  //       });
+
+  //       setIsSubmitting(false);
+
+  //       if (response.ok) {
+  //         setIsSuccess(true);
+  //         setTimeout(() => {
+  //           onClose();
+  //           setIsSuccess(null);
+  //         }, 10000);
+  //       } else {
+  //         setIsSuccess(false);
+  //       }
+  //     };
+  //     reader.readAsDataURL(pdfBlob);
+  //   } catch (error) {
+  //     console.error('Error submitting form:', error);
+  //     setIsSubmitting(false);
+  //     setIsSuccess(false);
+  //   }
+  // };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     setIsSubmitting(true);
-
+  
     try {
       const pdfBlob = generatePDF(formData);
-
+  
       const reader = new FileReader();
       reader.onloadend = async () => {
         const pdfBase64 = reader.result.split(',')[1];
@@ -174,15 +217,12 @@ const ProductModal = ({ product, onClose, plan }) => {
             pdfBlob: pdfBase64,
           }),
         });
-
+  
         setIsSubmitting(false);
-
+  
         if (response.ok) {
-          setIsSuccess(true);
-          setTimeout(() => {
-            onClose();
-            setIsSuccess(null);
-          }, 10000);
+          // Redirect to the thank you page
+          window.location.href = '/solar/thank-you';
         } else {
           setIsSuccess(false);
         }
@@ -194,6 +234,7 @@ const ProductModal = ({ product, onClose, plan }) => {
       setIsSuccess(false);
     }
   };
+  
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
