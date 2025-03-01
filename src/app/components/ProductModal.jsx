@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { jsPDF } from 'jspdf';
-import 'jspdf-autotable';
+import { jsPDF } from 'jspdf'; // ESM import
+import autoTable from 'jspdf-autotable'; // Direct import instead of require
 
 const ProductModal = ({ product, onClose, plan }) => {
   const modalRef = useRef();
@@ -37,7 +37,7 @@ const ProductModal = ({ product, onClose, plan }) => {
     try {
       // Add Logo
       const logoImg = new Image();
-      logoImg.src = '/logo.png'; // Ensure the logo path is correct
+      logoImg.src = '/logo.png'; // Ensure this is in /public/logo.png
       doc.addImage(logoImg, 'PNG', 14, 10, 40, 20);
 
       // Company Header
@@ -63,7 +63,7 @@ const ProductModal = ({ product, onClose, plan }) => {
 
       doc.setFont('helvetica', 'normal');
       doc.setFontSize(10);
-      doc.autoTable({
+      autoTable(doc, {
         startY: 65,
         theme: 'plain',
         body: [
@@ -86,10 +86,10 @@ const ProductModal = ({ product, onClose, plan }) => {
 
       // Bill To Section
       doc.text('Bill To:', 14, 95);
-      doc.text(formData?.name, 14, 101);
-      doc.text(formData?.email, 14, 107);
-      doc.text(formData?.phone, 14, 113);
-      doc.text(formData?.location, 14, 119);
+      doc.text(formData?.name || '', 14, 101);
+      doc.text(formData?.email || '', 14, 107);
+      doc.text(formData?.phone || '', 14, 113);
+      doc.text(formData?.location || '', 14, 119);
 
       // Item Details Section
       doc.setFont('helvetica', 'bold');
@@ -152,56 +152,13 @@ const ProductModal = ({ product, onClose, plan }) => {
     }
   };
 
-  // const handleSubmit = async (event) => {
-  //   event.preventDefault();
-  //   setIsSubmitting(true);
-
-  //   try {
-  //     const pdfBlob = generatePDF(formData);
-
-  //     const reader = new FileReader();
-  //     reader.onloadend = async () => {
-  //       const pdfBase64 = reader.result.split(',')[1];
-  //       const response = await fetch('/api/submitForm', {
-  //         method: 'POST',
-  //         headers: {
-  //           'Content-Type': 'application/json',
-  //         },
-  //         body: JSON.stringify({
-  //           ...formData,
-  //           product,
-  //           paymentPlan: plan,
-  //           pdfBlob: pdfBase64,
-  //         }),
-  //       });
-
-  //       setIsSubmitting(false);
-
-  //       if (response.ok) {
-  //         setIsSuccess(true);
-  //         setTimeout(() => {
-  //           onClose();
-  //           setIsSuccess(null);
-  //         }, 10000);
-  //       } else {
-  //         setIsSuccess(false);
-  //       }
-  //     };
-  //     reader.readAsDataURL(pdfBlob);
-  //   } catch (error) {
-  //     console.error('Error submitting form:', error);
-  //     setIsSubmitting(false);
-  //     setIsSuccess(false);
-  //   }
-  // };
-
   const handleSubmit = async (event) => {
     event.preventDefault();
     setIsSubmitting(true);
-  
+
     try {
       const pdfBlob = generatePDF(formData);
-  
+
       const reader = new FileReader();
       reader.onloadend = async () => {
         const pdfBase64 = reader.result.split(',')[1];
@@ -217,11 +174,10 @@ const ProductModal = ({ product, onClose, plan }) => {
             pdfBlob: pdfBase64,
           }),
         });
-  
+
         setIsSubmitting(false);
-  
+
         if (response.ok) {
-          // Redirect to the thank you page
           window.location.href = '/solar/thank-you';
         } else {
           setIsSuccess(false);
@@ -234,15 +190,16 @@ const ProductModal = ({ product, onClose, plan }) => {
       setIsSuccess(false);
     }
   };
-  
 
+  // Rest of your component (form UI, success/failure modals) remains unchanged
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
       <div ref={modalRef} className="bg-white rounded-lg shadow-lg max-w-lg w-full lg:p-8 p-2 m-2 relative">
         <button
           onClick={onClose}
           className="absolute top-1 right-1 lg:top-4 lg:right-4 text-red-500 hover:text-gray-700 focus:outline-none"
-          aria-label="Close" inert
+          aria-label="Close"
+          inert
         >
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" className="w-6 h-6">
             <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />

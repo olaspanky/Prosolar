@@ -61,7 +61,7 @@ export const Hero = () => {
       <p className="text-xl">Check out our Litium-ion Battery packages</p>
 
 <button className='rounded-xl bg-[#292ECF] text-center  text-white p-2 text-xs lg:text-md font-bold'>G0</button> </a>
-    <a href="/solar/contact" className="text-[#787878] flex gap-5">
+    <a href="/pages/contact" className="text-[#787878] flex gap-5">
 
       <p className="text-xl">Get a custom Quote</p>
 
