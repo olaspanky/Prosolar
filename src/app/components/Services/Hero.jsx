@@ -22,7 +22,7 @@ export const Hero = () => {
               the day, and not at night, with PROSOLAR Storage Solution
               residential customers can produce and...
             </p>
-            <a href="/pages/contact" className="text-[#787878]">
+            <a href="/solar/contact" className="text-[#787878]">
               <button className="rounded-xl bg-[#292ECF] text-center mb-5 lg:mb-20 text-white p-2 text-md font-bold">
                 Read More
               </button>{" "}
@@ -42,7 +42,7 @@ export const Hero = () => {
               the day, and not at night, with PROSOLAR Storage Solution
               residential customers can produce and...
             </p>
-            <a href="/pages/contact" className="text-[#787878]">
+            <a href="/solar/contact" className="text-[#787878]">
               <button className="rounded-xl bg-[#292ECF] text-center mb-5 lg:mb-20 text-white p-2 text-md font-bold">
                 Read More
               </button>{" "}
@@ -70,7 +70,7 @@ export const Hero = () => {
               the day, and not at night, with PROSOLAR Storage Solution
               residential customers can produce and...
             </p>
-            <a href="/pages/contact" className="text-[#787878]">
+            <a href="/solar/contact" className="text-[#787878]">
               <button className="rounded-xl bg-[#292ECF] text-center mb-5 lg:mb-20 text-white p-2 text-md font-bold">
                 Read More
               </button>{" "}
@@ -90,7 +90,7 @@ Commercial and Industrial Solar Development            </h1>
               the day, and not at night, with PROSOLAR Storage Solution
               residential customers can produce and...
             </p>
-            <a href="/pages/contact" className="text-[#787878]">
+            <a href="/solar/contact" className="text-[#787878]">
               <button className="rounded-xl bg-[#292ECF] text-center mb-5 lg:mb-20 text-white p-2 text-md font-bold">
                 Read More
               </button>{" "}
@@ -116,7 +116,7 @@ Minigrid Design and Development            </h1>
               the day, and not at night, with PROSOLAR Storage Solution
               residential customers can produce and...
             </p>
-            <a href="/pages/contact" className="text-[#787878]">
+            <a href="/solar/contact" className="text-[#787878]">
               <button className="rounded-xl bg-[#292ECF] text-center mb-5 lg:mb-20 text-white p-2 text-md font-bold">
                 Read More
               </button>{" "}
@@ -136,7 +136,7 @@ Street Lighting Development and EPC contracts            </h1>
               the day, and not at night, with PROSOLAR Storage Solution
               residential customers can produce and...
             </p>
-            <a href="/pages/contact" className="text-[#787878]">
+            <a href="/solar/contact" className="text-[#787878]">
               <button className="rounded-xl bg-[#292ECF] text-center mb-5 lg:mb-20 text-white p-2 text-md font-bold">
                 Read More
               </button>{" "}
