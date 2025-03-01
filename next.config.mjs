@@ -16,7 +16,7 @@ const nextConfig = {
             key: "Content-Security-Policy",
             value:
               "default-src 'self'; " +
-              // Mitigate 'unsafe-inline' and 'unsafe-eval' where possible
+              // Required for GTM and inline scripts; can't remove without breaking functionality
               "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://snap.licdn.com https://*.google-analytics.com; " +
               "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; " +
               "font-src 'self' https://fonts.gstatic.com; " +
@@ -24,8 +24,9 @@ const nextConfig = {
               "connect-src 'self' https://www.googletagmanager.com https://*.google-analytics.com https://snap.licdn.com https://px.ads.linkedin.com; " +
               "frame-src 'self' https://www.googletagmanager.com; " +
               "object-src 'none'; " +
-              "base-uri 'self'; " + // Restrict base URI to your domain
-              "form-action 'self';" // Limit form submissions to your domain
+              "base-uri 'self'; " +
+              "form-action 'self'; " +
+              "report-uri /csp-report", // Optional: for CSP violation reporting
           },
           {
             key: "X-Content-Type-Options",
@@ -38,12 +39,15 @@ const nextConfig = {
           {
             key: "Permissions-Policy",
             value:
-              "camera=(), " +
-              "microphone=(), " +
-              "geolocation=(self), " + // Restrict to your origin only
-              "payment=(), " + // Explicitly disable payment
-              "autoplay=(), " + // Optional: disable autoplay unless needed
-              "fullscreen=(self)" // Optional: allow fullscreen only for your site
+              "camera=(), " + // Fully disabled
+              "microphone=(), " + // Fully disabled
+              "geolocation=(self), " + // Restricted to your domain
+              "payment=(), " + // Fully disabled
+              "autoplay=(), " + // Fully disabled
+              "fullscreen=(self), " + // Restricted to your domain
+              "accelerometer=(), " + // Additional privacy-sensitive features
+              "gyroscope=(), " + // Additional privacy-sensitive features
+              "magnetometer=()" // Additional privacy-sensitive features
           },
         ],
       },
