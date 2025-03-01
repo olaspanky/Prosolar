@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { jsPDF } from 'jspdf'; // ESM import
-import autoTable from 'jspdf-autotable'; // Direct import instead of require
+import { jsPDF } from 'jspdf';
+import autoTable from 'jspdf-autotable';
 
 const ProductModal = ({ product, onClose, plan }) => {
   const modalRef = useRef();
@@ -37,7 +37,7 @@ const ProductModal = ({ product, onClose, plan }) => {
     try {
       // Add Logo
       const logoImg = new Image();
-      logoImg.src = '/logo.png'; // Ensure this is in /public/logo.png
+      logoImg.src = '/logo.png'; // Ensure in public/logo.png
       doc.addImage(logoImg, 'PNG', 14, 10, 40, 20);
 
       // Company Header
@@ -91,25 +91,27 @@ const ProductModal = ({ product, onClose, plan }) => {
       doc.text(formData?.phone || '', 14, 113);
       doc.text(formData?.location || '', 14, 119);
 
-      // Item Details Section
+      // Item Details Section (Dynamic from product)
       doc.setFont('helvetica', 'bold');
       doc.text('Item & Description', 14, 129);
       doc.text('Qty', 120, 129);
       doc.text('Rate', 140, 129);
       doc.text('Amount', 170, 129);
 
-      const items = [
-        { description: '6.2kW / 48v Hybrid Inverter', qty: 1, rate: 466000.0, amount: 466000.0 },
-        { description: '5kWh Lithium Ion Battery', qty: 1, rate: 1300000.0, amount: 1300000.0 },
-        { description: '400W Monocrystalline Solar Panel', qty: 9, rate: 102000.0, amount: 918000.0 },
-        { description: 'Solar DC cable (60 of 10mm)', qty: 60, rate: 3000.0, amount: 180000.0 },
-        { description: 'Inverter Load Cable (40m of 6mm.sq)', qty: 40, rate: 1000.0, amount: 40000.0 },
-        { description: 'Solar Panel Mounting Rack System', qty: 1, rate: 50000.0, amount: 50000.0 },
-        { description: 'Battery Rack', qty: 1, rate: 25000.0, amount: 25000.0 },
-        { description: 'Installation accessories', qty: 1, rate: 210000.0, amount: 210000.0 },
-        { description: 'Labour & Professional Fee', qty: 1, rate: 90000.0, amount: 90000.0 },
-        { description: 'Transport and Logistics', qty: 1, rate: 40000.0, amount: 40000.0 },
-      ];
+      // Parse product data
+      const componentsArray = product.components.split(', ');
+      const items = componentsArray.map((component, index) => {
+        // Simplified qty and rate assumptions (customize as needed)
+        const qty = index === 1 ? 9 : 1; // 9 for solar panels, 1 for others (adjust based on real data)
+        const rate = parseFloat(product.OutrightPayment.replace(/[^0-9.]/g, '')) / componentsArray.length; // Even split for demo
+        const amount = qty * rate;
+        return {
+          description: component.trim(),
+          qty,
+          rate,
+          amount,
+        };
+      });
 
       let startY = 135;
       items.forEach((item) => {
@@ -117,17 +119,21 @@ const ProductModal = ({ product, onClose, plan }) => {
         doc.setFontSize(10);
         doc.text(item.description, 14, startY);
         doc.text(item.qty.toString(), 120, startY);
-        doc.text(item.rate.toLocaleString(), 140, startY);
-        doc.text(item.amount.toLocaleString(), 170, startY);
+        doc.text(item.rate.toLocaleString('en-NG', { style: 'currency', currency: 'NGN' }), 140, startY);
+        doc.text(item.amount.toLocaleString('en-NG', { style: 'currency', currency: 'NGN' }), 170, startY);
         startY += 6;
       });
 
-      // Sub Total and Total
+      // Sub Total and Total (Dynamic from product and plan)
+      const total = plan === 'OutrightPayment'
+        ? parseFloat(product.OutrightPayment.replace(/[^0-9.]/g, ''))
+        : parseFloat(product.monthlyRepaymentTotal.replace(/[^0-9.]/g, ''));
+      
       doc.setFont('helvetica', 'bold');
       doc.text('Sub Total', 140, startY + 10);
-      doc.text('NGN3,319,000.00', 170, startY + 10);
+      doc.text(total.toLocaleString('en-NG', { style: 'currency', currency: 'NGN' }), 170, startY + 10);
       doc.text('Total', 140, startY + 16);
-      doc.text('NGN3,319,000.00', 170, startY + 16);
+      doc.text(total.toLocaleString('en-NG', { style: 'currency', currency: 'NGN' }), 170, startY + 16);
 
       // Notes and Bank Details
       doc.setFont('helvetica', 'normal');
@@ -138,12 +144,12 @@ const ProductModal = ({ product, onClose, plan }) => {
       doc.text('Account Name: Prosolar Multiservices Limited', 14, startY + 48);
       doc.text('Bank Name: FCMB', 14, startY + 54);
 
-      // Terms & Conditions
+      // Terms & Conditions (Dynamic from product)
       doc.text('Terms & Conditions:', 14, startY + 60);
-      doc.text('Manufacturer\'s Warranty terms and conditions applies.', 14, startY + 66);
-      doc.text('Backup time from the batteries is dependent on the load on the system. Lower loads provides higher backup time.', 14, startY + 72);
-      doc.text('Prosolar Energy will provide 1 Year post installation maintenance for FREE.', 14, startY + 78);
-      doc.text('NOTE: Client is to make 90% down payment and 10% balance within 72 hours after completion of project.', 14, startY + 84);
+      doc.text(product.postMaintanace || 'Manufacturer\'s Warranty terms and conditions apply.', 14, startY + 66);
+      doc.text('Backup time from the batteries depends on the load on the system.', 14, startY + 72);
+      doc.text('Prosolar Energy provides 1 Year post-installation maintenance for FREE.', 14, startY + 78);
+      doc.text('NOTE: Client to make 90% down payment, 10% balance within 72 hours post-completion.', 14, startY + 84);
 
       return doc.output('blob');
     } catch (error) {
@@ -191,7 +197,7 @@ const ProductModal = ({ product, onClose, plan }) => {
     }
   };
 
-  // Rest of your component (form UI, success/failure modals) remains unchanged
+  // Form UI remains unchanged
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
       <div ref={modalRef} className="bg-white rounded-lg shadow-lg max-w-lg w-full lg:p-8 p-2 m-2 relative">
@@ -209,9 +215,7 @@ const ProductModal = ({ product, onClose, plan }) => {
         <h2 className="lg:text-3xl font-semibold text-center my-6">Let's Get You Started</h2>
         <form className="space-y-4" onSubmit={handleSubmit}>
           <div>
-            <label htmlFor="name" className="block text-sm font-medium text-gray-700">
-              Full Name
-            </label>
+            <label htmlFor="name" className="block text-sm font-medium text-gray-700">Full Name</label>
             <input
               id="name"
               type="text"
@@ -223,9 +227,7 @@ const ProductModal = ({ product, onClose, plan }) => {
             />
           </div>
           <div>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-              Email
-            </label>
+            <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
             <input
               id="email"
               type="email"
@@ -237,9 +239,7 @@ const ProductModal = ({ product, onClose, plan }) => {
             />
           </div>
           <div>
-            <label htmlFor="phone" className="block text-sm font-medium text-gray-700">
-              Phone Number
-            </label>
+            <label htmlFor="phone" className="block text-sm font-medium text-gray-700">Phone Number</label>
             <input
               id="phone"
               type="tel"
@@ -251,9 +251,7 @@ const ProductModal = ({ product, onClose, plan }) => {
             />
           </div>
           <div>
-            <label htmlFor="location" className="block text-sm font-medium text-gray-700">
-              Location/City
-            </label>
+            <label htmlFor="location" className="block text-sm font-medium text-gray-700">Location/City</label>
             <input
               id="location"
               type="text"
@@ -267,9 +265,7 @@ const ProductModal = ({ product, onClose, plan }) => {
 
           <button
             type="submit"
-            className={`w-full py-2 px-4 text-white rounded-md focus:outline-none ${
-              isSubmitting ? 'bg-gray-500' : 'bg-indigo-600 hover:bg-indigo-700'
-            }`}
+            className={`w-full py-2 px-4 text-white rounded-md focus:outline-none ${isSubmitting ? 'bg-gray-500' : 'bg-indigo-600 hover:bg-indigo-700'}`}
             disabled={isSubmitting}
           >
             {isSubmitting ? 'Submitting...' : 'Submit'}
