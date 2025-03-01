@@ -207,7 +207,7 @@ const ProductModal = ({ product, onClose, plan }) => {
           aria-label="Close"
           inert
         >
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" className="w-6 h-6">
+          <svg xmlns="https://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" className="w-6 h-6">
             <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
           </svg>
         </button>
@@ -277,7 +277,7 @@ const ProductModal = ({ product, onClose, plan }) => {
             <div className="bg-gradient-to-r bg-[#292ECF] text-white text-center p-8 rounded-xl shadow-2xl max-w-md w-full">
               <div className="mb-4">
                 <svg
-                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns="https://www.w3.org/2000/svg"
                   className="h-16 w-16 mx-auto text-white"
                   fill="none"
                   viewBox="0 0 24 24"
@@ -312,7 +312,7 @@ const ProductModal = ({ product, onClose, plan }) => {
             <div className="bg-gradient-to-r from-red-400 to-red-600 text-white text-center p-8 rounded-xl shadow-2xl max-w-md w-full">
               <div className="mb-4">
                 <svg
-                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns="https://www.w3.org/2000/svg"
                   className="h-16 w-16 mx-auto text-white"
                   fill="none"
                   viewBox="0 0 24 24"
