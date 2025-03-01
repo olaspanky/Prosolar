@@ -1,48 +1,49 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Optional: you can remove this if not needed
   experimental: {
     missingSuspenseWithCSRBailout: false,
   },
   async headers() {
     return [
       {
-        // Apply these headers to all routes
         source: "/:path*",
         headers: [
           {
             key: "X-Frame-Options",
-            value: "DENY", // Prevents framing of your site
+            value: "DENY",
           },
           {
             key: "Content-Security-Policy",
             value:
               "default-src 'self'; " +
-              // Scripts: GTM, LinkedIn, and inline scripts
+              // Mitigate 'unsafe-inline' and 'unsafe-eval' where possible
               "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://snap.licdn.com https://*.google-analytics.com; " +
-              // Styles: Google Fonts and Slick Carousel
               "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; " +
-              // Fonts: Google Fonts
               "font-src 'self' https://fonts.gstatic.com; " +
-              // Images: LinkedIn tracking pixel
               "img-src 'self' data: https://px.ads.linkedin.com https://*.google-analytics.com; " +
-              // Connections: GTM, LinkedIn, and Analytics
               "connect-src 'self' https://www.googletagmanager.com https://*.google-analytics.com https://snap.licdn.com https://px.ads.linkedin.com; " +
-              // Frames: GTM noscript iframe
               "frame-src 'self' https://www.googletagmanager.com; " +
-              "object-src 'none';", // No plugins allowed
+              "object-src 'none'; " +
+              "base-uri 'self'; " + // Restrict base URI to your domain
+              "form-action 'self';" // Limit form submissions to your domain
           },
           {
             key: "X-Content-Type-Options",
-            value: "nosniff", // Prevents MIME-type sniffing
+            value: "nosniff",
           },
           {
             key: "Referrer-Policy",
-            value: "strict-origin-when-cross-origin", // Controls referrer info
+            value: "strict-origin-when-cross-origin",
           },
           {
             key: "Permissions-Policy",
-            value: "camera=(), microphone=(), geolocation=()", // Restricts features
+            value:
+              "camera=(), " +
+              "microphone=(), " +
+              "geolocation=(self), " + // Restrict to your origin only
+              "payment=(), " + // Explicitly disable payment
+              "autoplay=(), " + // Optional: disable autoplay unless needed
+              "fullscreen=(self)" // Optional: allow fullscreen only for your site
           },
         ],
       },
