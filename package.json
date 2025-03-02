@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "sitemap": "next-sitemap"
+
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",
@@ -25,6 +27,7 @@
     "mongodb": "^6.11.0",
     "next": "^14.2.24",
     "next-fonts": "^1.5.1",
+    "next-sitemap": "^4.2.3",
     "nodemailer": "^6.9.16",
     "react": "^18",
     "react-dom": "^18",

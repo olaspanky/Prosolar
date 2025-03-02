@@ -1,27 +1,28 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { Syne, Plus_Jakarta_Sans } from 'next/font/google';
+import { Syne, Plus_Jakarta_Sans } from "next/font/google";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Footer } from "./components/Footer";
 import GoogleAnalytics from "./components/GoogleAnalytics";
 import { Providers } from "./Provider";
-import { Suspense } from 'react';
+import { Suspense } from "react";
+import Head from "next/head"; // Import Head from next/head
 
 const syne = Syne({
-  weight: '700',
-  subsets: ['latin'],
-  variable: '--font-syne',
+  weight: "700",
+  subsets: ["latin"],
+  variable: "--font-syne",
 });
 const syne2 = Syne({
-  weight: '600',
-  subsets: ['latin'],
-  variable: '--font-syne2',
+  weight: "600",
+  subsets: ["latin"],
+  variable: "--font-syne2",
 });
 const jak = Plus_Jakarta_Sans({
-  weight: '400',
-  subsets: ['latin'],
-  variable: '--font-jak',
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-jak",
 });
 
 const inter = Inter({ subsets: ["latin"] });
@@ -32,9 +33,13 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+  const canonicalBase = "https://yourdomain.com"; // Replace with your actual domain
+
   return (
     <html lang="en" className={`${syne.variable} ${syne2.variable} ${jak.variable}`}>
-      <head>
+      <Head>
+        {/* Canonical Tag */}
+        <link rel="canonical" href={canonicalBase} />
         {/* Google Tag Manager */}
         <script
           dangerouslySetInnerHTML={{
@@ -47,16 +52,13 @@ export default function RootLayout({ children }) {
             `,
           }}
         />
-        {/* End Google Tag Manager */}
-      </head>
+      </Head>
       <body>
         <Suspense>
           <Providers />
         </Suspense>
         <GoogleAnalytics />
-        <div className="w-[100vw] min-h-screen">
-          {children}
-        </div>
+        <div className="w-[100vw] min-h-screen">{children}</div>
 
         {/* LinkedIn Insight Tag */}
         <script
@@ -94,7 +96,7 @@ export default function RootLayout({ children }) {
           <img
             height="1"
             width="1"
-            style={{ display: 'none' }}
+            style={{ display: "none" }}
             alt=""
             src="https://px.ads.linkedin.com/collect/?pid=1613905&fmt=gif"
           />
@@ -106,11 +108,9 @@ export default function RootLayout({ children }) {
             src="https://www.googletagmanager.com/ns.html?id=GTM-5593KCRS"
             height="0"
             width="0"
-            style={{ display: 'none', visibility: 'hidden' }}
+            style={{ display: "none", visibility: "hidden" }}
           ></iframe>
         </noscript>
-        {/* End Google Tag Manager (noscript) */}
-
         <Footer />
       </body>
     </html>
