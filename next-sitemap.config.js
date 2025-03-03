@@ -1,5 +1,5 @@
 const config = {
-    siteUrl: 'https://yourwebsite.com',
+    siteUrl: 'https://prosolarng.com/',
     generateRobotsTxt: true,
     robotsTxtOptions: {
       policies: [
