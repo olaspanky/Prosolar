@@ -40,6 +40,8 @@ export default function RootLayout({ children }) {
       <Head>
         {/* Canonical Tag */}
         <link rel="canonical" href={canonicalBase} />
+        {/* Google Site Verification */}
+        <meta name="google-site-verification" content="0BQHA9XFVrwCldFiC8aip6Jxmbk_fYOKRmMveQy7b58" />
         {/* Google Tag Manager */}
         <script
           dangerouslySetInnerHTML={{
