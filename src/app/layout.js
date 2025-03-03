@@ -7,7 +7,7 @@ import { Footer } from "./components/Footer";
 import GoogleAnalytics from "./components/GoogleAnalytics";
 import { Providers } from "./Provider";
 import { Suspense } from "react";
-import Head from "next/head"; // Import Head from next/head
+import Head from "next/head"; // Already imported
 
 const syne = Syne({
   weight: "700",
