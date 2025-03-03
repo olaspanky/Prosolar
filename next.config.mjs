@@ -16,12 +16,14 @@ const nextConfig = {
             key: "Content-Security-Policy",
             value:
               "default-src 'self'; " +
-              // Required for GTM and inline scripts; can't remove without breaking functionality
-              "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://snap.licdn.com https://*.google-analytics.com; " +
+              // Updated script-src to include Facebook Pixel
+              "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://snap.licdn.com https://*.google-analytics.com https://connect.facebook.net; " +
               "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; " +
               "font-src 'self' https://fonts.gstatic.com; " +
-              "img-src 'self' data: https://px.ads.linkedin.com https://*.google-analytics.com; " +
-              "connect-src 'self' https://www.googletagmanager.com https://*.google-analytics.com https://snap.licdn.com https://px.ads.linkedin.com; " +
+              // Updated img-src to include Facebook tracking pixel
+              "img-src 'self' data: https://px.ads.linkedin.com https://*.google-analytics.com https://www.facebook.com; " +
+              // Updated connect-src to include Google Analytics and Facebook
+              "connect-src 'self' https://www.googletagmanager.com https://*.google-analytics.com https://snap.licdn.com https://px.ads.linkedin.com https://analytics.google.com https://www.facebook.com; " +
               "frame-src 'self' https://www.googletagmanager.com; " +
               "object-src 'none'; " +
               "base-uri 'self'; " +
@@ -39,15 +41,15 @@ const nextConfig = {
           {
             key: "Permissions-Policy",
             value:
-              "camera=(), " + // Fully disabled
-              "microphone=(), " + // Fully disabled
-              "geolocation=(self), " + // Restricted to your domain
-              "payment=(), " + // Fully disabled
-              "autoplay=(), " + // Fully disabled
-              "fullscreen=(self), " + // Restricted to your domain
-              "accelerometer=(), " + // Additional privacy-sensitive features
-              "gyroscope=(), " + // Additional privacy-sensitive features
-              "magnetometer=()" // Additional privacy-sensitive features
+              "camera=(), " +
+              "microphone=(), " +
+              "geolocation=(self), " +
+              "payment=(), " +
+              "autoplay=(), " +
+              "fullscreen=(self), " +
+              "accelerometer=(), " +
+              "gyroscope=(), " +
+              "magnetometer=()",
           },
         ],
       },
