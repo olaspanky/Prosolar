@@ -10,15 +10,17 @@
     "sitemap": "next-sitemap"
   },
   "dependencies": {
+    "@headlessui/react": "^2.2.1",
     "@heroicons/react": "^2.2.0",
     "@next/font": "^14.2.15",
     "@next/third-parties": "^15.2.2",
+    "@storefront-ui/react": "^2.7.1",
     "@tanstack/react-table": "^8.20.6",
     "axios": "^1.7.7",
     "canvas-confetti": "^1.9.3",
     "emailjs-com": "^3.2.0",
     "formik": "^2.4.6",
-    "framer-motion": "^11.2.6",
+    "framer-motion": "^11.18.2",
     "html2canvas": "^1.4.1",
     "html2pdf.js": "^0.10.3",
     "jspdf": "^3.0.0",

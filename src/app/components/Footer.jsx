@@ -14,7 +14,7 @@ export const Footer = () => {
     <div className='lg:p-3 p-1'>
         <div className='grid grid-cols-12 gap-3 rounded-xl bg-[#1B1B1B]  text-[#D9D9D9] p-3 lg:p-9'>
             <div className='col-span-4 flex justify-center items-center'>
-                <Image src={logo}/>
+                <Image src={logo} alt='logo'/>
             </div>
             <div className='col-span-8 flex lg:flex-row flex-col gap-3 md:gap-5 lg:gap-20 justify-between '>
                 <div className='lg:w-1/3'>
